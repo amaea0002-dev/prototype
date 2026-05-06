@@ -4,243 +4,228 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Reports — Amaea</title>
+  <script>
+    (function(){ const t=localStorage.getItem('amaea-theme')||'light'; if(t==='dark') document.documentElement.setAttribute('data-theme','dark'); })();
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link href="amaea.css" rel="stylesheet"/>
 </head>
 <body>
 
 <aside class="sidebar">
-  <div class="sidebar-logo">
-    <a href="dashboard.html">
-      <img src="amaea-logo.png" class="logo-img" alt="Amaea" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-      <div class="logo-mark" style="display:none;">A</div>
+  <div class="sb-header">
+    <a href="dashboard.html" class="sb-logo">
+      <img src="amaea-logo.png" alt="Amaea" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="logo-fallback" style="display:none;">A</div>
     </a>
   </div>
-  <nav class="sidebar-nav">
-    <div class="nav-section-label">Main</div>
-    <a href="dashboard.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Dashboard</a>
-    <a href="clients.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Clients<span class="nav-badge">18</span></a>
-    <a href="analytics.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Analytics</a>
-    <a href="insights.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>AI Insights<span class="nav-badge amber">7</span></a>
-    <a href="reports.html" class="nav-item active"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Reports</a>
-    <div class="nav-section-label">Settings</div>
-    <a href="integrations.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Integrations</a>
+  <nav class="sb-nav">
+    <span class="sb-label">Main</span>
+    <a href="dashboard.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Dashboard</a>
+    <a href="clients.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Clients<span class="nav-badge">18</span></a>
+    <a href="analytics.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Analytics</a>
+    <a href="insights.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>AI Insights<span class="nav-badge amber">7</span></a>
+    <a href="reports.html" class="nav-item active"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>Reports</a>
+    <span class="sb-label">Settings</span>
+    <a href="integrations.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Integrations</a>
+    <a href="#" class="nav-item" onclick="showToast('Settings coming soon','info');return false;"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Settings</a>
   </nav>
-  <div class="sidebar-footer">
-    <div class="sidebar-user" onclick="showToast('Profile settings coming soon','info')">
-      <div class="user-avatar">SC</div>
-      <div class="user-info"><div class="user-name">Sarah Clarke</div><div class="user-role">Head of Compliance</div></div>
+  <div class="sb-footer">
+    <div class="sb-user" onclick="showToast('Profile settings coming soon','info')">
+      <div class="sb-avatar">SC</div>
+      <div><div class="sb-user-name">Sarah Clarke</div><div class="sb-user-role">Head of Compliance</div></div>
     </div>
   </div>
 </aside>
 
+<div class="sb-overlay" id="sb-overlay" onclick="closeSidebar()"></div>
+
 <div class="main">
-  <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
   <header class="topbar">
-    <button class="mobile-menu-btn" onclick="toggleSidebar()"><span></span><span></span><span></span></button>
+    <button class="menu-btn" onclick="toggleSidebar()"><span></span><span></span><span></span></button>
     <span class="topbar-title">Reports</span>
     <div class="topbar-search">
       <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" placeholder="Search reports..."/>
+      <input type="text" placeholder="Search reports…"/>
     </div>
-    <div class="topbar-icon" onclick="showToast('All caught up!','success',1500)"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
-    <div class="topbar-avatar" onclick="showToast('Profile settings coming soon','info')">SC</div>
+    <div class="topbar-actions">
+      <button class="icon-btn" onclick="toggleTheme()" title="Toggle dark mode">
+        <svg class="icon-sun" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <div class="topbar-avatar" onclick="showToast('Profile settings coming soon','info')">SC</div>
+    </div>
   </header>
 
   <div class="page">
-    <div class="page-header flex-between">
-      <div><h1>Reports</h1><p>Generate FCA-ready reports with one click. All data pulled from connected systems.</p></div>
-      <button class="btn btn-primary btn-sm" onclick="openModal('custom-report-modal')">
-        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        Custom Report
-      </button>
-    </div>
-
-    <div style="display:grid; grid-template-columns:1fr 290px; gap:22px;">
+    <div class="page-header fade-up">
       <div>
-        <div style="font-size:0.875rem; font-weight:700; margin-bottom:14px; letter-spacing:-0.01em;">FCA Report Templates</div>
+        <h1>Reports</h1>
+        <p>FCA regulatory reports · Auto-populated from your connected data sources</p>
+      </div>
+      <div class="page-actions">
+        <button class="btn btn-ghost btn-sm" onclick="showToast('Report archive coming soon','info')">Archive</button>
+      </div>
+    </div>
 
-        <div class="report-card" onclick="openModal('report-preview-modal')">
-          <div class="report-icon"><svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-          <div class="report-info">
-            <div class="report-name">FCA Compliance Summary Report</div>
-            <div class="report-desc">Full compliance overview — health score, outstanding actions, risk flags, and regulatory status.</div>
-            <div class="report-meta">Covers: Annual reviews · Documentation · Suitability · Deadlines</div>
+    <!-- Urgent banner -->
+    <div style="background:var(--red-bg);border:1px solid var(--red-ring);border-radius:var(--r3);padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;gap:12px;" class="fade-up fade-up-1">
+      <div style="width:32px;height:32px;border-radius:var(--r2);background:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="14" height="14" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+      </div>
+      <div style="flex:1;">
+        <div style="font-size:0.84rem;font-weight:700;color:var(--red);margin-bottom:1px;">RMAR due in 25 days — action required</div>
+        <div style="font-size:0.75rem;color:var(--t3);">3 data gaps identified in section B. Review and complete before the 31 May submission window.</div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="openModal('preview-modal')">Review Now</button>
+    </div>
+
+    <div class="report-grid fade-up fade-up-2">
+      <!-- RMAR -->
+      <div class="report-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div class="report-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
           </div>
-          <div style="display:flex;flex-direction:column;gap:7px;align-items:flex-end;">
-            <span class="badge badge-green">Ready</span>
-            <button class="btn btn-primary btn-sm" data-action="generate" onclick="event.stopPropagation()">Generate</button>
-          </div>
+          <span class="badge badge-red">Due 31 May</span>
         </div>
-
-        <div class="report-card" onclick="openModal('report-preview-modal')">
-          <div class="report-icon"><svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
-          <div class="report-info">
-            <div class="report-name">Annual Review Status Report</div>
-            <div class="report-desc">Complete list of annual reviews — completed, overdue, and upcoming — by adviser and client.</div>
-            <div class="report-meta">247 clients · Adviser breakdown · 18 overdue flagged</div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:7px;align-items:flex-end;">
-            <span class="badge badge-red">18 Overdue</span>
-            <button class="btn btn-primary btn-sm" data-action="generate" onclick="event.stopPropagation()">Generate</button>
-          </div>
+        <div class="report-name">FCA RMAR Submission</div>
+        <div class="report-desc">Retail Mediation Activities Return. Data pre-populated from Intelliflo. 3 gaps remaining in section B.</div>
+        <div style="margin-bottom:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--t3);margin-bottom:4px;"><span>Completion</span><span style="font-weight:600;color:var(--amber)">87%</span></div>
+          <div class="progress"><div class="progress-fill fill-amber" style="width:87%"></div></div>
         </div>
-
-        <div class="report-card" onclick="openModal('report-preview-modal')">
-          <div class="report-icon"><svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg></div>
-          <div class="report-info">
-            <div class="report-name">Risk Register</div>
-            <div class="report-desc">All current risk flags categorised by severity, type, and assigned adviser. Includes recommended actions.</div>
-            <div class="report-meta">7 open risks · Mitigation actions · Owner assigned</div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:7px;align-items:flex-end;">
-            <span class="badge badge-amber">7 Open</span>
-            <button class="btn btn-primary btn-sm" data-action="generate" onclick="event.stopPropagation()">Generate</button>
-          </div>
-        </div>
-
-        <div class="report-card" onclick="openModal('report-preview-modal')">
-          <div class="report-icon"><svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
-          <div class="report-info">
-            <div class="report-name">RMAR — Retail Mediation Activities Return</div>
-            <div class="report-desc">Pre-populated FCA submission. Data pulled from Intelliflo and SharePoint. Ready for review.</div>
-            <div class="report-meta">Period: Jan–Mar 2026 · Due: 31 May 2026</div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:7px;align-items:flex-end;">
-            <span class="badge badge-red">Due Soon</span>
-            <button class="btn btn-primary btn-sm" data-action="generate" onclick="event.stopPropagation()">Generate</button>
-          </div>
-        </div>
-
-        <div class="report-card" onclick="openModal('report-preview-modal')">
-          <div class="report-icon"><svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg></div>
-          <div class="report-info">
-            <div class="report-name">Consumer Duty Outcome Report</div>
-            <div class="report-desc">Assessment of Consumer Duty compliance with vulnerable customer analysis.</div>
-            <div class="report-meta">FCA Consumer Duty · July 2023 requirement</div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:7px;align-items:flex-end;">
-            <span class="badge badge-green">Ready</span>
-            <button class="btn btn-primary btn-sm" data-action="generate" onclick="event.stopPropagation()">Generate</button>
-          </div>
-        </div>
-
-        <!-- Recent -->
-        <div style="font-size:0.875rem; font-weight:700; margin:24px 0 14px; letter-spacing:-0.01em;">Recently Generated</div>
-        <div class="card" style="padding:0; overflow:hidden;">
-          <table class="data-table">
-            <thead><tr><th>Report</th><th>Generated</th><th>By</th><th>Period</th><th></th></tr></thead>
-            <tbody>
-              <tr class="clickable" onclick="openModal('report-preview-modal')">
-                <td><div style="font-weight:600;font-size:0.845rem;">FCA Compliance Summary</div></td>
-                <td style="font-size:0.82rem;color:var(--text-2);">2 May 2026</td>
-                <td style="font-size:0.82rem;color:var(--text-2);">Sarah Clarke</td>
-                <td><span class="badge badge-grey">Q1 2026</span></td>
-                <td><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); showToast('Downloading PDF...','info',1500); setTimeout(()=>showToast('FCA-Compliance-Summary-Q1-2026.pdf downloaded','success'),1700)">↓ PDF</button></td>
-              </tr>
-              <tr class="clickable" onclick="openModal('report-preview-modal')">
-                <td><div style="font-weight:600;font-size:0.845rem;">Annual Review Status</div></td>
-                <td style="font-size:0.82rem;color:var(--text-2);">28 Apr 2026</td>
-                <td style="font-size:0.82rem;color:var(--text-2);">Sarah Clarke</td>
-                <td><span class="badge badge-grey">Apr 2026</span></td>
-                <td><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); showToast('Downloading PDF...','info',1500); setTimeout(()=>showToast('Annual-Review-Status-Apr-2026.pdf downloaded','success'),1700)">↓ PDF</button></td>
-              </tr>
-              <tr class="clickable" onclick="openModal('report-preview-modal')">
-                <td><div style="font-weight:600;font-size:0.845rem;">Risk Register</div></td>
-                <td style="font-size:0.82rem;color:var(--text-2);">15 Apr 2026</td>
-                <td style="font-size:0.82rem;color:var(--text-2);">James Morrison</td>
-                <td><span class="badge badge-grey">Q1 2026</span></td>
-                <td><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); showToast('Downloading PDF...','info',1500); setTimeout(()=>showToast('Risk-Register-Q1-2026.pdf downloaded','success'),1700)">↓ PDF</button></td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="report-footer">
+          <button class="btn btn-primary btn-sm" id="rmar-btn" onclick="simulateGenerate(this,'RMAR ready')">Generate Report</button>
+          <button class="btn btn-secondary btn-sm" onclick="openModal('preview-modal')">Preview</button>
         </div>
       </div>
 
-      <!-- Filters -->
-      <div>
-        <div class="card mb-5">
-          <div style="font-size:0.875rem; font-weight:700; margin-bottom:14px; letter-spacing:-0.01em;">Report Filters</div>
-          <div style="margin-bottom:12px;"><label style="font-size:0.75rem;font-weight:600;color:var(--text-3);display:block;margin-bottom:5px;">Date Range</label>
-            <select class="form-select" onchange="showToast('Filter applied','info',1000)"><option>Last 3 months</option><option>Last 6 months</option><option>Last 12 months</option><option>Custom range</option></select></div>
-          <div style="margin-bottom:12px;"><label style="font-size:0.75rem;font-weight:600;color:var(--text-3);display:block;margin-bottom:5px;">Adviser</label>
-            <select class="form-select" onchange="showToast('Filter applied','info',1000)"><option>All Advisers</option><option>James Morrison</option><option>Alex Williams</option><option>Kate Davies</option></select></div>
-          <div style="margin-bottom:14px;"><label style="font-size:0.75rem;font-weight:600;color:var(--text-3);display:block;margin-bottom:5px;">Export Format</label>
-            <div class="filter-bar" style="margin:0;gap:6px;">
-              <button class="filter-btn active" style="flex:1;text-align:center;">PDF</button>
-              <button class="filter-btn" style="flex:1;text-align:center;">Excel</button>
-              <button class="filter-btn" style="flex:1;text-align:center;">CSV</button>
-            </div>
+      <!-- Suitability Review -->
+      <div class="report-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div class="report-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
           </div>
-          <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="showToast('Filters applied','success',1500)">Apply Filters</button>
+          <span class="badge badge-amber">34 gaps</span>
         </div>
-        <div class="card">
-          <div style="font-size:0.875rem;font-weight:700;margin-bottom:8px;letter-spacing:-0.01em;">Schedule Reports</div>
-          <p style="font-size:0.8rem;color:var(--text-2);line-height:1.6;margin-bottom:14px;">Set up automatic report generation and delivery to your inbox.</p>
-          <button class="btn btn-secondary" style="width:100%;justify-content:center;" onclick="openModal('schedule-modal')">Set Up Schedule</button>
+        <div class="report-name">Suitability Review Report</div>
+        <div class="report-desc">Consolidates all suitability letters and SOAs. Flags missing or expired documents across the client book.</div>
+        <div style="margin-bottom:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--t3);margin-bottom:4px;"><span>Documentation complete</span><span style="font-weight:600;color:var(--red)">61%</span></div>
+          <div class="progress"><div class="progress-fill fill-red" style="width:61%"></div></div>
+        </div>
+        <div class="report-footer">
+          <button class="btn btn-primary btn-sm" id="suit-btn" onclick="simulateGenerate(this,'Suitability report ready')">Generate Report</button>
+          <button class="btn btn-secondary btn-sm" onclick="showToast('Preview coming soon','info')">Preview</button>
+        </div>
+      </div>
+
+      <!-- Consumer Duty -->
+      <div class="report-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div class="report-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <span class="badge badge-blue">Due Jul</span>
+        </div>
+        <div class="report-name">Consumer Duty Annual Assessment</div>
+        <div class="report-desc">Annual FCA Consumer Duty report covering fair value, consumer understanding, and vulnerable client outcomes.</div>
+        <div style="margin-bottom:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--t3);margin-bottom:4px;"><span>Assessment complete</span><span style="font-weight:600;color:var(--green)">78%</span></div>
+          <div class="progress"><div class="progress-fill fill-green" style="width:78%"></div></div>
+        </div>
+        <div class="report-footer">
+          <button class="btn btn-primary btn-sm" id="cd-btn" onclick="simulateGenerate(this,'Consumer Duty report ready')">Generate Report</button>
+          <button class="btn btn-secondary btn-sm" onclick="showToast('Preview coming soon','info')">Preview</button>
+        </div>
+      </div>
+
+      <!-- Compliance Log -->
+      <div class="report-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div class="report-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <span class="badge badge-green">Up to date</span>
+        </div>
+        <div class="report-name">Compliance Activity Log</div>
+        <div class="report-desc">Full audit trail of all compliance actions, risk flags, document reviews, and escalations. Period-end ready.</div>
+        <div style="margin-bottom:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--t3);margin-bottom:4px;"><span>Log completeness</span><span style="font-weight:600;color:var(--green)">100%</span></div>
+          <div class="progress"><div class="progress-fill fill-green" style="width:100%"></div></div>
+        </div>
+        <div class="report-footer">
+          <button class="btn btn-primary btn-sm" id="log-btn" onclick="simulateGenerate(this,'Compliance log exported')">Export Log</button>
+          <button class="btn btn-secondary btn-sm" onclick="showToast('Preview coming soon','info')">Preview</button>
+        </div>
+      </div>
+
+      <!-- Vulnerable Customers -->
+      <div class="report-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div class="report-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <span class="badge badge-amber">9 clients</span>
+        </div>
+        <div class="report-name">Vulnerable Customer Report</div>
+        <div class="report-desc">Documents all Consumer Duty vulnerable customer outcomes, monitoring actions, and fair treatment evidence.</div>
+        <div style="margin-bottom:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--t3);margin-bottom:4px;"><span>Documentation complete</span><span style="font-weight:600;color:var(--amber)">44%</span></div>
+          <div class="progress"><div class="progress-fill fill-amber" style="width:44%"></div></div>
+        </div>
+        <div class="report-footer">
+          <button class="btn btn-primary btn-sm" id="vuln-btn" onclick="simulateGenerate(this,'Vulnerable report ready')">Generate Report</button>
+          <button class="btn btn-secondary btn-sm" onclick="showToast('Preview coming soon','info')">Preview</button>
+        </div>
+      </div>
+
+      <!-- Board Report -->
+      <div class="report-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div class="report-icon">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <span class="badge badge-blue">Due 15 Jun</span>
+        </div>
+        <div class="report-name">Board Compliance Presentation</div>
+        <div class="report-desc">Executive summary of compliance health, risk exposure, regulatory updates, and recommended actions for the board.</div>
+        <div style="margin-bottom:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--t3);margin-bottom:4px;"><span>Draft readiness</span><span style="font-weight:600;color:var(--blue)">40%</span></div>
+          <div class="progress"><div class="progress-fill fill-blue" style="width:40%"></div></div>
+        </div>
+        <div class="report-footer">
+          <button class="btn btn-primary btn-sm" id="board-btn" onclick="simulateGenerate(this,'Board report ready')">Generate Draft</button>
+          <button class="btn btn-secondary btn-sm" onclick="showToast('Preview coming soon','info')">Preview</button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Report Preview Modal -->
-<div class="modal-overlay" id="report-preview-modal" style="position:fixed;">
-  <div class="modal" style="position:relative; width:560px;">
-    <button class="modal-close" onclick="closeModal('report-preview-modal')">✕</button>
-    <div class="modal-title">FCA Compliance Summary Report</div>
-    <div class="modal-sub">Q1 2026 · Brightwell Financial Planning Ltd</div>
-    <div style="background:var(--bg);border-radius:10px;padding:18px;margin-bottom:18px;">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
-        <div style="background:var(--card);border-radius:8px;padding:14px;"><div style="font-size:0.7rem;color:var(--text-3);margin-bottom:4px;">HEALTH SCORE</div><div style="font-size:1.6rem;font-weight:800;color:var(--plum);letter-spacing:-0.03em;">82%</div></div>
-        <div style="background:var(--card);border-radius:8px;padding:14px;"><div style="font-size:0.7rem;color:var(--text-3);margin-bottom:4px;">ACTIVE CLIENTS</div><div style="font-size:1.6rem;font-weight:800;letter-spacing:-0.03em;">247</div></div>
-        <div style="background:var(--card);border-radius:8px;padding:14px;"><div style="font-size:0.7rem;color:var(--text-3);margin-bottom:4px;">OVERDUE REVIEWS</div><div style="font-size:1.6rem;font-weight:800;color:var(--danger);letter-spacing:-0.03em;">18</div></div>
-        <div style="background:var(--card);border-radius:8px;padding:14px;"><div style="font-size:0.7rem;color:var(--text-3);margin-bottom:4px;">OPEN RISKS</div><div style="font-size:1.6rem;font-weight:800;color:var(--warning);letter-spacing:-0.03em;">7</div></div>
-      </div>
-      <div style="font-size:0.75rem;color:var(--text-3);text-align:center;">Generated by Amaea · 6 May 2026 · Confidential</div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeModal('report-preview-modal')">Close</button>
-      <button class="btn btn-secondary" onclick="showToast('Sharing link copied','success'); closeModal('report-preview-modal')">Share Link</button>
-      <button class="btn btn-primary" onclick="showToast('Downloading PDF...','info',1500); setTimeout(()=>showToast('FCA-Compliance-Q1-2026.pdf downloaded','success'),1700); closeModal('report-preview-modal')">↓ Download PDF</button>
-    </div>
-  </div>
-</div>
-
-<!-- Custom Report Modal -->
-<div class="modal-overlay" id="custom-report-modal" style="position:fixed;">
-  <div class="modal" style="position:relative;">
-    <button class="modal-close" onclick="closeModal('custom-report-modal')">✕</button>
-    <div class="modal-title">Custom Report</div>
-    <div class="modal-sub">Build a bespoke report with the data you need.</div>
-    <div class="form-group"><label class="form-label">Report Name</label><input class="form-input" placeholder="e.g. Q2 Adviser Review Summary"/></div>
-    <div class="form-group"><label class="form-label">Sections to Include</label>
-      <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">
-        <label style="display:flex;align-items:center;gap:8px;font-size:0.845rem;cursor:pointer;"><input type="checkbox" checked/> Annual Review Status</label>
-        <label style="display:flex;align-items:center;gap:8px;font-size:0.845rem;cursor:pointer;"><input type="checkbox" checked/> Documentation Gaps</label>
-        <label style="display:flex;align-items:center;gap:8px;font-size:0.845rem;cursor:pointer;"><input type="checkbox"/> Risk Register</label>
-        <label style="display:flex;align-items:center;gap:8px;font-size:0.845rem;cursor:pointer;"><input type="checkbox"/> Vulnerable Customer Summary</label>
+<!-- Preview modal -->
+<div class="modal-overlay" id="preview-modal">
+  <div class="modal" style="max-width:580px;">
+    <button class="modal-close" onclick="closeModal('preview-modal')">✕</button>
+    <div class="modal-title">RMAR Report Preview</div>
+    <div class="modal-sub">Retail Mediation Activities Return · Due 31 May 2026</div>
+    <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r2);padding:14px;margin-bottom:16px;">
+      <div style="font-size:0.8rem;font-weight:700;color:var(--t1);margin-bottom:10px;">Section A — Firm Details</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:0.77rem;">
+        <div><span style="color:var(--t3);">FCA Reference:</span> <span style="font-weight:600;color:var(--t1);">FRN 123456</span></div>
+        <div><span style="color:var(--t3);">Period:</span> <span style="font-weight:600;color:var(--t1);">Jan–Dec 2025</span></div>
+        <div><span style="color:var(--t3);">Total clients:</span> <span style="font-weight:600;color:var(--t1);">247</span></div>
+        <div><span style="color:var(--t3);">Advisers:</span> <span style="font-weight:600;color:var(--t1);">3</span></div>
       </div>
     </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeModal('custom-report-modal')">Cancel</button>
-      <button class="btn btn-primary" onclick="showToast('Building custom report...','info',2000); setTimeout(()=>showToast('Custom report ready','success'),2200); closeModal('custom-report-modal')">Build Report</button>
+    <div style="background:var(--red-bg);border:1px solid var(--red-ring);border-radius:var(--r2);padding:12px 14px;margin-bottom:16px;font-size:0.78rem;">
+      <div style="font-weight:700;color:var(--red);margin-bottom:4px;">3 data gaps in Section B</div>
+      <div style="color:var(--t2);">• Complaint volumes — figures not yet submitted by adviser team<br>• Product mix breakdown — ISA/pension split needs verification<br>• Vulnerable client percentage — requires manual input</div>
     </div>
-  </div>
-</div>
-
-<!-- Schedule Modal -->
-<div class="modal-overlay" id="schedule-modal" style="position:fixed;">
-  <div class="modal" style="position:relative;">
-    <button class="modal-close" onclick="closeModal('schedule-modal')">✕</button>
-    <div class="modal-title">Schedule Automated Reports</div>
-    <div class="modal-sub">Reports will be generated and emailed to your team automatically.</div>
-    <div class="form-group"><label class="form-label">Report Type</label><select class="form-select"><option>FCA Compliance Summary</option><option>Annual Review Status</option><option>Risk Register</option></select></div>
-    <div class="form-group"><label class="form-label">Frequency</label><select class="form-select"><option>Weekly</option><option>Monthly</option><option>Quarterly</option></select></div>
-    <div class="form-group"><label class="form-label">Send to</label><input class="form-input" placeholder="sarah@brightwell.co.uk" value="sarah@brightwell.co.uk"/></div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeModal('schedule-modal')">Cancel</button>
-      <button class="btn btn-primary" onclick="showToast('Schedule set up successfully','success'); closeModal('schedule-modal')">Set Up Schedule</button>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('preview-modal')">Close</button>
+      <button class="btn btn-primary" onclick="showToast('RMAR exported as PDF','success');closeModal('preview-modal')">Download PDF</button>
     </div>
   </div>
 </div>

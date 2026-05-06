@@ -4,230 +4,286 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dashboard — Amaea</title>
+  <script>
+    (function(){ const t=localStorage.getItem('amaea-theme')||'light'; if(t==='dark') document.documentElement.setAttribute('data-theme','dark'); })();
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link href="amaea.css" rel="stylesheet"/>
 </head>
 <body>
 
-<!-- Sidebar -->
 <aside class="sidebar">
-  <div class="sidebar-logo">
-    <a href="dashboard.html">
-      <img src="amaea-logo.png" class="logo-img" alt="Amaea" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-      <div class="logo-mark" style="display:none;">A</div>
+  <div class="sb-header">
+    <a href="dashboard.html" class="sb-logo">
+      <img src="amaea-logo.png" alt="Amaea" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="logo-fallback" style="display:none;">A</div>
     </a>
   </div>
-  <nav class="sidebar-nav">
-    <div class="nav-section-label">Main</div>
+  <nav class="sb-nav">
+    <span class="sb-label">Main</span>
     <a href="dashboard.html" class="nav-item active">
-      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
       Dashboard
     </a>
     <a href="clients.html" class="nav-item">
-      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       Clients
       <span class="nav-badge">18</span>
     </a>
-    <a href="analytics.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Analytics</a>
+    <a href="analytics.html" class="nav-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      Analytics
+    </a>
     <a href="insights.html" class="nav-item">
-      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
       AI Insights
       <span class="nav-badge amber">7</span>
     </a>
     <a href="reports.html" class="nav-item">
-      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
       Reports
     </a>
-    <div class="nav-section-label">Settings</div>
+    <span class="sb-label">Settings</span>
     <a href="integrations.html" class="nav-item">
-      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
       Integrations
     </a>
-    <a href="#" class="nav-item" onclick="showToast('Settings coming soon', 'info'); return false;">
-      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+    <a href="#" class="nav-item" onclick="showToast('Settings coming soon','info');return false;">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
       Settings
     </a>
   </nav>
-  <div class="sidebar-footer">
-    <div class="sidebar-user" onclick="showToast('Profile settings coming soon', 'info')">
-      <div class="user-avatar">SC</div>
-      <div class="user-info">
-        <div class="user-name">Sarah Clarke</div>
-        <div class="user-role">Head of Compliance</div>
+  <div class="sb-footer">
+    <div class="sb-user" onclick="showToast('Profile settings coming soon','info')">
+      <div class="sb-avatar">SC</div>
+      <div>
+        <div class="sb-user-name">Sarah Clarke</div>
+        <div class="sb-user-role">Head of Compliance</div>
       </div>
     </div>
   </div>
 </aside>
 
-<!-- Main -->
+<div class="sb-overlay" id="sb-overlay" onclick="closeSidebar()"></div>
+
 <div class="main">
-  <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
   <header class="topbar">
-    <button class="mobile-menu-btn" onclick="toggleSidebar()"><span></span><span></span><span></span></button>
+    <button class="menu-btn" onclick="toggleSidebar()"><span></span><span></span><span></span></button>
     <span class="topbar-title">Dashboard</span>
     <div class="topbar-search">
       <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" placeholder="Search clients, tasks..." onkeydown="if(event.key==='Enter') showToast('Searching...','info',1500)"/>
+      <input type="text" placeholder="Search clients, tasks…" onkeydown="if(event.key==='Enter')showToast('Searching…','info',1500)"/>
     </div>
-    <div class="dropdown">
-      <div class="topbar-icon notif-btn" onclick="this.closest('.dropdown').querySelector('.dropdown-menu').classList.toggle('open'); this.querySelector('.notif-dot')?.remove()">
-        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-        <span class="notif-dot"></span>
+    <div class="topbar-actions">
+      <button class="icon-btn" onclick="toggleTheme()" title="Toggle dark mode">
+        <svg class="icon-sun" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <div class="dropdown">
+        <button class="icon-btn" data-dropdown="notif-menu">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="notif-dot"></span>
+        </button>
+        <div class="dropdown-menu notif-menu" id="notif-menu">
+          <div class="dropdown-header">Notifications</div>
+          <div class="notif-item" onclick="window.location='insights.html'">
+            <div class="notif-indicator"></div>
+            <div><div class="notif-title">18 clients missing annual reviews</div><div class="notif-time">2 hours ago</div></div>
+          </div>
+          <div class="notif-item" onclick="window.location='reports.html'">
+            <div class="notif-indicator"></div>
+            <div><div class="notif-title">RMAR due in 25 days</div><div class="notif-time">Yesterday</div></div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-indicator read"></div>
+            <div><div class="notif-title">Intelliflo sync complete</div><div class="notif-time">Today, 06:45</div></div>
+          </div>
+          <div class="dropdown-divider"></div>
+          <div class="dropdown-item" style="justify-content:center;color:var(--plum-soft);" onclick="window.location='insights.html'">View all alerts →</div>
+        </div>
       </div>
-      <div class="dropdown-menu dropdown-notif">
-        <div style="padding:10px 12px 8px; font-size:0.78rem; font-weight:700; color:var(--text-2);">Notifications</div>
-        <div class="notif-item" onclick="window.location='insights.html'">
-          <div class="notif-dot-indicator"></div>
-          <div><div style="font-size:0.83rem; font-weight:600;">12 clients missing annual reviews</div><div style="font-size:0.72rem; color:var(--text-3); margin-top:2px;">2 hours ago</div></div>
-        </div>
-        <div class="notif-item" onclick="window.location='reports.html'">
-          <div class="notif-dot-indicator"></div>
-          <div><div style="font-size:0.83rem; font-weight:600;">RMAR due in 25 days</div><div style="font-size:0.72rem; color:var(--text-3); margin-top:2px;">Yesterday</div></div>
-        </div>
-        <div class="notif-item">
-          <div style="width:8px;height:8px;border-radius:50%;background:var(--border-solid);margin-top:5px;flex-shrink:0;"></div>
-          <div><div style="font-size:0.83rem; font-weight:600;">Intelliflo sync complete</div><div style="font-size:0.72rem; color:var(--text-3); margin-top:2px;">Today, 06:45</div></div>
-        </div>
-        <div class="dropdown-divider"></div>
-        <div class="dropdown-item" style="justify-content:center; color:var(--plum); font-size:0.78rem;" onclick="window.location='insights.html'">View all alerts →</div>
-      </div>
+      <div class="topbar-avatar" onclick="showToast('Profile settings coming soon','info')" title="Sarah Clarke">SC</div>
     </div>
-    <div class="topbar-avatar" onclick="showToast('Profile settings coming soon', 'info')" title="Sarah Clarke">SC</div>
   </header>
 
   <div class="page">
-    <div class="page-header flex-between">
+    <div class="page-header fade-up">
       <div>
         <h1>Good morning, Sarah 👋</h1>
-        <p>Wednesday, 6 May 2026 · Your compliance overview for today.</p>
+        <p>Wednesday, 6 May 2026 · Your compliance overview for today</p>
       </div>
-      <div class="flex-gap">
+      <div class="page-actions">
         <div class="dropdown">
-          <button class="btn btn-ghost btn-sm" onclick="this.closest('.dropdown').querySelector('.dropdown-menu').classList.toggle('open')">
-            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <button class="btn btn-ghost btn-sm" data-dropdown="export-menu">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Export
           </button>
-          <div class="dropdown-menu">
-            <div class="dropdown-item" onclick="showToast('Exporting as PDF...', 'info', 2000); setTimeout(()=>showToast('PDF downloaded', 'success'), 2200)">📄 Export as PDF</div>
-            <div class="dropdown-item" onclick="showToast('Exporting as Excel...', 'info', 2000); setTimeout(()=>showToast('Excel downloaded', 'success'), 2200)">📊 Export as Excel</div>
-            <div class="dropdown-item" onclick="showToast('Copying share link', 'info', 1500)">🔗 Copy share link</div>
+          <div class="dropdown-menu" id="export-menu">
+            <div class="dropdown-item" onclick="showToast('Exporting as PDF…','info',2000);setTimeout(()=>showToast('PDF downloaded','success'),2200)">Export as PDF</div>
+            <div class="dropdown-item" onclick="showToast('Exporting as Excel…','info',2000);setTimeout(()=>showToast('Excel downloaded','success'),2200)">Export as Excel</div>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-item" onclick="showToast('Share link copied','info',1500)">Copy share link</div>
           </div>
         </div>
         <button class="btn btn-primary btn-sm" onclick="openModal('new-task-modal')">
-          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           New Task
         </button>
       </div>
     </div>
 
     <!-- Metrics -->
-    <div class="metric-grid">
+    <div class="metric-grid fade-up fade-up-1">
       <div class="metric-card" onclick="window.location='clients.html'">
-        <div class="metric-label"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Active Clients</div>
+        <div class="metric-label">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          Active Clients
+        </div>
         <div class="metric-value">247</div>
         <div class="metric-sub">Across 3 advisers</div>
-        <div class="metric-trend trend-neutral">No change this month</div>
+        <div class="metric-trend trend-flat">No change this month</div>
       </div>
       <div class="metric-card" onclick="window.location='clients.html'">
-        <div class="metric-label"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>Overdue Reviews</div>
-        <div class="metric-value" style="color:var(--danger)">18</div>
-        <div class="metric-sub">Annual reviews overdue</div>
+        <div class="metric-label">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          Overdue Reviews
+        </div>
+        <div class="metric-value" style="color:var(--red)">18</div>
+        <div class="metric-sub">Annual reviews past due</div>
         <div class="metric-trend trend-up">↑ 3 since last week</div>
       </div>
       <div class="metric-card" onclick="window.location='clients.html'">
-        <div class="metric-label"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Missing Documents</div>
-        <div class="metric-value" style="color:var(--warning)">34</div>
-        <div class="metric-sub">Suitability letters, SOAs</div>
+        <div class="metric-label">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+          Missing Documents
+        </div>
+        <div class="metric-value" style="color:var(--amber)">34</div>
+        <div class="metric-sub">SOAs, suitability letters</div>
         <div class="metric-trend trend-down">↓ 5 resolved this week</div>
       </div>
       <div class="metric-card" onclick="window.location='insights.html'">
-        <div class="metric-label"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>Open Risk Flags</div>
-        <div class="metric-value" style="color:var(--danger)">7</div>
+        <div class="metric-label">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+          Open Risk Flags
+        </div>
+        <div class="metric-value" style="color:var(--red)">7</div>
         <div class="metric-sub">Requiring immediate review</div>
         <div class="metric-trend trend-up">↑ 2 new this week</div>
       </div>
     </div>
 
-    <div style="display:grid; grid-template-columns:1fr 330px; gap:18px;">
+    <div class="two-col fade-up fade-up-2">
       <div>
-        <!-- Health score -->
+        <!-- Health score card -->
         <div class="card mb-5">
-          <div class="flex-between mb-4">
+          <div class="flex items-center justify-between mb-4">
             <div>
-              <div style="font-size:0.95rem; font-weight:700; letter-spacing:-0.02em;">Compliance Health Score</div>
-              <div style="font-size:0.8rem; color:var(--text-3); margin-top:2px;">Based on reviews, documentation, and regulatory alignment</div>
+              <div class="card-title">Compliance Health Score</div>
+              <div class="card-sub">Based on reviews, documentation &amp; regulatory alignment</div>
             </div>
             <span class="badge badge-amber">Needs Attention</span>
           </div>
-          <div style="display:flex; align-items:center; gap:28px;">
-            <div class="health-score-ring">
-              <svg width="130" height="130" viewBox="0 0 130 130">
-                <circle cx="65" cy="65" r="54" fill="none" stroke="#F0EBF0" stroke-width="11"/>
-                <circle cx="65" cy="65" r="54" fill="none" stroke="#40243F" stroke-width="11" stroke-dasharray="339" stroke-dashoffset="61" stroke-linecap="round" transform="rotate(-90 65 65)" style="transition:stroke-dashoffset 1s var(--ease)"/>
+          <div class="health-row">
+            <div class="ring-wrap">
+              <svg viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="50" fill="none" stroke="var(--border-mid)" stroke-width="9"/>
+                <circle cx="60" cy="60" r="50" fill="none" stroke="var(--plum)" stroke-width="9"
+                  stroke-dasharray="314" stroke-dashoffset="57" stroke-linecap="round"
+                  transform="rotate(-90 60 60)" style="transition:stroke-dashoffset 1s var(--ease)"/>
               </svg>
-              <div class="health-score-label"><div class="score-num">82</div><div class="score-pct">out of 100</div></div>
+              <div class="ring-label">
+                <div class="ring-score">82</div>
+                <div class="ring-out">/ 100</div>
+              </div>
             </div>
-            <div style="flex:1; display:flex; flex-direction:column; gap:13px;">
-              <div><div class="flex-between" style="font-size:0.8rem; margin-bottom:5px;"><span style="font-weight:500;">Annual Reviews</span><span style="color:var(--warning);font-weight:600;">74%</span></div><div class="progress-bar"><div class="progress-fill amber" style="width:74%"></div></div></div>
-              <div><div class="flex-between" style="font-size:0.8rem; margin-bottom:5px;"><span style="font-weight:500;">Documentation</span><span style="color:var(--danger);font-weight:600;">61%</span></div><div class="progress-bar"><div class="progress-fill red" style="width:61%"></div></div></div>
-              <div><div class="flex-between" style="font-size:0.8rem; margin-bottom:5px;"><span style="font-weight:500;">Suitability Assessments</span><span style="color:var(--success);font-weight:600;">91%</span></div><div class="progress-bar"><div class="progress-fill green" style="width:91%"></div></div></div>
-              <div><div class="flex-between" style="font-size:0.8rem; margin-bottom:5px;"><span style="font-weight:500;">Regulatory Deadlines</span><span style="color:var(--success);font-weight:600;">100%</span></div><div class="progress-bar"><div class="progress-fill green" style="width:100%"></div></div></div>
+            <div class="bar-rows">
+              <div class="bar-row">
+                <div class="bar-top"><span class="bar-name">Annual Reviews</span><span class="bar-pct" style="color:var(--amber)">74%</span></div>
+                <div class="progress"><div class="progress-fill fill-amber" style="width:74%"></div></div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-top"><span class="bar-name">Documentation</span><span class="bar-pct" style="color:var(--red)">61%</span></div>
+                <div class="progress"><div class="progress-fill fill-red" style="width:61%"></div></div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-top"><span class="bar-name">Suitability Assessments</span><span class="bar-pct" style="color:var(--green)">91%</span></div>
+                <div class="progress"><div class="progress-fill fill-green" style="width:91%"></div></div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-top"><span class="bar-name">Regulatory Deadlines</span><span class="bar-pct" style="color:var(--green)">100%</span></div>
+                <div class="progress"><div class="progress-fill fill-green" style="width:100%"></div></div>
+              </div>
             </div>
           </div>
         </div>
+
         <!-- Top 3 compliance risks -->
         <div>
-          <div class="flex-between mb-4"><div style="font-size:0.9rem; font-weight:700; letter-spacing:-0.02em;">Top 3 Compliance Risks</div><a href="insights.html" style="font-size:0.78rem; color:var(--plum); font-weight:500;">View all →</a></div>
-          <div class="action-item" onclick="window.location='clients.html'">
-            <div class="action-num" style="background:var(--danger);color:#fff;">1</div>
-            <div class="action-text"><div class="action-title">18 clients overdue for annual review</div><div class="action-sub">FCA 12-month review requirement breached. Regulatory exposure increasing — review client list and escalate as needed.</div></div>
-            <button class="btn btn-primary btn-sm" onclick="event.stopPropagation(); window.location='clients.html'">Review</button>
+          <div class="flex items-center justify-between mb-3">
+            <div class="card-title">Top 3 Compliance Risks</div>
+            <a href="insights.html" style="font-size:0.78rem;color:var(--plum-soft);font-weight:500;">View all →</a>
           </div>
-          <div class="action-item" onclick="window.location='clients.html'">
-            <div class="action-num" style="background:var(--warning);color:#fff;">2</div>
-            <div class="action-text"><div class="action-title">8 vulnerable clients with incomplete suitability files</div><div class="action-sub">Missing SOAs and suitability letters. Consumer Duty requires documented fair outcomes for vulnerable customers.</div></div>
-            <button class="btn btn-primary btn-sm" onclick="event.stopPropagation(); window.location='clients.html'">View Clients</button>
+          <div class="risk-item" onclick="window.location='clients.html'">
+            <div class="risk-num" style="background:var(--red)">1</div>
+            <div class="risk-body">
+              <div class="risk-title">18 clients overdue for annual review</div>
+              <div class="risk-desc">FCA 12-month requirement breached. Regulatory exposure increasing — review client list and escalate priority cases.</div>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();window.location='clients.html'">Review</button>
           </div>
-          <div class="action-item" onclick="window.location='reports.html'">
-            <div class="action-num" style="background:var(--info,#6366f1);color:#fff;">3</div>
-            <div class="action-text"><div class="action-title">RMAR submission window opens in 25 days</div><div class="action-sub">FCA Retail Mediation Activities Return due 31 May. 3 data gaps identified — review report before submission.</div></div>
-            <button class="btn btn-primary btn-sm" onclick="event.stopPropagation(); window.location='reports.html'">View Report</button>
+          <div class="risk-item" onclick="window.location='clients.html'">
+            <div class="risk-num" style="background:var(--amber)">2</div>
+            <div class="risk-body">
+              <div class="risk-title">8 vulnerable clients with incomplete suitability files</div>
+              <div class="risk-desc">Missing SOAs and suitability letters. Consumer Duty requires documented fair outcomes for all vulnerable customers.</div>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();window.location='clients.html'">View</button>
+          </div>
+          <div class="risk-item" onclick="window.location='reports.html'">
+            <div class="risk-num" style="background:var(--blue)">3</div>
+            <div class="risk-body">
+              <div class="risk-title">RMAR submission window opens in 25 days</div>
+              <div class="risk-desc">FCA return due 31 May. 3 data gaps identified — review report before submission window closes.</div>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();window.location='reports.html'">View</button>
           </div>
         </div>
       </div>
 
-      <!-- Right panel -->
+      <!-- Right column -->
       <div>
-        <div class="card mb-5">
-          <div class="flex-between mb-4"><div style="font-size:0.875rem; font-weight:700; letter-spacing:-0.01em;">AI Alerts</div><a href="insights.html" style="font-size:0.75rem; color:var(--plum); font-weight:500;">View all →</a></div>
+        <div class="card mb-4">
+          <div class="flex items-center justify-between mb-4">
+            <div class="card-title">AI Alerts</div>
+            <a href="insights.html" style="font-size:0.75rem;color:var(--plum-soft);font-weight:500;">View all →</a>
+          </div>
           <div class="alert-item" onclick="window.location='insights.html'">
-            <div class="alert-icon red"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg></div>
-            <div class="alert-body"><div class="alert-title">12 clients missing annual reviews</div><div class="alert-desc">FCA 12-month requirement. Action needed before 31 May.</div><div class="alert-time">2 hours ago</div></div>
+            <div class="alert-icon red"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg></div>
+            <div><div class="alert-title">18 clients missing annual reviews</div><div class="alert-desc">FCA 12-month requirement. Action needed before 31 May.</div><div class="alert-time">2 hours ago</div></div>
           </div>
           <div class="alert-item" onclick="window.location='clients.html'">
-            <div class="alert-icon amber"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
-            <div class="alert-body"><div class="alert-title">8 suitability reports incomplete</div><div class="alert-desc">Vulnerable customer files missing documentation.</div><div class="alert-time">Yesterday</div></div>
+            <div class="alert-icon amber"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
+            <div><div class="alert-title">8 suitability reports incomplete</div><div class="alert-desc">Vulnerable customer files missing documentation.</div><div class="alert-time">Yesterday</div></div>
           </div>
           <div class="alert-item" onclick="window.location='reports.html'">
-            <div class="alert-icon blue"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
-            <div class="alert-body"><div class="alert-title">RMAR submission due in 25 days</div><div class="alert-desc">FCA return — data ready to export.</div><div class="alert-time">2 days ago</div></div>
+            <div class="alert-icon blue"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></div>
+            <div><div class="alert-title">RMAR submission due in 25 days</div><div class="alert-desc">FCA return — data ready to review.</div><div class="alert-time">2 days ago</div></div>
           </div>
         </div>
+
         <div class="card">
-          <div style="font-size:0.875rem; font-weight:700; margin-bottom:14px; letter-spacing:-0.01em;">Upcoming Deadlines</div>
-          <div style="display:flex; flex-direction:column; gap:11px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.82rem; cursor:pointer;" onclick="window.location='reports.html'">
-              <div><div style="font-weight:600;">FCA RMAR Submission</div><div style="color:var(--text-3);font-size:0.72rem;">Retail Mediation Activities Return</div></div>
-              <span class="badge badge-red">31 May</span>
-            </div>
-            <div style="border-top:1px solid var(--border); padding-top:11px; display:flex; justify-content:space-between; align-items:center; font-size:0.82rem;">
-              <div><div style="font-weight:600;">Annual Compliance Review</div><div style="color:var(--text-3);font-size:0.72rem;">Internal — board presentation</div></div>
-              <span class="badge badge-amber">15 Jun</span>
-            </div>
-            <div style="border-top:1px solid var(--border); padding-top:11px; display:flex; justify-content:space-between; align-items:center; font-size:0.82rem;">
-              <div><div style="font-weight:600;">Consumer Duty Review</div><div style="color:var(--text-3);font-size:0.72rem;">FCA Consumer Duty annual assessment</div></div>
-              <span class="badge badge-blue">31 Jul</span>
-            </div>
+          <div class="card-title mb-4">Upcoming Deadlines</div>
+          <div class="deadline-item" onclick="window.location='reports.html'">
+            <div><div class="deadline-name">FCA RMAR Submission</div><div class="deadline-sub">Retail Mediation Activities Return</div></div>
+            <span class="badge badge-red">31 May</span>
+          </div>
+          <div class="deadline-item" onclick="showToast('Annual Compliance Review — 15 June','info')">
+            <div><div class="deadline-name">Annual Compliance Review</div><div class="deadline-sub">Internal — board presentation</div></div>
+            <span class="badge badge-amber">15 Jun</span>
+          </div>
+          <div class="deadline-item" onclick="showToast('Consumer Duty Review — 31 July','info')">
+            <div><div class="deadline-name">Consumer Duty Review</div><div class="deadline-sub">FCA Consumer Duty annual assessment</div></div>
+            <span class="badge badge-blue">31 Jul</span>
           </div>
         </div>
       </div>
@@ -236,18 +292,22 @@
 </div>
 
 <!-- New Task Modal -->
-<div class="modal-overlay" id="new-task-modal" style="position:fixed;">
-  <div class="modal" style="position:relative;">
+<div class="modal-overlay" id="new-task-modal">
+  <div class="modal">
     <button class="modal-close" onclick="closeModal('new-task-modal')">✕</button>
     <div class="modal-title">New Compliance Task</div>
     <div class="modal-sub">Add a task to your compliance queue.</div>
-    <div class="form-group"><label class="form-label">Task Title</label><input class="form-input" placeholder="e.g. Book annual review for J. Smith"/></div>
-    <div class="form-group"><label class="form-label">Assign to</label><select class="form-select"><option>James Morrison</option><option>Alex Williams</option><option>Kate Davies</option><option>Sarah Clarke</option></select></div>
-    <div class="form-group"><label class="form-label">Due Date</label><input class="form-input" type="date"/></div>
-    <div class="form-group"><label class="form-label">Priority</label><select class="form-select"><option>High</option><option>Medium</option><option>Low</option></select></div>
-    <div class="modal-actions">
+    <div class="form-group"><label class="form-label">Task title</label><input class="form-input" placeholder="e.g. Review overdue clients for AR prioritisation"/></div>
+    <div class="form-group"><label class="form-label">Assign to</label>
+      <select class="form-select"><option>James Morrison</option><option>Alex Williams</option><option>Kate Davies</option><option>Sarah Clarke</option></select>
+    </div>
+    <div class="form-group"><label class="form-label">Due date</label><input class="form-input" type="date"/></div>
+    <div class="form-group"><label class="form-label">Priority</label>
+      <select class="form-select"><option>High</option><option>Medium</option><option>Low</option></select>
+    </div>
+    <div class="modal-footer">
       <button class="btn btn-ghost" onclick="closeModal('new-task-modal')">Cancel</button>
-      <button class="btn btn-primary" onclick="showToast('Task created successfully','success'); closeModal('new-task-modal')">Create Task</button>
+      <button class="btn btn-primary" onclick="showToast('Task created','success');closeModal('new-task-modal')">Create Task</button>
     </div>
   </div>
 </div>
