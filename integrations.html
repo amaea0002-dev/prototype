@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Integrations — Amaea</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="amaea.css" rel="stylesheet"/>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <a href="dashboard.html">
+      <img src="amaea-logo.png" class="logo-img" alt="Amaea" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="logo-mark" style="display:none;">A</div>
+    </a>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Main</div>
+    <a href="dashboard.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Dashboard</a>
+    <a href="clients.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Clients<span class="nav-badge">18</span></a>
+    <a href="insights.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>AI Insights<span class="nav-badge amber">7</span></a>
+    <a href="reports.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Reports</a>
+    <div class="nav-section-label">Settings</div>
+    <a href="integrations.html" class="nav-item active"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Integrations</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="sidebar-user" onclick="showToast('Profile settings coming soon','info')">
+      <div class="user-avatar">SC</div>
+      <div class="user-info"><div class="user-name">Sarah Clarke</div><div class="user-role">Head of Compliance</div></div>
+    </div>
+  </div>
+</aside>
+
+<div class="main">
+  <header class="topbar">
+    <span class="topbar-title">Integrations</span>
+    <div class="topbar-search">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search integrations..."/>
+    </div>
+    <div class="topbar-icon" onclick="showToast('All caught up!','success',1500)"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+    <div class="topbar-avatar" onclick="showToast('Profile settings coming soon','info')">SC</div>
+  </header>
+
+  <div class="page">
+    <div class="page-header flex-between">
+      <div><h1>Data Integrations</h1><p>Connect your existing systems so Amaea can pull the data it needs automatically.</p></div>
+      <button class="btn btn-primary btn-sm" onclick="openModal('connect-modal')">+ Add Integration</button>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 280px; gap:22px;">
+      <div>
+        <div style="font-size:0.875rem; font-weight:700; margin-bottom:14px; display:flex; align-items:center; gap:7px; letter-spacing:-0.01em;"><span style="color:var(--success); font-size:10px;">●</span> Connected (2)</div>
+
+        <div class="integration-card" onclick="openModal('if-settings-modal')">
+          <div class="integration-logo" style="background:#EFF6FF;border-color:#DBEAFE;color:#2563EB;font-size:0.62rem;font-weight:800;">IF</div>
+          <div class="integration-info">
+            <div class="integration-name">Intelliflo</div>
+            <div class="integration-desc">CRM — client records, adviser data, annual review history</div>
+            <div class="integration-meta"><span style="color:var(--success);font-weight:600;">● Connected</span> · Last sync: 5 min ago · 247 clients</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:7px;align-items:flex-end;">
+            <span class="badge badge-green">Active</span>
+            <div class="flex-gap">
+              <button class="btn btn-ghost btn-sm" data-action="sync" data-name="Intelliflo" onclick="event.stopPropagation()">Sync Now</button>
+              <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); openModal('if-settings-modal')">Settings</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="integration-card" onclick="openModal('sp-settings-modal')">
+          <div class="integration-logo" style="background:#F5F3FF;border-color:#E0E7FF;color:#4F46E5;font-size:0.62rem;font-weight:800;">SP</div>
+          <div class="integration-info">
+            <div class="integration-name">Microsoft SharePoint</div>
+            <div class="integration-desc">Document storage — suitability letters, SOAs, compliance records</div>
+            <div class="integration-meta"><span style="color:var(--success);font-weight:600;">● Connected</span> · Last sync: 1 hour ago · 1,234 docs indexed</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:7px;align-items:flex-end;">
+            <span class="badge badge-green">Active</span>
+            <div class="flex-gap">
+              <button class="btn btn-ghost btn-sm" data-action="sync" data-name="SharePoint" onclick="event.stopPropagation()">Sync Now</button>
+              <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); openModal('sp-settings-modal')">Settings</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="font-size:0.875rem;font-weight:700;margin:22px 0 14px;display:flex;align-items:center;gap:7px;letter-spacing:-0.01em;"><span style="color:var(--text-4); font-size:10px;">○</span> Available (4)</div>
+
+        <div class="integration-card" style="opacity:0.72;" onclick="openModal('connect-modal')">
+          <div class="integration-logo">XP</div>
+          <div class="integration-info">
+            <div class="integration-name">Xplan</div>
+            <div class="integration-desc">Financial planning — goals, cashflow modelling, client portal</div>
+            <div class="integration-meta">Not connected</div>
+          </div>
+          <button class="btn btn-secondary btn-sm" data-action="connect" data-name="Xplan" onclick="event.stopPropagation()">Connect</button>
+        </div>
+
+        <div class="integration-card" style="opacity:0.72;" onclick="openModal('connect-modal')">
+          <div class="integration-logo" style="font-size:0.58rem;">O365</div>
+          <div class="integration-info">
+            <div class="integration-name">Microsoft 365 / Outlook</div>
+            <div class="integration-desc">Email — track client communications and meeting records</div>
+            <div class="integration-meta">Not connected</div>
+          </div>
+          <button class="btn btn-secondary btn-sm" data-action="connect" data-name="Microsoft 365" onclick="event.stopPropagation()">Connect</button>
+        </div>
+
+        <div class="integration-card" style="opacity:0.72;" onclick="openModal('connect-modal')">
+          <div class="integration-logo">DP</div>
+          <div class="integration-info">
+            <div class="integration-name">Dynamic Planner</div>
+            <div class="integration-desc">Risk profiling and suitability — sync client risk assessments</div>
+            <div class="integration-meta">Not connected</div>
+          </div>
+          <button class="btn btn-secondary btn-sm" data-action="connect" data-name="Dynamic Planner" onclick="event.stopPropagation()">Connect</button>
+        </div>
+
+        <div class="integration-card" style="opacity:0.72;" onclick="openModal('connect-modal')">
+          <div class="integration-logo">SL</div>
+          <div class="integration-info">
+            <div class="integration-name">Salesforce</div>
+            <div class="integration-desc">CRM — additional client and pipeline data</div>
+            <div class="integration-meta">Not connected</div>
+          </div>
+          <button class="btn btn-secondary btn-sm" data-action="connect" data-name="Salesforce" onclick="event.stopPropagation()">Connect</button>
+        </div>
+
+        <div style="font-size:0.875rem;font-weight:700;margin:22px 0 14px;letter-spacing:-0.01em;">Manual Upload</div>
+        <div class="card upload-area" style="border:2px dashed var(--border-solid);cursor:pointer;text-align:center;padding:36px 22px;transition:all 0.2s;">
+          <div style="font-size:1.8rem;margin-bottom:10px;">📂</div>
+          <div style="font-weight:600;margin-bottom:3px;font-size:0.875rem;">Drop files here or click to upload</div>
+          <div style="font-size:0.775rem;color:var(--text-3);">Supports CSV, Excel, PDF · Max 50MB</div>
+          <button class="btn btn-secondary btn-sm" style="margin-top:14px;" onclick="event.stopPropagation(); showToast('Opening file browser...','info',1000)">Browse Files</button>
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div>
+        <div class="card mb-5">
+          <div style="font-size:0.875rem;font-weight:700;margin-bottom:14px;letter-spacing:-0.01em;">Sync Status</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div>
+              <div class="flex-between" style="font-size:0.8rem;margin-bottom:5px;"><span style="font-weight:500;">Intelliflo</span><span style="color:var(--success);font-weight:600;">Healthy</span></div>
+              <div class="progress-bar"><div class="progress-fill green" style="width:100%"></div></div>
+              <div style="font-size:0.7rem;color:var(--text-3);margin-top:3px;">247 / 247 records synced</div>
+            </div>
+            <div>
+              <div class="flex-between" style="font-size:0.8rem;margin-bottom:5px;"><span style="font-weight:500;">SharePoint</span><span style="color:var(--success);font-weight:600;">Healthy</span></div>
+              <div class="progress-bar"><div class="progress-fill green" style="width:100%"></div></div>
+              <div style="font-size:0.7rem;color:var(--text-3);margin-top:3px;">1,234 documents indexed</div>
+            </div>
+          </div>
+          <button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;margin-top:14px;" data-action="sync" data-name="All Systems">Sync All Now</button>
+        </div>
+
+        <div class="card mb-5">
+          <div style="font-size:0.875rem;font-weight:700;margin-bottom:12px;letter-spacing:-0.01em;">Last Updated</div>
+          <div style="display:flex;flex-direction:column;gap:9px;font-size:0.8rem;">
+            <div class="flex-between"><span style="color:var(--text-2);">Client records</span><span style="font-weight:500;">5 min ago</span></div>
+            <div class="flex-between"><span style="color:var(--text-2);">Documents</span><span style="font-weight:500;">1 hour ago</span></div>
+            <div class="flex-between"><span style="color:var(--text-2);">AI Analysis</span><span style="font-weight:500;">Today, 06:45</span></div>
+            <div class="flex-between"><span style="color:var(--text-2);">Risk flags</span><span style="font-weight:500;">Today, 06:45</span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="font-size:0.875rem;font-weight:700;margin-bottom:7px;letter-spacing:-0.01em;">Need a custom integration?</div>
+          <p style="font-size:0.8rem;color:var(--text-2);line-height:1.6;margin-bottom:14px;">We build custom API connections to your existing systems. Typical setup: 5–10 business days.</p>
+          <button class="btn btn-secondary" style="width:100%;justify-content:center;" onclick="openModal('custom-integration-modal')">Request Custom Integration</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Connect Modal -->
+<div class="modal-overlay" id="connect-modal" style="position:fixed;">
+  <div class="modal" style="position:relative;">
+    <button class="modal-close" onclick="closeModal('connect-modal')">✕</button>
+    <div class="modal-title">Connect Integration</div>
+    <div class="modal-sub">Enter your credentials to connect this system to Amaea.</div>
+    <div class="form-group"><label class="form-label">API Key / Client ID</label><input class="form-input" placeholder="Enter your API key..."/></div>
+    <div class="form-group"><label class="form-label">API Secret</label><input class="form-input" type="password" placeholder="••••••••••••"/></div>
+    <div class="form-group"><label class="form-label">Environment</label><select class="form-select"><option>Production</option><option>Sandbox (Testing)</option></select></div>
+    <div style="background:var(--info-bg);border:1px solid #BFDBFE;border-radius:9px;padding:12px 14px;margin-bottom:18px;font-size:0.8rem;color:var(--info);line-height:1.5;">Your credentials are encrypted and never stored in plain text. Amaea uses read-only API access where possible.</div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('connect-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="const b=this; b.innerHTML='<span class=spinner>↻</span> Connecting...'; b.disabled=true; setTimeout(()=>{showToast('Integration connected successfully','success'); closeModal('connect-modal'); b.innerHTML='Connect'; b.disabled=false;},2000)">Connect</button>
+    </div>
+  </div>
+</div>
+
+<!-- Intelliflo Settings Modal -->
+<div class="modal-overlay" id="if-settings-modal" style="position:fixed;">
+  <div class="modal" style="position:relative;">
+    <button class="modal-close" onclick="closeModal('if-settings-modal')">✕</button>
+    <div class="modal-title">Intelliflo Settings</div>
+    <div class="modal-sub">Manage your Intelliflo connection and sync preferences.</div>
+    <div style="background:var(--success-bg);border:1px solid #A7F3D0;border-radius:9px;padding:12px 14px;margin-bottom:18px;font-size:0.8rem;color:var(--success);">● Connected · Last sync 5 minutes ago · 247 clients imported</div>
+    <div class="form-group"><label class="form-label">Sync Frequency</label><select class="form-select"><option>Every 15 minutes</option><option>Every hour</option><option>Every 6 hours</option><option>Daily</option></select></div>
+    <div class="form-group"><label class="form-label">Data to sync</label>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">
+        <label style="display:flex;align-items:center;gap:8px;font-size:0.845rem;cursor:pointer;"><input type="checkbox" checked/> Client records</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:0.845rem;cursor:pointer;"><input type="checkbox" checked/> Annual review dates</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:0.845rem;cursor:pointer;"><input type="checkbox" checked/> Adviser assignments</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:0.845rem;cursor:pointer;"><input type="checkbox"/> Document links</label>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-danger btn-sm" onclick="showToast('Disconnecting...','info',1500); setTimeout(()=>showToast('Intelliflo disconnected','error'),1700); closeModal('if-settings-modal')">Disconnect</button>
+      <div style="flex:1;"></div>
+      <button class="btn btn-ghost" onclick="closeModal('if-settings-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="showToast('Settings saved','success'); closeModal('if-settings-modal')">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- SharePoint Settings Modal -->
+<div class="modal-overlay" id="sp-settings-modal" style="position:fixed;">
+  <div class="modal" style="position:relative;">
+    <button class="modal-close" onclick="closeModal('sp-settings-modal')">✕</button>
+    <div class="modal-title">SharePoint Settings</div>
+    <div class="modal-sub">Manage your SharePoint connection and folder access.</div>
+    <div style="background:var(--success-bg);border:1px solid #A7F3D0;border-radius:9px;padding:12px 14px;margin-bottom:18px;font-size:0.8rem;color:var(--success);">● Connected · Last sync 1 hour ago · 1,234 documents indexed</div>
+    <div class="form-group"><label class="form-label">Connected Site</label><input class="form-input" value="brightwell.sharepoint.com/sites/Compliance" readonly/></div>
+    <div class="form-group"><label class="form-label">Indexed Folders</label>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">
+        <label style="display:flex;align-items:center;gap:8px;font-size:0.845rem;cursor:pointer;"><input type="checkbox" checked/> /Compliance/Client Files</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:0.845rem;cursor:pointer;"><input type="checkbox" checked/> /Compliance/Suitability Reports</label>
+        <label style="display:flex;align-items:center;gap:8px;font-size:0.845rem;cursor:pointer;"><input type="checkbox"/> /Compliance/Archived</label>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('sp-settings-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="showToast('Settings saved','success'); closeModal('sp-settings-modal')">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- Custom Integration Modal -->
+<div class="modal-overlay" id="custom-integration-modal" style="position:fixed;">
+  <div class="modal" style="position:relative;">
+    <button class="modal-close" onclick="closeModal('custom-integration-modal')">✕</button>
+    <div class="modal-title">Request Custom Integration</div>
+    <div class="modal-sub">Tell us what system you'd like to connect and we'll be in touch.</div>
+    <div class="form-group"><label class="form-label">System Name</label><input class="form-input" placeholder="e.g. Voyant, Transact, Defaqto"/></div>
+    <div class="form-group"><label class="form-label">What data do you need?</label><input class="form-input" placeholder="e.g. Client records, portfolio data, review dates"/></div>
+    <div class="form-group"><label class="form-label">Your email</label><input class="form-input" placeholder="sarah@brightwell.co.uk" value="sarah@brightwell.co.uk"/></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('custom-integration-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="showToast('Request submitted — we\'ll be in touch within 2 business days','success',4000); closeModal('custom-integration-modal')">Submit Request</button>
+    </div>
+  </div>
+</div>
+
+<script src="amaea.js"></script>
+</body>
+</html>

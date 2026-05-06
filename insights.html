@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Insights — Amaea</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="amaea.css" rel="stylesheet"/>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <a href="dashboard.html">
+      <img src="amaea-logo.png" class="logo-img" alt="Amaea" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="logo-mark" style="display:none;">A</div>
+    </a>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Main</div>
+    <a href="dashboard.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Dashboard</a>
+    <a href="clients.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Clients<span class="nav-badge">18</span></a>
+    <a href="insights.html" class="nav-item active"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>AI Insights<span class="nav-badge amber">7</span></a>
+    <a href="reports.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Reports</a>
+    <div class="nav-section-label">Settings</div>
+    <a href="integrations.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Integrations</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="sidebar-user" onclick="showToast('Profile settings coming soon','info')">
+      <div class="user-avatar">SC</div>
+      <div class="user-info"><div class="user-name">Sarah Clarke</div><div class="user-role">Head of Compliance</div></div>
+    </div>
+  </div>
+</aside>
+
+<div class="main">
+  <header class="topbar">
+    <span class="topbar-title">AI Insights</span>
+    <div class="topbar-search">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search insights..."/>
+    </div>
+    <div class="topbar-icon" onclick="showToast('All caught up!','success',1500)"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+    <div class="topbar-avatar" onclick="showToast('Profile settings coming soon','info')">SC</div>
+  </header>
+
+  <div class="page">
+    <div class="page-header flex-between">
+      <div><h1>AI Insights</h1><p>Amaea analyses your data daily and surfaces what matters most — in plain English.</p></div>
+      <div class="flex-gap">
+        <span style="font-size:0.75rem; color:var(--text-3);">Last analysed: today at 06:45</span>
+        <button class="btn btn-primary btn-sm" onclick="const b=this; b.innerHTML='<span class=spinner>↻</span> Analysing...'; b.disabled=true; setTimeout(()=>{b.innerHTML='✓ Up to date'; showToast('Analysis complete — 7 items found','success'); setTimeout(()=>{b.innerHTML='Refresh Analysis'; b.disabled=false;},2500)},2000)">Refresh Analysis</button>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 360px; gap:18px;">
+      <div>
+        <div style="font-size:0.9rem; font-weight:700; margin-bottom:14px; letter-spacing:-0.02em; display:flex; align-items:center; gap:7px;"><span style="color:var(--danger);">⚠</span> What's at risk right now</div>
+
+        <div class="insight-card risk" id="insight-1">
+          <div class="flex-between mb-3">
+            <div class="flex-gap"><span class="badge badge-red">Critical</span><span style="font-size:0.7rem;color:var(--text-3);">Annual Reviews</span></div>
+            <div class="flex-gap"><span style="font-size:0.7rem;color:var(--text-3);">2h ago</span><button class="dismiss-btn btn btn-ghost btn-xs" style="padding:2px 8px;">Dismiss</button></div>
+          </div>
+          <div class="insight-title">12 clients are missing annual reviews within the FCA 12-month timeframe</div>
+          <div class="insight-body">These clients have not had a documented annual review in over 12 months, which is an FCA requirement for ongoing advice clients. 4 of the 12 are in the vulnerable customer category, which increases the regulatory risk significantly.</div>
+          <div class="insight-action flex-gap">
+            <a href="clients.html" class="btn btn-primary btn-sm">View Affected Clients</a>
+            <button class="btn btn-secondary btn-sm" onclick="showToast('Scheduling reminders for 12 clients...','info',2000); setTimeout(()=>showToast('12 reminders scheduled','success'),2200)">Schedule Reminders</button>
+          </div>
+        </div>
+
+        <div class="insight-card warning" id="insight-2">
+          <div class="flex-between mb-3">
+            <div class="flex-gap"><span class="badge badge-amber">High</span><span style="font-size:0.7rem;color:var(--text-3);">Documentation</span></div>
+            <div class="flex-gap"><span style="font-size:0.7rem;color:var(--text-3);">6h ago</span><button class="dismiss-btn btn btn-ghost btn-xs" style="padding:2px 8px;">Dismiss</button></div>
+          </div>
+          <div class="insight-title">34 client files have missing or expired documentation</div>
+          <div class="insight-body">Suitability letters, Statements of Advice, and risk profile assessments are either missing or past their renewal date. 8 of these are in the vulnerable customer segment where documentation standards are higher under Consumer Duty rules.</div>
+          <div class="insight-action flex-gap">
+            <button class="btn btn-primary btn-sm" onclick="showToast('Generating 34 request letters...','info',2000); setTimeout(()=>showToast('34 request letters ready to send','success'),2200)">Generate Request Letters</button>
+            <a href="reports.html" class="btn btn-secondary btn-sm">View in Report</a>
+          </div>
+        </div>
+
+        <div class="insight-card info" id="insight-3">
+          <div class="flex-between mb-3">
+            <div class="flex-gap"><span class="badge badge-blue">Regulatory</span><span style="font-size:0.7rem;color:var(--text-3);">Deadlines</span></div>
+            <div class="flex-gap"><span style="font-size:0.7rem;color:var(--text-3);">1d ago</span><button class="dismiss-btn btn btn-ghost btn-xs" style="padding:2px 8px;">Dismiss</button></div>
+          </div>
+          <div class="insight-title">FCA RMAR submission due in 25 days — data is ready to export</div>
+          <div class="insight-body">Your Retail Mediation Activities Return is due 31 May. Amaea has pre-populated the required data from Intelliflo and SharePoint. A one-click report is ready for your review before submission.</div>
+          <div class="insight-action flex-gap">
+            <a href="reports.html" class="btn btn-primary btn-sm">Generate RMAR Report</a>
+            <button class="btn btn-secondary btn-sm" onclick="showToast('Reminder set for 24 May','success')">Set Reminder</button>
+          </div>
+        </div>
+
+        <div class="insight-card success-card" id="insight-4">
+          <div class="flex-between mb-3">
+            <div class="flex-gap"><span class="badge badge-green">Good News</span><span style="font-size:0.7rem;color:var(--text-3);">Suitability</span></div>
+            <div class="flex-gap"><span style="font-size:0.7rem;color:var(--text-3);">Today</span><button class="dismiss-btn btn btn-ghost btn-xs" style="padding:2px 8px;">Dismiss</button></div>
+          </div>
+          <div class="insight-title">Suitability assessments are 91% complete — your best performing area</div>
+          <div class="insight-body">213 of 247 client suitability assessments are current and documented. The remaining 22 are in progress or awaiting client response. This is above the industry average and demonstrates strong processes.</div>
+        </div>
+
+        <!-- Trend -->
+        <div style="margin-top:6px;">
+          <div style="font-size:0.9rem; font-weight:700; margin-bottom:14px; letter-spacing:-0.02em;">Compliance score — last 6 months</div>
+          <div class="card" style="padding:18px;">
+            <div style="display:flex; gap:6px; align-items:flex-end; height:100px;">
+              <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+                <div style="background:var(--plum-border); width:100%; border-radius:4px 4px 0 0; height:60%; transition:height 0.4s;"></div>
+                <span style="font-size:0.65rem;color:var(--text-3);">Dec</span>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+                <div style="background:var(--plum-light); width:100%; border-radius:4px 4px 0 0; height:65%;"></div>
+                <span style="font-size:0.65rem;color:var(--text-3);">Jan</span>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+                <div style="background:var(--plum-mid); width:100%; border-radius:4px 4px 0 0; height:72%;"></div>
+                <span style="font-size:0.65rem;color:var(--text-3);">Feb</span>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+                <div style="background:var(--plum); width:100%; border-radius:4px 4px 0 0; height:78%;"></div>
+                <span style="font-size:0.65rem;color:var(--text-3);">Mar</span>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+                <div style="background:var(--plum); width:100%; border-radius:4px 4px 0 0; height:80%;"></div>
+                <span style="font-size:0.65rem;color:var(--text-3);">Apr</span>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; height:100%; justify-content:flex-end;">
+                <div style="background:var(--plum); width:100%; border-radius:4px 4px 0 0; height:82%; border:2px dashed var(--plum-mid);"></div>
+                <span style="font-size:0.65rem;color:var(--plum);font-weight:700;">May</span>
+              </div>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top:10px; font-size:0.75rem; color:var(--text-3);">
+              <span>Score increased from 76% → 82% over 6 months</span>
+              <span style="color:var(--success);font-weight:600;">↑ +6 points</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ask Amaea -->
+      <div>
+        <div class="card mb-5">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
+            <div style="width:26px;height:26px;border-radius:7px;background:var(--plum);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.65rem;font-weight:700;">AI</div>
+            <div style="font-size:0.9rem;font-weight:700;letter-spacing:-0.01em;">Ask Amaea</div>
+          </div>
+          <div style="font-size:0.75rem;color:var(--text-3);margin-bottom:14px;">Ask anything about your compliance data.</div>
+          <div class="ai-chat">
+            <div class="chat-messages" id="chat-messages" style="max-height:320px; overflow-y:auto; display:flex; flex-direction:column; gap:0;">
+              <div class="ai-msg"><div class="ai-avatar">AI</div><div class="ai-bubble">Hello Sarah. I've completed today's analysis. You have 7 items that need attention — the most urgent being 12 clients with overdue annual reviews. What would you like to look at?</div></div>
+            </div>
+            <form class="chat-form" style="display:flex;gap:8px;margin-top:12px;" onsubmit="return false;">
+              <input class="chat-input-field" type="text" placeholder="Ask about your compliance data..." style="flex:1;border:1px solid var(--border);border-radius:980px;padding:8px 14px;font-size:0.82rem;outline:none;background:var(--bg);transition:all 0.15s;font-family:var(--font);" onfocus="this.style.borderColor='var(--plum)'; this.style.boxShadow='0 0 0 3px rgba(64,36,63,0.08)'" onblur="this.style.borderColor=''; this.style.boxShadow=''"/>
+              <button type="submit" class="btn btn-primary btn-sm">Send</button>
+            </form>
+            <div style="margin-top:10px; display:flex; flex-wrap:wrap; gap:5px;">
+              <button class="filter-btn" style="font-size:0.7rem; padding:4px 10px;" onclick="document.querySelector('.chat-input-field').value='Which clients are most at risk?'; document.querySelector('.chat-form').dispatchEvent(new Event('submit'))">Which clients are at risk?</button>
+              <button class="filter-btn" style="font-size:0.7rem; padding:4px 10px;" onclick="document.querySelector('.chat-input-field').value='What documents are missing?'; document.querySelector('.chat-form').dispatchEvent(new Event('submit'))">Missing documents</button>
+              <button class="filter-btn" style="font-size:0.7rem; padding:4px 10px;" onclick="document.querySelector('.chat-input-field').value='What is my compliance score?'; document.querySelector('.chat-form').dispatchEvent(new Event('submit'))">Health score</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="font-size:0.875rem;font-weight:700;margin-bottom:14px;letter-spacing:-0.01em;">Risk Breakdown</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div><div class="flex-between" style="font-size:0.8rem;margin-bottom:5px;"><span style="font-weight:500;">Annual Reviews</span><span style="color:var(--danger);font-weight:600;">18 overdue</span></div><div class="progress-bar"><div class="progress-fill red" style="width:73%"></div></div></div>
+            <div><div class="flex-between" style="font-size:0.8rem;margin-bottom:5px;"><span style="font-weight:500;">Documentation Gaps</span><span style="color:var(--warning);font-weight:600;">34 missing</span></div><div class="progress-bar"><div class="progress-fill amber" style="width:61%"></div></div></div>
+            <div><div class="flex-between" style="font-size:0.8rem;margin-bottom:5px;"><span style="font-weight:500;">Suitability Assessments</span><span style="color:var(--success);font-weight:600;">91% complete</span></div><div class="progress-bar"><div class="progress-fill green" style="width:91%"></div></div></div>
+            <div><div class="flex-between" style="font-size:0.8rem;margin-bottom:5px;"><span style="font-weight:500;">Regulatory Deadlines</span><span style="color:var(--success);font-weight:600;">All on track</span></div><div class="progress-bar"><div class="progress-fill green" style="width:100%"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="amaea.js"></script>
+</body>
+</html>

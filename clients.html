@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clients — Amaea</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="amaea.css" rel="stylesheet"/>
+  <style>
+    .doc-item { display:flex; align-items:center; gap:9px; padding:9px 0; border-bottom:1px solid var(--border); font-size:0.82rem; }
+    .doc-item:last-child { border-bottom:none; }
+    .doc-check { width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:0.65rem; font-weight:700; }
+    .doc-check.ok      { background:var(--success-bg); color:var(--success); }
+    .doc-check.missing { background:var(--danger-bg); color:var(--danger); }
+    .doc-check.pending { background:var(--warning-bg); color:var(--warning); }
+    #client-detail-panel { transition: all 0.2s var(--ease); }
+  </style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <a href="dashboard.html">
+      <img src="amaea-logo.png" class="logo-img" alt="Amaea" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="logo-mark" style="display:none;">A</div>
+    </a>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Main</div>
+    <a href="dashboard.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Dashboard</a>
+    <a href="clients.html" class="nav-item active"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Clients<span class="nav-badge">18</span></a>
+    <a href="insights.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>AI Insights<span class="nav-badge amber">7</span></a>
+    <a href="reports.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Reports</a>
+    <div class="nav-section-label">Settings</div>
+    <a href="integrations.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Integrations</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="sidebar-user" onclick="showToast('Profile settings coming soon','info')">
+      <div class="user-avatar">SC</div>
+      <div class="user-info"><div class="user-name">Sarah Clarke</div><div class="user-role">Head of Compliance</div></div>
+    </div>
+  </div>
+</aside>
+
+<div class="main">
+  <header class="topbar">
+    <span class="topbar-title">Clients</span>
+    <div class="topbar-search">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search clients..."/>
+    </div>
+    <div class="topbar-icon" onclick="showToast('No new notifications','info',1500)"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+    <div class="topbar-avatar" onclick="showToast('Profile settings coming soon','info')">SC</div>
+  </header>
+
+  <div class="page">
+    <div class="page-header flex-between">
+      <div><h1>Client Compliance</h1><p>247 active clients · 18 require immediate attention</p></div>
+      <div class="flex-gap">
+        <button class="btn btn-ghost btn-sm" onclick="showToast('Exporting client list...','info',2000); setTimeout(()=>showToast('Export ready','success'),2200)">Export</button>
+        <button class="btn btn-primary btn-sm" onclick="openModal('add-client-modal')">+ Add Client</button>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active">All Clients (247)</button>
+      <button class="filter-btn">Overdue Reviews (18)</button>
+      <button class="filter-btn">Missing Docs (34)</button>
+      <button class="filter-btn">High Risk (7)</button>
+      <button class="filter-btn">Up to Date (188)</button>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 400px; gap:18px;">
+      <!-- Client list -->
+      <div class="card" style="padding:0; overflow:hidden;">
+        <table class="data-table">
+          <thead><tr><th>Client</th><th>Adviser</th><th>Last Review</th><th>Next Due</th><th>Status</th><th>Risk</th></tr></thead>
+          <tbody>
+            <tr class="clickable active-row" data-client-id="CLI-0047" onclick="swapClientDetail('CLI-0047')">
+              <td><div class="client-name">Thompson, Sarah J.</div><div class="client-id">CLI-0047 · Age 68</div></td>
+              <td style="color:var(--text-2);font-size:0.82rem;">J. Morrison</td>
+              <td style="color:var(--danger);font-size:0.82rem;font-weight:500;">Mar 2025</td>
+              <td style="color:var(--danger);font-size:0.82rem;font-weight:600;">OVERDUE</td>
+              <td><span class="badge badge-red"><span class="badge-dot"></span>At Risk</span></td>
+              <td><div style="display:flex;align-items:center;gap:7px;"><div class="progress-bar" style="width:56px;"><div class="progress-fill red" style="width:82%"></div></div><span style="font-size:0.7rem;color:var(--danger);font-weight:600;">High</span></div></td>
+            </tr>
+            <tr class="clickable" data-client-id="CLI-0112" onclick="swapClientDetail('CLI-0112')">
+              <td><div class="client-name">Patel, Rajesh K.</div><div class="client-id">CLI-0112 · Age 54</div></td>
+              <td style="color:var(--text-2);font-size:0.82rem;">A. Williams</td>
+              <td style="color:var(--warning);font-size:0.82rem;font-weight:500;">Nov 2024</td>
+              <td style="color:var(--warning);font-size:0.82rem;font-weight:600;">May 2025</td>
+              <td><span class="badge badge-amber"><span class="badge-dot"></span>Due Soon</span></td>
+              <td><div style="display:flex;align-items:center;gap:7px;"><div class="progress-bar" style="width:56px;"><div class="progress-fill amber" style="width:45%"></div></div><span style="font-size:0.7rem;color:var(--warning);font-weight:600;">Med</span></div></td>
+            </tr>
+            <tr class="clickable" data-client-id="CLI-0089" onclick="swapClientDetail('CLI-0089')">
+              <td><div class="client-name">Henderson, Claire M.</div><div class="client-id">CLI-0089 · Age 61</div></td>
+              <td style="color:var(--text-2);font-size:0.82rem;">J. Morrison</td>
+              <td style="color:var(--text-2);font-size:0.82rem;">Jan 2025</td>
+              <td style="color:var(--text-2);font-size:0.82rem;">Jan 2026</td>
+              <td><span class="badge badge-green"><span class="badge-dot"></span>Compliant</span></td>
+              <td><div style="display:flex;align-items:center;gap:7px;"><div class="progress-bar" style="width:56px;"><div class="progress-fill green" style="width:22%"></div></div><span style="font-size:0.7rem;color:var(--success);font-weight:600;">Low</span></div></td>
+            </tr>
+            <tr class="clickable" data-client-id="CLI-0203" onclick="swapClientDetail('CLI-0203')">
+              <td><div class="client-name">Okonkwo, David E.</div><div class="client-id">CLI-0203 · Age 47</div></td>
+              <td style="color:var(--text-2);font-size:0.82rem;">A. Williams</td>
+              <td style="color:var(--danger);font-size:0.82rem;font-weight:500;">Feb 2025</td>
+              <td style="color:var(--danger);font-size:0.82rem;font-weight:600;">OVERDUE</td>
+              <td><span class="badge badge-red"><span class="badge-dot"></span>At Risk</span></td>
+              <td><div style="display:flex;align-items:center;gap:7px;"><div class="progress-bar" style="width:56px;"><div class="progress-fill red" style="width:70%"></div></div><span style="font-size:0.7rem;color:var(--danger);font-weight:600;">High</span></div></td>
+            </tr>
+            <tr class="clickable" onclick="showToast('Loading client details...','info',1000)">
+              <td><div class="client-name">Fraser, Margaret A.</div><div class="client-id">CLI-0156 · Age 72</div></td>
+              <td style="color:var(--text-2);font-size:0.82rem;">K. Davies</td>
+              <td style="color:var(--text-2);font-size:0.82rem;">Apr 2025</td>
+              <td style="color:var(--text-2);font-size:0.82rem;">Apr 2026</td>
+              <td><span class="badge badge-green"><span class="badge-dot"></span>Compliant</span></td>
+              <td><div style="display:flex;align-items:center;gap:7px;"><div class="progress-bar" style="width:56px;"><div class="progress-fill green" style="width:18%"></div></div><span style="font-size:0.7rem;color:var(--success);font-weight:600;">Low</span></div></td>
+            </tr>
+            <tr class="clickable" onclick="showToast('Loading client details...','info',1000)">
+              <td><div class="client-name">Singh, Amrit</div><div class="client-id">CLI-0067 · Age 39</div></td>
+              <td style="color:var(--text-2);font-size:0.82rem;">J. Morrison</td>
+              <td style="color:var(--text-2);font-size:0.82rem;">Dec 2024</td>
+              <td style="color:var(--text-2);font-size:0.82rem;">Dec 2025</td>
+              <td><span class="badge badge-amber"><span class="badge-dot"></span>Docs Missing</span></td>
+              <td><div style="display:flex;align-items:center;gap:7px;"><div class="progress-bar" style="width:56px;"><div class="progress-fill amber" style="width:35%"></div></div><span style="font-size:0.7rem;color:var(--warning);font-weight:600;">Med</span></div></td>
+            </tr>
+            <tr class="clickable" onclick="showToast('Loading client details...','info',1000)">
+              <td><div class="client-name">Williams, Catherine R.</div><div class="client-id">CLI-0178 · Age 58</div></td>
+              <td style="color:var(--text-2);font-size:0.82rem;">K. Davies</td>
+              <td style="color:var(--text-2);font-size:0.82rem;">Mar 2025</td>
+              <td style="color:var(--text-2);font-size:0.82rem;">Mar 2026</td>
+              <td><span class="badge badge-green"><span class="badge-dot"></span>Compliant</span></td>
+              <td><div style="display:flex;align-items:center;gap:7px;"><div class="progress-bar" style="width:56px;"><div class="progress-fill green" style="width:15%"></div></div><span style="font-size:0.7rem;color:var(--success);font-weight:600;">Low</span></div></td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="padding:14px 18px; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between;">
+          <span style="font-size:0.75rem; color:var(--text-3);">Showing 7 of 247 clients</span>
+          <div class="flex-gap">
+            <button class="btn btn-ghost btn-sm" onclick="showToast('Previous page','info',1000)">← Prev</button>
+            <button class="btn btn-ghost btn-sm" onclick="showToast('Next page','info',1000)">Next →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Client detail -->
+      <div id="client-detail-panel" class="card" style="height:fit-content;">
+        <div style="display:flex; align-items:center; gap:11px; margin-bottom:18px; padding-bottom:18px; border-bottom:1px solid var(--border);">
+          <div style="width:44px;height:44px;border-radius:11px;background:var(--plum-tint);display:flex;align-items:center;justify-content:center;font-size:0.95rem;font-weight:700;color:var(--plum); flex-shrink:0;" class="client-initials">ST</div>
+          <div style="flex:1; min-width:0;">
+            <div style="font-weight:700; font-size:0.95rem; letter-spacing:-0.01em;" class="client-name-display">Sarah J. Thompson</div>
+            <div style="font-size:0.72rem; color:var(--text-3); margin-top:1px;" class="client-id-display">CLI-0047 · Adviser: James Morrison · Age 68</div>
+          </div>
+          <span class="badge badge-red client-status-badge">At Risk</span>
+        </div>
+
+        <!-- AI Summary -->
+        <div style="background:var(--plum-tint); border:1px solid var(--plum-border); border-radius:10px; padding:14px; margin-bottom:18px;">
+          <div style="display:flex;align-items:center;gap:5px;margin-bottom:7px;font-size:0.72rem;font-weight:700;color:var(--plum);letter-spacing:0.02em;">
+            <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            AMAEA AI SUMMARY
+          </div>
+          <p class="ai-summary-text" style="font-size:0.8rem; color:var(--text-2); line-height:1.6; margin:0;">Sarah's annual review is 14 months overdue. As a client aged 68 in the vulnerable customer category, this presents a regulatory risk. Her suitability letter from 2023 needs renewal, and no Consumer Duty outcome assessment exists in the file.</p>
+        </div>
+
+        <!-- Risk bar -->
+        <div style="margin-bottom:18px;">
+          <div class="flex-between" style="font-size:0.78rem; margin-bottom:6px;"><span style="font-weight:600;">Risk Score</span><span style="color:var(--danger); font-weight:600;">82 / 100 — High</span></div>
+          <div class="progress-bar" style="height:7px;"><div class="progress-fill client-risk-fill" style="width:82%; background:var(--danger);"></div></div>
+        </div>
+
+        <!-- Timeline -->
+        <div style="margin-bottom:18px;">
+          <div style="font-size:0.8rem; font-weight:700; margin-bottom:11px; letter-spacing:-0.01em;">Review Timeline</div>
+          <div class="timeline">
+            <div class="timeline-event success"><div class="timeline-date">Mar 2023</div><div class="timeline-label">Annual Review Completed</div><div class="timeline-sub">Suitability confirmed · J. Morrison</div></div>
+            <div class="timeline-event success"><div class="timeline-date">Mar 2024</div><div class="timeline-label">Annual Review Completed</div><div class="timeline-sub">Portfolio rebalanced · J. Morrison</div></div>
+            <div class="timeline-event danger"><div class="timeline-date">Mar 2025 — OVERDUE</div><div class="timeline-label" style="color:var(--danger);">Annual Review Missed</div><div class="timeline-sub">No record found · Action required</div></div>
+            <div class="timeline-event future"><div class="timeline-date">Target: Jun 2025</div><div class="timeline-label" style="color:var(--text-3);">Book Review</div><div class="timeline-sub">Suggested by Amaea</div></div>
+          </div>
+        </div>
+
+        <!-- Docs -->
+        <div style="margin-bottom:18px;">
+          <div style="font-size:0.8rem; font-weight:700; margin-bottom:9px; letter-spacing:-0.01em;">Documentation</div>
+          <div class="doc-item">
+            <div class="doc-check ok">✓</div>
+            <div style="flex:1;"><div style="font-weight:500; font-size:0.82rem;">Suitability Report (2023)</div><div style="color:var(--text-3);font-size:0.7rem;">Uploaded 14 Mar 2023</div></div>
+            <span class="badge badge-amber">Renewal Due</span>
+          </div>
+          <div class="doc-item">
+            <div class="doc-check missing">✕</div>
+            <div style="flex:1;"><div style="font-weight:500; font-size:0.82rem;">Consumer Duty Assessment</div><div style="color:var(--danger);font-size:0.7rem;">Missing — required for vulnerable clients</div></div>
+            <button class="btn btn-xs btn-primary" onclick="showToast('Request sent to client','success')">Request</button>
+          </div>
+          <div class="doc-item">
+            <div class="doc-check ok">✓</div>
+            <div style="flex:1;"><div style="font-weight:500; font-size:0.82rem;">Risk Profile Assessment</div><div style="color:var(--text-3);font-size:0.7rem;">Uploaded 14 Mar 2024</div></div>
+            <span class="badge badge-green">Valid</span>
+          </div>
+          <div class="doc-item">
+            <div class="doc-check pending">!</div>
+            <div style="flex:1;"><div style="font-weight:500; font-size:0.82rem;">Annual Review 2025</div><div style="color:var(--warning);font-size:0.7rem;">Not yet completed</div></div>
+            <button class="btn btn-xs btn-primary" onclick="openModal('book-review-modal')">Book</button>
+          </div>
+        </div>
+
+        <div class="flex-gap">
+          <button class="btn btn-primary" style="flex:1; justify-content:center;" onclick="openModal('book-review-modal')">Book Review</button>
+          <button class="btn btn-secondary" style="flex:1; justify-content:center;" onclick="window.location='reports.html'">Generate Report</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Book Review Modal -->
+<div class="modal-overlay" id="book-review-modal" style="position:fixed;">
+  <div class="modal" style="position:relative;">
+    <button class="modal-close" onclick="closeModal('book-review-modal')">✕</button>
+    <div class="modal-title">Book Annual Review</div>
+    <div class="modal-sub">Schedule the annual review for Sarah J. Thompson (CLI-0047).</div>
+    <div class="form-group"><label class="form-label">Preferred Date</label><input class="form-input" type="date"/></div>
+    <div class="form-group"><label class="form-label">Preferred Time</label><select class="form-select"><option>09:00 AM</option><option>10:00 AM</option><option>11:00 AM</option><option>02:00 PM</option><option>03:00 PM</option></select></div>
+    <div class="form-group"><label class="form-label">Adviser</label><select class="form-select"><option>James Morrison</option><option>Alex Williams</option><option>Kate Davies</option></select></div>
+    <div class="form-group"><label class="form-label">Notes</label><input class="form-input" placeholder="Any additional notes for the adviser..."/></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('book-review-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="showToast('Review booked — confirmation sent to client','success'); closeModal('book-review-modal')">Confirm Booking</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Client Modal -->
+<div class="modal-overlay" id="add-client-modal" style="position:fixed;">
+  <div class="modal" style="position:relative;">
+    <button class="modal-close" onclick="closeModal('add-client-modal')">✕</button>
+    <div class="modal-title">Add New Client</div>
+    <div class="modal-sub">Add a new client to the compliance tracking system.</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+      <div class="form-group"><label class="form-label">First Name</label><input class="form-input" placeholder="First name"/></div>
+      <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" placeholder="Last name"/></div>
+    </div>
+    <div class="form-group"><label class="form-label">Assigned Adviser</label><select class="form-select"><option>James Morrison</option><option>Alex Williams</option><option>Kate Davies</option></select></div>
+    <div class="form-group"><label class="form-label">Date of Birth</label><input class="form-input" type="date"/></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('add-client-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="showToast('Client added successfully','success'); closeModal('add-client-modal')">Add Client</button>
+    </div>
+  </div>
+</div>
+
+<script src="amaea.js"></script>
+</body>
+</html>
