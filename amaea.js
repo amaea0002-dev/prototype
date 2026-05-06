@@ -2,6 +2,26 @@
    Amaea — Interactivity
    ======================== */
 
+// ── Mobile sidebar ───────────────────────────────────────────────
+function toggleSidebar() {
+  const sidebar = document.querySelector('.sidebar');
+  const overlay = document.getElementById('sidebar-overlay');
+  sidebar?.classList.toggle('open');
+  overlay?.classList.toggle('open');
+}
+function closeSidebar() {
+  document.querySelector('.sidebar')?.classList.remove('open');
+  document.getElementById('sidebar-overlay')?.classList.remove('open');
+}
+// Close sidebar when nav item clicked on mobile
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      if (window.innerWidth <= 900) closeSidebar();
+    });
+  });
+});
+
 // ── Toast notifications ──────────────────────────────────────────
 function showToast(message, type = 'info', duration = 3000) {
   let container = document.querySelector('.toast-container');
@@ -227,25 +247,43 @@ const clientData = {
     name: 'Sarah J. Thompson', initials: 'ST', id: 'CLI-0047', age: 68,
     adviser: 'James Morrison', status: 'At Risk', statusClass: 'badge-red',
     ai: "Sarah's annual review is 14 months overdue. As a vulnerable customer (aged 68), this presents elevated regulatory risk. Her 2023 suitability letter needs renewal, and no Consumer Duty outcome assessment exists in the file.",
-    lastReview: 'Mar 2025', nextDue: 'OVERDUE', risk: 82, riskLabel: 'High', riskColor: 'var(--danger)'
+    risk: 82, riskColor: 'var(--danger)'
   },
   'CLI-0112': {
     name: 'Rajesh K. Patel', initials: 'RP', id: 'CLI-0112', age: 54,
     adviser: 'Alex Williams', status: 'Due Soon', statusClass: 'badge-amber',
     ai: "Rajesh's annual review is due in the next 30 days. His suitability documentation is current. No immediate risk flags, but the review should be booked promptly to avoid breaching the FCA 12-month requirement.",
-    lastReview: 'Nov 2024', nextDue: 'May 2025', risk: 45, riskLabel: 'Medium', riskColor: 'var(--warning)'
+    risk: 45, riskColor: 'var(--warning)'
   },
   'CLI-0089': {
     name: 'Claire M. Henderson', initials: 'CH', id: 'CLI-0089', age: 61,
     adviser: 'James Morrison', status: 'Compliant', statusClass: 'badge-green',
     ai: "Claire's compliance file is fully up to date. Her annual review was completed in January 2025 and all documentation is current. No action required at this time.",
-    lastReview: 'Jan 2025', nextDue: 'Jan 2026', risk: 22, riskLabel: 'Low', riskColor: 'var(--success)'
+    risk: 22, riskColor: 'var(--success)'
   },
   'CLI-0203': {
     name: 'David E. Okonkwo', initials: 'DO', id: 'CLI-0203', age: 47,
     adviser: 'Alex Williams', status: 'At Risk', statusClass: 'badge-red',
     ai: "David's annual review is 15 months overdue. Two key documents are missing from his file: the Consumer Duty assessment and a current suitability letter. Immediate action required.",
-    lastReview: 'Feb 2025', nextDue: 'OVERDUE', risk: 70, riskLabel: 'High', riskColor: 'var(--danger)'
+    risk: 70, riskColor: 'var(--danger)'
+  },
+  'CLI-0156': {
+    name: 'Margaret A. Fraser', initials: 'MF', id: 'CLI-0156', age: 72,
+    adviser: 'Kate Davies', status: 'Compliant', statusClass: 'badge-green',
+    ai: "Margaret's file is in good order. Her annual review was completed in April 2025 and all documentation is current and valid. As a client aged 72, her Consumer Duty assessment is on file and up to date.",
+    risk: 18, riskColor: 'var(--success)'
+  },
+  'CLI-0067': {
+    name: 'Amrit Singh', initials: 'AS', id: 'CLI-0067', age: 39,
+    adviser: 'James Morrison', status: 'Docs Missing', statusClass: 'badge-amber',
+    ai: "Amrit's annual review is current but two documents are missing from his file: a renewed suitability letter and an updated risk profile assessment. These should be requested and completed before his next review in December 2025.",
+    risk: 35, riskColor: 'var(--warning)'
+  },
+  'CLI-0178': {
+    name: 'Catherine R. Williams', initials: 'CW', id: 'CLI-0178', age: 58,
+    adviser: 'Kate Davies', status: 'Compliant', statusClass: 'badge-green',
+    ai: "Catherine's compliance file is fully up to date. Her annual review was completed in March 2025 and all documentation including suitability report and risk profile are current. No action required.",
+    risk: 15, riskColor: 'var(--success)'
   }
 };
 

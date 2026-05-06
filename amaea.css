@@ -567,3 +567,127 @@ a { text-decoration: none; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border-solid); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-4); }
+
+/* ==============================
+   Mobile Responsiveness
+   ============================== */
+
+/* Mobile hamburger — hidden on desktop */
+.mobile-menu-btn {
+  display: none;
+  width: 34px; height: 34px; border-radius: 8px;
+  background: transparent; border: none; cursor: pointer;
+  align-items: center; justify-content: center;
+  flex-direction: column; gap: 4px; padding: 0;
+  flex-shrink: 0;
+}
+.mobile-menu-btn span {
+  display: block; width: 18px; height: 2px;
+  background: var(--text); border-radius: 2px;
+  transition: all 0.2s var(--ease);
+}
+
+/* Sidebar overlay — mobile only */
+.sidebar-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 99;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.sidebar-overlay.open { opacity: 1; }
+
+@media (max-width: 900px) {
+
+  /* Sidebar slides in/out */
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.25s var(--ease);
+    z-index: 200;
+  }
+  .sidebar.open { transform: translateX(0); }
+
+  /* Overlay shown on mobile */
+  .sidebar-overlay { display: block; pointer-events: none; }
+  .sidebar-overlay.open { pointer-events: all; }
+
+  /* Main takes full width */
+  .main { margin-left: 0; }
+
+  /* Show hamburger in topbar */
+  .mobile-menu-btn { display: flex; }
+
+  /* Topbar tweaks */
+  .topbar { padding: 0 16px; gap: 10px; }
+  .topbar-title { font-size: 0.875rem; }
+  .topbar-search { display: none; }
+
+  /* Page padding */
+  .page { padding: 20px 16px 40px; }
+  .page-header h1 { font-size: 1.2rem; }
+
+  /* Metric grid — 2 columns */
+  .metric-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* Main content grids — stack */
+  [style*="grid-template-columns:1fr 330px"],
+  [style*="grid-template-columns:1fr 340px"],
+  [style*="grid-template-columns:1fr 360px"],
+  [style*="grid-template-columns:1fr 380px"],
+  [style*="grid-template-columns:1fr 400px"],
+  [style*="grid-template-columns:1fr 280px"],
+  [style*="grid-template-columns:1fr 290px"],
+  [style*="grid-template-columns:1fr 300px"],
+  [style*="grid-template-columns:1fr 320px"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Hide detail panel on mobile by default */
+  #client-detail-panel { display: none; }
+  #client-detail-panel.mobile-visible { display: block; }
+
+  /* Tables scroll horizontally */
+  .card[style*="overflow:hidden"] { overflow-x: auto !important; }
+  .data-table { min-width: 560px; }
+
+  /* Filter bar scroll */
+  .filter-bar { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
+  .filter-bar::-webkit-scrollbar { display: none; }
+
+  /* Health score — stack vertically */
+  .health-score-row { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
+
+  /* Integration cards */
+  .integration-card { flex-wrap: wrap; gap: 10px; }
+
+  /* Report cards */
+  .report-card { flex-wrap: wrap; }
+
+  /* Modal */
+  .modal { width: 95vw !important; padding: 24px 20px !important; }
+
+  /* Toast */
+  .toast-container { bottom: 16px; right: 16px; left: 16px; }
+  .toast { justify-content: center; }
+}
+
+@media (max-width: 480px) {
+
+  /* Metric grid — 1 column */
+  .metric-grid { grid-template-columns: 1fr; }
+
+  .page-header .flex-between { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .page-header .flex-gap { width: 100%; }
+  .page-header .btn { flex: 1; justify-content: center; }
+
+  .metric-value { font-size: 1.6rem; }
+
+  /* Action items — stack button */
+  .action-item { flex-wrap: wrap; }
+  .action-item .btn { width: 100%; justify-content: center; margin-top: 8px; }
+
+  /* Alert items compact */
+  .alert-item { gap: 8px; }
+  .alert-icon { width: 28px; height: 28px; }
+}

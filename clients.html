@@ -43,7 +43,9 @@
 </aside>
 
 <div class="main">
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
   <header class="topbar">
+    <button class="mobile-menu-btn" onclick="toggleSidebar()"><span></span><span></span><span></span></button>
     <span class="topbar-title">Clients</span>
     <div class="topbar-search">
       <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -108,7 +110,7 @@
               <td><span class="badge badge-red"><span class="badge-dot"></span>At Risk</span></td>
               <td><div style="display:flex;align-items:center;gap:7px;"><div class="progress-bar" style="width:56px;"><div class="progress-fill red" style="width:70%"></div></div><span style="font-size:0.7rem;color:var(--danger);font-weight:600;">High</span></div></td>
             </tr>
-            <tr class="clickable" onclick="showToast('Loading client details...','info',1000)">
+            <tr class="clickable" data-client-id="CLI-0156" onclick="swapClientDetail('CLI-0156')">
               <td><div class="client-name">Fraser, Margaret A.</div><div class="client-id">CLI-0156 · Age 72</div></td>
               <td style="color:var(--text-2);font-size:0.82rem;">K. Davies</td>
               <td style="color:var(--text-2);font-size:0.82rem;">Apr 2025</td>
@@ -116,7 +118,7 @@
               <td><span class="badge badge-green"><span class="badge-dot"></span>Compliant</span></td>
               <td><div style="display:flex;align-items:center;gap:7px;"><div class="progress-bar" style="width:56px;"><div class="progress-fill green" style="width:18%"></div></div><span style="font-size:0.7rem;color:var(--success);font-weight:600;">Low</span></div></td>
             </tr>
-            <tr class="clickable" onclick="showToast('Loading client details...','info',1000)">
+            <tr class="clickable" data-client-id="CLI-0067" onclick="swapClientDetail('CLI-0067')">
               <td><div class="client-name">Singh, Amrit</div><div class="client-id">CLI-0067 · Age 39</div></td>
               <td style="color:var(--text-2);font-size:0.82rem;">J. Morrison</td>
               <td style="color:var(--text-2);font-size:0.82rem;">Dec 2024</td>
@@ -124,7 +126,7 @@
               <td><span class="badge badge-amber"><span class="badge-dot"></span>Docs Missing</span></td>
               <td><div style="display:flex;align-items:center;gap:7px;"><div class="progress-bar" style="width:56px;"><div class="progress-fill amber" style="width:35%"></div></div><span style="font-size:0.7rem;color:var(--warning);font-weight:600;">Med</span></div></td>
             </tr>
-            <tr class="clickable" onclick="showToast('Loading client details...','info',1000)">
+            <tr class="clickable" data-client-id="CLI-0178" onclick="swapClientDetail('CLI-0178')">
               <td><div class="client-name">Williams, Catherine R.</div><div class="client-id">CLI-0178 · Age 58</div></td>
               <td style="color:var(--text-2);font-size:0.82rem;">K. Davies</td>
               <td style="color:var(--text-2);font-size:0.82rem;">Mar 2025</td>
