@@ -112,6 +112,34 @@ svg { flex-shrink: 0; }
   z-index: 100; overflow-y: auto; overflow-x: hidden;
 }
 .main { margin-left: var(--sw); min-height: 100vh; display: flex; flex-direction: column; }
+
+/* Desktop sidebar width transitions */
+@media (min-width: 961px) {
+  .sidebar { transition: width 0.26s var(--ease); }
+  .main    { transition: margin-left 0.26s var(--ease); }
+}
+
+/* ── Sidebar collapsed (desktop) ─────────────────────────────── */
+body.sb-collapsed .sidebar { width: 62px; overflow-x: hidden; }
+body.sb-collapsed .main    { margin-left: 62px; }
+
+body.sb-collapsed .sb-header { padding: 14px 8px 10px; justify-content: center; }
+body.sb-collapsed .sb-logo   { display: none; }
+
+body.sb-collapsed .sb-nav    { padding: 10px 6px; }
+body.sb-collapsed .sb-label  { height: 0; overflow: hidden; padding: 0; margin: 0; }
+
+/* Hide text nodes via font-size:0; SVGs keep their width/height attrs */
+body.sb-collapsed .nav-item  { justify-content: center; padding: 10px 6px; font-size: 0; gap: 0; }
+body.sb-collapsed .nav-badge { display: none; }
+
+body.sb-collapsed .sb-footer { padding: 8px 6px 12px; }
+body.sb-collapsed .sb-user   { justify-content: center; padding: 8px 6px; }
+body.sb-collapsed .sb-user-name,
+body.sb-collapsed .sb-user-role { display: none; }
+
+/* Rotate toggle arrow when collapsed */
+body.sb-collapsed .sb-toggle svg { transform: rotate(180deg); }
 .topbar {
   position: sticky; top: 0; height: var(--th);
   background: rgba(255,255,255,0.85);
@@ -128,8 +156,11 @@ svg { flex-shrink: 0; }
   padding: 16px 16px 12px;
   border-bottom: 1px solid rgba(255,255,255,0.07);
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
-.sb-logo { display: flex; align-items: center; gap: 10px; overflow: hidden; }
+.sb-logo { display: flex; align-items: center; gap: 10px; overflow: hidden; flex: 1; min-width: 0; }
 .sb-logo img {
   height: 26px;
   max-height: 26px;
@@ -141,6 +172,25 @@ svg { flex-shrink: 0; }
   opacity: 0.9;
   display: block;
 }
+/* Lavender tint in dark mode */
+[data-theme="dark"] .sb-logo img {
+  filter: brightness(0) invert(1) sepia(1) hue-rotate(220deg) saturate(2.5) brightness(1.35);
+  opacity: 1;
+}
+/* Sidebar collapse toggle (desktop only) */
+.sb-toggle {
+  display: none;
+  width: 26px; height: 26px;
+  background: rgba(255,255,255,0.09);
+  border: none; border-radius: var(--r1);
+  color: rgba(255,255,255,0.5);
+  align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0;
+  transition: background 0.14s, color 0.14s;
+}
+.sb-toggle:hover { background: rgba(255,255,255,0.18); color: #fff; }
+.sb-toggle svg { transition: transform 0.26s var(--ease); flex-shrink: 0; }
+@media (min-width: 961px) { .sb-toggle { display: flex; } }
 .logo-fallback {
   width: 30px; height: 30px; border-radius: var(--r2);
   background: rgba(255,255,255,0.15);

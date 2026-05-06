@@ -90,6 +90,18 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// ── Desktop sidebar collapse ────────────────────────────────────
+(function () {
+  if (localStorage.getItem('amaea-sb-collapsed') === 'true') {
+    document.body.classList.add('sb-collapsed');
+  }
+})();
+
+function toggleSidebarCollapse() {
+  const collapsed = document.body.classList.toggle('sb-collapsed');
+  localStorage.setItem('amaea-sb-collapsed', collapsed);
+}
+
 // ── Generate simulation ────────────────────────────────────────
 function simulateGenerate(btn, successMsg) {
   const orig = btn.innerHTML;
@@ -365,20 +377,77 @@ function openClient(id, rowEl) {
 }
 
 // ── AI chat ────────────────────────────────────────────────────
-const aiResponses = {
-  'overdue': 'There are currently 18 clients with overdue annual reviews. The longest elapsed is 14 months (CLI-0047). FCA rules require reviews within 12 months — these are now in breach territory. I recommend prioritising the 6 vulnerable clients first.',
-  'vulnerable': 'You have 9 vulnerable clients across the book. Under Consumer Duty, you must demonstrate enhanced monitoring and fair outcomes for these clients. 3 currently have incomplete documentation, which is a priority risk.',
-  'rmar': 'Your RMAR (Retail Mediation Activities Return) is due 31 May — 25 days away. I\'ve pre-populated the required data from Intelliflo. There are 3 data gaps in section B that need your input before I can generate a submission-ready report.',
-  'consumer duty': 'Consumer Duty requires annual assessments of fair value, consumer understanding, consumer support, and products & services outcomes. Your current score is 82/100. The main gap is documentation completeness at 61%.',
-  'default': 'I can help you monitor FCA compliance obligations, identify documentation gaps, track client journey milestones, and flag regulatory risks across your book. What would you like to look at?'
-};
+const aiPatterns = [
+  {
+    match: ['margaret', 'thompson', 'cli-0047'],
+    reply: `Margaret Thompson (CLI-0047) is your most urgent case. She's 14 months past her annual review deadline — the longest elapsed in your book. Her Stage 2 pension drawdown file (Sep 2023) is also missing the suitability report. Adviser James Morrison owns this client. I'd escalate this immediately: FCA supervision visits typically start with the oldest outstanding reviews.`
+  },
+  {
+    match: ['robert', 'chen', 'cli-0089'],
+    reply: `Robert Chen (CLI-0089) is a vulnerable client with an annual review 11 months overdue and an incomplete suitability file. Under Consumer Duty, vulnerable clients require documented evidence of fair outcomes — missing both the review and the suitability report is a double breach. Adviser Alex Williams should be actioned on this as the highest-priority vulnerable client.`
+  },
+  {
+    match: ['priya', 'singh', 'cli-0132'],
+    reply: `Priya Singh (CLI-0132) was flagged vulnerable following reported health deterioration. She has an active pension transfer (Stage 2 ad-hoc work) in progress with adviser Kate Davies. Her suitability report for the transfer is outstanding. Given her vulnerability status, Consumer Duty requires this to be completed before the pension transfer is executed.`
+  },
+  {
+    match: ['overdue', 'missed review', 'late review'],
+    reply: `18 clients are currently outside the FCA's 12-month annual review window. The breakdown: Margaret Thompson at 14 months (CLI-0047), Robert Chen at 11 months (CLI-0089), Anne Morrison at 3 months (CLI-0163), plus 15 others between 1–3 months overdue. At the current rate of 3 new breaches per week, you'll be at 25+ by end of June if no action is taken. I'd recommend triaging by elapsed time and vulnerability status.`
+  },
+  {
+    match: ['vulnerable', 'consumer duty vulnerable'],
+    reply: `You have 9 vulnerable clients. 4 are fully compliant, 3 have incomplete documentation, and 2 have overdue reviews. The 2 with overdue reviews — Robert Chen (CLI-0089) and Priya Singh (CLI-0132) — are your highest Consumer Duty exposure. FCA examiners specifically interrogate vulnerable client treatment during visits. I'd recommend completing documentation for all 9 before the Consumer Duty assessment due 31 July.`
+  },
+  {
+    match: ['rmar', 'retail mediation', 'regulatory return'],
+    reply: `Your RMAR is due 31 May — 25 days away. I've pre-populated Sections A and C from Intelliflo and SharePoint. Section B has 3 gaps: (1) complaint volumes, awaiting input from the adviser team, (2) product mix breakdown — the ISA/pension split needs verification against Intelliflo, (3) vulnerable client percentage — requires manual entry. I'd suggest resolving these by 20 May to leave a week for final review before submission.`
+  },
+  {
+    match: ['consumer duty', 'duty assessment', 'fair value', 'fair outcome'],
+    reply: `Your Consumer Duty annual assessment is due 31 July. Current position: Products & Services — strong. Price & Value — strong. Consumer Understanding — moderate (documentation at 61% drags this down). Consumer Support — weak (9 vulnerable clients need documented outcomes). Your overall score is 82/100. Resolving the 34 documentation gaps and 18 overdue reviews would push this to approximately 91. I'd focus on vulnerable client outcomes first as that's where FCA scrutiny is highest.`
+  },
+  {
+    match: ['suitability', 'soa', 'suitability report', 'suitability letter'],
+    reply: `34 suitability documents are missing or expired. 8 are for vulnerable clients — higher-priority under Consumer Duty. The oldest gap is CLI-0047's Pension Drawdown SOA from September 2023 (still outstanding after 20 months). I'd recommend a systematic sweep: overdue clients first, then vulnerable clients, then the remaining standard clients. Completing these would lift your documentation score from 61% to above 80%.`
+  },
+  {
+    match: ['deadline', 'due date', 'upcoming', 'when is'],
+    reply: `Three key deadlines: (1) RMAR — 31 May, 25 days away, 3 data gaps remaining. (2) Annual Compliance Review — 15 June, internal board presentation, draft at 40%. (3) Consumer Duty Assessment — 31 July, assessment at 78%. The RMAR is most time-critical. If you clear it this week I can pre-populate the full report by Monday.`
+  },
+  {
+    match: ['pattern', 'trend', 'trajectory', 'forecast'],
+    reply: `Three trends to watch: (1) Annual review breaches growing at ~3 per week — projecting 28+ missed by end of June without intervention. (2) Documentation improving slightly (5 SOAs resolved this week) but vulnerable client docs stuck at 44% for three weeks. (3) Stage 2 ad-hoc SLA at 81% vs 90% target — driven by the two active pension transfers which typically take longer. I'd flag the pension transfers to your team for a completion timeline.`
+  },
+  {
+    match: ['health score', 'compliance score', 'how are we doing', 'overall'],
+    reply: `Compliance health score: 82/100. The two drags are documentation (61%) and annual reviews (74%). If you close the 18 overdue reviews and resolve the 8 vulnerable client documentation gaps, the score rises to approximately 91. Regulatory deadlines (100%) and suitability assessments (91%) are strong. The board presentation on 15 June should reflect these as positives alongside the action plan for the two weak areas.`
+  },
+  {
+    match: ['james morrison', 'morrison'],
+    reply: `James Morrison has 3 active compliance issues: Margaret Thompson (CLI-0047) — annual review 14 months overdue, pension drawdown SOA missing. James O'Brien (CLI-0178) — ISA consolidation Stage 2 missing client agreement signature. Sarah Fraser (CLI-0114) — Stage 1 fact find submitted but risk assessment outstanding. The Thompson case is the most critical by far. I'd recommend a direct conversation with James this week.`
+  },
+  {
+    match: ['alex williams', 'williams'],
+    reply: `Alex Williams has 2 clients with compliance issues: Robert Chen (CLI-0089) — vulnerable, annual review 11 months overdue, suitability file incomplete. David Williams (CLI-0158) — Stage 3, all documentation current, next review due November 2024. Robert Chen is the priority — vulnerable status makes this a Consumer Duty issue, not just an AR compliance issue.`
+  },
+  {
+    match: ['kate davies', 'davies', 'kate'],
+    reply: `Kate Davies has 2 clients flagged: Priya Singh (CLI-0132) — vulnerable, active pension transfer, suitability report outstanding. Anne Morrison (CLI-0163) — suitability letter expired, due renewal before the next annual review. The Singh case is higher urgency given the live ad-hoc transaction and vulnerable classification.`
+  },
+  {
+    match: ['what should i do', 'priority', 'where do i start', 'recommend'],
+    reply: `Based on regulatory exposure, here's your priority order: (1) Escalate CLI-0047 (Thompson) — 14 months overdue, longest elapsed case. (2) Action vulnerable clients CLI-0089 and CLI-0132 — Consumer Duty breach risk. (3) Complete the 3 RMAR data gaps in Section B — due in 25 days. (4) Clear suitability letter backlog for the remaining 26 standard clients. Doing all of this moves your health score from 82 to ~93.`
+  }
+];
+
+const aiDefaultReply = `I'm monitoring 247 clients across all FCA compliance requirements. Right now your top 3 priorities are: (1) 18 overdue annual reviews — CLI-0047 (Thompson) is the most urgent at 14 months. (2) 9 vulnerable clients under Consumer Duty — 5 need immediate action. (3) RMAR due in 25 days with 3 data gaps remaining. Ask me about a specific client, adviser, deadline, or compliance area — I can give you a detailed breakdown.`;
 
 function getAIResponse(msg) {
   const lower = msg.toLowerCase();
-  for (const [key, val] of Object.entries(aiResponses)) {
-    if (lower.includes(key)) return val;
+  for (const { match, reply } of aiPatterns) {
+    if (match.some(kw => lower.includes(kw))) return reply;
   }
-  return aiResponses.default;
+  return aiDefaultReply;
 }
 
 function sendMessage(inputId, containerid) {
