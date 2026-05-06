@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Analytics — Amaea</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="amaea.css" rel="stylesheet"/>
+  <style>
+    .analytics-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 22px; box-shadow: var(--shadow-sm);
+      cursor: pointer; transition: all 0.18s var(--ease);
+    }
+    .analytics-card:hover { box-shadow: var(--shadow-md); border-color: var(--plum-border); transform: translateY(-1px); }
+    .big-number { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+    .big-label { font-size: 0.75rem; font-weight: 500; color: var(--text-3); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.7px; }
+    .big-sub { font-size: 0.78rem; color: var(--text-3); margin-top: 5px; }
+    .rate-bar { height: 8px; border-radius: 6px; background: var(--border-solid); overflow: hidden; margin: 8px 0; }
+    .rate-fill { height: 100%; border-radius: 6px; }
+    .compliance-row {
+      display: flex; align-items: center; padding: 13px 0;
+      border-bottom: 1px solid var(--border); cursor: pointer;
+      transition: background 0.15s; gap: 12px;
+    }
+    .compliance-row:last-child { border-bottom: none; }
+    .compliance-row:hover { background: var(--plum-tint); margin: 0 -22px; padding: 13px 22px; border-radius: 8px; }
+    .compliance-row .row-label { flex: 1; font-size: 0.875rem; font-weight: 500; }
+    .compliance-row .row-count { font-size: 0.875rem; font-weight: 700; min-width: 36px; text-align: right; }
+    .milestone-type-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .dot-initial  { background: #2563EB; }
+    .dot-adhoc    { background: var(--warning); }
+    .dot-ar       { background: var(--plum); }
+    .drill-badge { font-size: 0.68rem; font-weight: 600; padding: 2px 8px; border-radius: 20px; white-space: nowrap; }
+    .sla-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid var(--border); font-size: 0.845rem; }
+    .sla-row:last-child { border-bottom: none; }
+    .vuln-chip { background: var(--warning-bg); color: var(--warning); font-size: 0.72rem; font-weight: 600; padding: 3px 9px; border-radius: 20px; }
+  </style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <a href="dashboard.html">
+      <img src="amaea-logo.png" class="logo-img" alt="Amaea" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="logo-mark" style="display:none;">A</div>
+    </a>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Main</div>
+    <a href="dashboard.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Dashboard</a>
+    <a href="clients.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Clients<span class="nav-badge">18</span></a>
+    <a href="analytics.html" class="nav-item active"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Analytics</a>
+    <a href="insights.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>AI Insights<span class="nav-badge amber">7</span></a>
+    <a href="reports.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>Reports</a>
+    <div class="nav-section-label">Settings</div>
+    <a href="integrations.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Integrations</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="sidebar-user" onclick="showToast('Profile settings coming soon','info')">
+      <div class="user-avatar">SC</div>
+      <div class="user-info"><div class="user-name">Sarah Clarke</div><div class="user-role">Head of Compliance</div></div>
+    </div>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+  <header class="topbar">
+    <button class="mobile-menu-btn" onclick="toggleSidebar()"><span></span><span></span><span></span></button>
+    <span class="topbar-title">Compliance Analytics</span>
+    <div class="topbar-search">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search analytics..."/>
+    </div>
+    <div class="flex-gap">
+      <select style="border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:0.78rem;font-family:var(--font);background:var(--card);color:var(--text);outline:none;" onchange="showToast('Period updated','info',1000)">
+        <option>Last 12 months</option>
+        <option>Last 6 months</option>
+        <option>Last 3 months</option>
+        <option>This year</option>
+      </select>
+      <button class="btn btn-primary btn-sm" onclick="showToast('Exporting analytics report...','info',2000); setTimeout(()=>showToast('Analytics-Report-May-2026.pdf downloaded','success'),2200)">↓ Export</button>
+    </div>
+  </header>
+
+  <div class="page">
+    <div class="page-header flex-between">
+      <div><h1>Compliance Analytics</h1><p>Aggregate FCA compliance data across all 247 clients · Period: Last 12 months</p></div>
+    </div>
+
+    <!-- Top metrics -->
+    <div class="metric-grid mb-5">
+      <div class="analytics-card" onclick="openModal('ar-breakdown-modal')">
+        <div class="big-label">Annual Reviews — Completed On Time</div>
+        <div class="big-number" style="color:var(--success)">156</div>
+        <div class="rate-bar"><div class="rate-fill" style="width:63%;background:var(--success);"></div></div>
+        <div class="big-sub">63% of 247 clients · Click to view</div>
+      </div>
+      <div class="analytics-card" onclick="openModal('ar-breakdown-modal')">
+        <div class="big-label">Annual Reviews — Missed / Overdue</div>
+        <div class="big-number" style="color:var(--danger)">18</div>
+        <div class="rate-bar"><div class="rate-fill" style="width:7%;background:var(--danger);"></div></div>
+        <div class="big-sub">7% of clients · Click to view</div>
+      </div>
+      <div class="analytics-card" onclick="openModal('ar-breakdown-modal')">
+        <div class="big-label">Annual Reviews — Due / In Progress</div>
+        <div class="big-number" style="color:var(--warning)">73</div>
+        <div class="rate-bar"><div class="rate-fill" style="width:30%;background:var(--warning);"></div></div>
+        <div class="big-sub">30% of clients · Click to view</div>
+      </div>
+      <div class="analytics-card" onclick="openModal('docs-modal')">
+        <div class="big-label">Documents Outstanding (all stages)</div>
+        <div class="big-number" style="color:var(--danger)">34</div>
+        <div class="rate-bar"><div class="rate-fill" style="width:14%;background:var(--danger);"></div></div>
+        <div class="big-sub">Across 34 client files · Click to view</div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px;">
+
+      <!-- Stage compliance breakdown -->
+      <div class="card">
+        <div style="font-size:0.9rem; font-weight:700; letter-spacing:-0.01em; margin-bottom:4px;">Compliance by Stage</div>
+        <div style="font-size:0.78rem; color:var(--text-3); margin-bottom:18px;">Click any row to see the affected clients</div>
+
+        <div style="font-size:0.72rem; font-weight:600; color:var(--text-3); text-transform:uppercase; letter-spacing:0.7px; display:grid; grid-template-columns:1fr 60px 60px 60px; gap:8px; padding:0 0 8px; border-bottom:1px solid var(--border);">
+          <span>Stage</span><span style="text-align:right;">Clean</span><span style="text-align:right;">At Risk</span><span style="text-align:right;">Breach</span>
+        </div>
+
+        <div class="compliance-row" onclick="openModal('stage1-modal')">
+          <div class="milestone-type-dot dot-initial"></div>
+          <div class="row-label">Stage 1 — Initial Client Work</div>
+          <div class="row-count" style="color:var(--success)">201</div>
+          <div class="row-count" style="color:var(--warning)">31</div>
+          <div class="row-count" style="color:var(--danger)">15</div>
+        </div>
+        <div class="compliance-row" onclick="openModal('adhoc-modal')">
+          <div class="milestone-type-dot dot-adhoc"></div>
+          <div class="row-label">Stage 2 — Ad-hoc Work</div>
+          <div class="row-count" style="color:var(--success)">72</div>
+          <div class="row-count" style="color:var(--warning)">12</div>
+          <div class="row-count" style="color:var(--danger)">5</div>
+        </div>
+        <div class="compliance-row" onclick="openModal('ar-breakdown-modal')">
+          <div class="milestone-type-dot dot-ar"></div>
+          <div class="row-label">Stage 3 — Annual Reviews</div>
+          <div class="row-count" style="color:var(--success)">156</div>
+          <div class="row-count" style="color:var(--warning)">73</div>
+          <div class="row-count" style="color:var(--danger)">18</div>
+        </div>
+        <div style="margin-top:14px; padding-top:14px; border-top:1px solid var(--border); display:flex; justify-content:space-between; font-size:0.78rem; color:var(--text-3);">
+          <span>Overall compliance rate</span>
+          <span style="font-weight:700; color:var(--plum);">82%</span>
+        </div>
+      </div>
+
+      <!-- SLA performance -->
+      <div class="card">
+        <div style="font-size:0.9rem; font-weight:700; letter-spacing:-0.01em; margin-bottom:4px;">SLA Performance</div>
+        <div style="font-size:0.78rem; color:var(--text-3); margin-bottom:18px;">Against firm-configured service level agreements</div>
+
+        <div class="sla-row">
+          <div><div style="font-weight:500; font-size:0.845rem;">Annual reviews held on time</div><div style="font-size:0.72rem; color:var(--text-3); margin-top:2px;">SLA: within 13 months of applications</div></div>
+          <div style="text-align:right;">
+            <div style="font-size:1.1rem; font-weight:700; color:var(--success);">91%</div>
+            <div style="font-size:0.7rem; color:var(--text-3);">224 / 247</div>
+          </div>
+        </div>
+        <div class="sla-row">
+          <div><div style="font-weight:500; font-size:0.845rem;">Suitability report sent on time</div><div style="font-size:0.72rem; color:var(--text-3); margin-top:2px;">SLA: within 5 business days of review</div></div>
+          <div style="text-align:right;">
+            <div style="font-size:1.1rem; font-weight:700; color:var(--warning);">76%</div>
+            <div style="font-size:0.7rem; color:var(--text-3);">188 / 247</div>
+          </div>
+        </div>
+        <div class="sla-row">
+          <div><div style="font-weight:500; font-size:0.845rem;">Suitability report signed by client</div><div style="font-size:0.72rem; color:var(--text-3); margin-top:2px;">Required before advice implementation</div></div>
+          <div style="text-align:right;">
+            <div style="font-size:1.1rem; font-weight:700; color:var(--success);">89%</div>
+            <div style="font-size:0.7rem; color:var(--text-3);">220 / 247</div>
+          </div>
+        </div>
+        <div class="sla-row">
+          <div><div style="font-weight:500; font-size:0.845rem;">Initial work documents complete</div><div style="font-size:0.72rem; color:var(--text-3); margin-top:2px;">All Stage 1 docs signed and saved</div></div>
+          <div style="text-align:right;">
+            <div style="font-size:1.1rem; font-weight:700; color:var(--success);">94%</div>
+            <div style="font-size:0.7rem; color:var(--text-3);">232 / 247</div>
+          </div>
+        </div>
+        <div style="margin-top:14px;">
+          <button class="btn btn-secondary btn-sm" style="width:100%; justify-content:center;" onclick="openModal('sla-settings-modal')">⚙ Configure SLAs</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vulnerable customer split -->
+    <div class="card mb-5">
+      <div style="font-size:0.9rem; font-weight:700; letter-spacing:-0.01em; margin-bottom:4px;">Vulnerable Customer Compliance</div>
+      <div style="font-size:0.78rem; color:var(--text-3); margin-bottom:18px;">FCA Consumer Duty — heightened standards apply to vulnerable clients</div>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:14px;">
+        <div class="analytics-card" style="text-align:center;" onclick="openModal('vuln-modal')">
+          <div class="big-label" style="text-align:center;">Total Vulnerable</div>
+          <div class="big-number" style="color:var(--warning)">47</div>
+          <div class="big-sub" style="text-align:center;">19% of client base</div>
+        </div>
+        <div class="analytics-card" style="text-align:center;" onclick="openModal('vuln-modal')">
+          <div class="big-label" style="text-align:center;">Vulnerable — Compliant</div>
+          <div class="big-number" style="color:var(--success)">38</div>
+          <div class="big-sub" style="text-align:center;">81% of vulnerable clients</div>
+        </div>
+        <div class="analytics-card" style="text-align:center;" onclick="openModal('vuln-modal')">
+          <div class="big-label" style="text-align:center;">Vulnerable — At Risk</div>
+          <div class="big-number" style="color:var(--danger)">9</div>
+          <div class="big-sub" style="text-align:center;">Require immediate review</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Document gaps -->
+    <div class="card">
+      <div style="font-size:0.9rem; font-weight:700; letter-spacing:-0.01em; margin-bottom:4px;">Document Gap Analysis</div>
+      <div style="font-size:0.78rem; color:var(--text-3); margin-bottom:18px;">Most common missing documents across all client stages · Click to view affected clients</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div class="compliance-row" onclick="openModal('docs-modal')">
+          <div class="row-label">Suitability Report (unsigned)</div>
+          <span class="drill-badge" style="background:var(--danger-bg);color:var(--danger);">14 clients</span>
+        </div>
+        <div class="compliance-row" onclick="openModal('docs-modal')">
+          <div class="row-label">Consumer Duty Assessment</div>
+          <span class="drill-badge" style="background:var(--danger-bg);color:var(--danger);">9 clients</span>
+        </div>
+        <div class="compliance-row" onclick="openModal('docs-modal')">
+          <div class="row-label">Vulnerability Assessment (expired)</div>
+          <span class="drill-badge" style="background:var(--warning-bg);color:var(--warning);">7 clients</span>
+        </div>
+        <div class="compliance-row" onclick="openModal('docs-modal')">
+          <div class="row-label">ID — Expired and not renewed</div>
+          <span class="drill-badge" style="background:var(--warning-bg);color:var(--warning);">4 clients</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AR Breakdown Modal -->
+<div class="modal-overlay" id="ar-breakdown-modal" style="position:fixed;">
+  <div class="modal" style="position:relative; width:560px;">
+    <button class="modal-close" onclick="closeModal('ar-breakdown-modal')">✕</button>
+    <div class="modal-title">Annual Review Compliance — Detail</div>
+    <div class="modal-sub">Click any client to view their full compliance record.</div>
+    <div style="margin-bottom:14px;">
+      <div class="filter-bar" style="margin-bottom:12px;">
+        <button class="filter-btn active">All (247)</button>
+        <button class="filter-btn">On Time (156)</button>
+        <button class="filter-btn">Overdue (18)</button>
+        <button class="filter-btn">Due Soon (73)</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 14px;background:var(--danger-bg);border-radius:8px;cursor:pointer;margin-bottom:4px;" onclick="closeModal('ar-breakdown-modal'); window.location='clients.html'">
+          <div><div style="font-weight:600;font-size:0.845rem;">Thompson, Sarah J. — CLI-0047</div><div style="font-size:0.72rem;color:var(--text-3);">Last review: Mar 2024 · 14 months overdue</div></div>
+          <span class="badge badge-red">Overdue</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 14px;background:var(--danger-bg);border-radius:8px;cursor:pointer;margin-bottom:4px;" onclick="closeModal('ar-breakdown-modal'); window.location='clients.html'">
+          <div><div style="font-weight:600;font-size:0.845rem;">Okonkwo, David E. — CLI-0203</div><div style="font-size:0.72rem;color:var(--text-3);">Last review: Feb 2024 · 15 months overdue</div></div>
+          <span class="badge badge-red">Overdue</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 14px;background:var(--warning-bg);border-radius:8px;cursor:pointer;margin-bottom:4px;" onclick="closeModal('ar-breakdown-modal'); window.location='clients.html'">
+          <div><div style="font-weight:600;font-size:0.845rem;">Patel, Rajesh K. — CLI-0112</div><div style="font-size:0.72rem;color:var(--text-3);">Review due May 2025 · 30 days remaining</div></div>
+          <span class="badge badge-amber">Due Soon</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 14px;background:var(--success-bg);border-radius:8px;cursor:pointer;" onclick="closeModal('ar-breakdown-modal'); window.location='clients.html'">
+          <div><div style="font-weight:600;font-size:0.845rem;">Henderson, Claire M. — CLI-0089</div><div style="font-size:0.72rem;color:var(--text-3);">Review completed Jan 2025 · On time</div></div>
+          <span class="badge badge-green">Compliant</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('ar-breakdown-modal')">Close</button><a href="clients.html" class="btn btn-primary">View All in Clients</a></div>
+  </div>
+</div>
+
+<!-- Stage 1 Modal -->
+<div class="modal-overlay" id="stage1-modal" style="position:fixed;">
+  <div class="modal" style="position:relative; width:520px;">
+    <button class="modal-close" onclick="closeModal('stage1-modal')">✕</button>
+    <div class="modal-title">Stage 1 — Initial Client Work</div>
+    <div class="modal-sub">15 clients have compliance gaps in their initial onboarding documentation.</div>
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border:1px solid var(--border);border-radius:8px;cursor:pointer;" onclick="closeModal('stage1-modal'); window.location='clients.html'"><div style="font-size:0.845rem;font-weight:600;">Singh, Amrit — CLI-0067</div><span class="badge badge-amber">Missing Docs</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border:1px solid var(--border);border-radius:8px;cursor:pointer;" onclick="closeModal('stage1-modal'); window.location='clients.html'"><div style="font-size:0.845rem;font-weight:600;">Bakshi, Priya — CLI-0198</div><span class="badge badge-red">ID Expired</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border:1px solid var(--border);border-radius:8px;cursor:pointer;" onclick="closeModal('stage1-modal'); window.location='clients.html'"><div style="font-size:0.845rem;font-weight:600;">Clarke, Tom — CLI-0221</div><span class="badge badge-amber">Consent Missing</span></div>
+    </div>
+    <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('stage1-modal')">Close</button><a href="clients.html" class="btn btn-primary">View All in Clients</a></div>
+  </div>
+</div>
+
+<!-- Ad-hoc Modal -->
+<div class="modal-overlay" id="adhoc-modal" style="position:fixed;">
+  <div class="modal" style="position:relative; width:520px;">
+    <button class="modal-close" onclick="closeModal('adhoc-modal')">✕</button>
+    <div class="modal-title">Stage 2 — Ad-hoc Work</div>
+    <div class="modal-sub">5 clients have compliance gaps in ad-hoc work completed in the last 12 months.</div>
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border:1px solid var(--border);border-radius:8px;cursor:pointer;" onclick="closeModal('adhoc-modal'); window.location='clients.html'"><div style="font-size:0.845rem;font-weight:600;">Thompson, Sarah J. — CLI-0047</div><span class="badge badge-red">Missing Application</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border:1px solid var(--border);border-radius:8px;cursor:pointer;" onclick="closeModal('adhoc-modal'); window.location='clients.html'"><div style="font-size:0.845rem;font-weight:600;">Morrison, Elaine — CLI-0144</div><span class="badge badge-amber">Vuln Re-check Due</span></div>
+    </div>
+    <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('adhoc-modal')">Close</button><a href="clients.html" class="btn btn-primary">View All in Clients</a></div>
+  </div>
+</div>
+
+<!-- Docs Modal -->
+<div class="modal-overlay" id="docs-modal" style="position:fixed;">
+  <div class="modal" style="position:relative; width:520px;">
+    <button class="modal-close" onclick="closeModal('docs-modal')">✕</button>
+    <div class="modal-title">Document Gaps — Detail</div>
+    <div class="modal-sub">34 documents outstanding across all client stages.</div>
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--danger-bg);border-radius:8px;cursor:pointer;" onclick="closeModal('docs-modal'); window.location='clients.html'"><div><div style="font-size:0.845rem;font-weight:600;">Thompson, Sarah J.</div><div style="font-size:0.72rem;color:var(--text-3);">Consumer Duty Assessment · Suitability Report unsigned</div></div><span class="badge badge-red">2 gaps</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--warning-bg);border-radius:8px;cursor:pointer;" onclick="closeModal('docs-modal'); window.location='clients.html'"><div><div style="font-size:0.845rem;font-weight:600;">Singh, Amrit</div><div style="font-size:0.72rem;color:var(--text-3);">Suitability Report renewal · Risk Profile expired</div></div><span class="badge badge-amber">2 gaps</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--danger-bg);border-radius:8px;cursor:pointer;" onclick="closeModal('docs-modal'); window.location='clients.html'"><div><div style="font-size:0.845rem;font-weight:600;">Okonkwo, David E.</div><div style="font-size:0.72rem;color:var(--text-3);">Consumer Duty Assessment · Annual Review overdue</div></div><span class="badge badge-red">2 gaps</span></div>
+    </div>
+    <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('docs-modal')">Close</button><a href="clients.html" class="btn btn-primary">View All in Clients</a></div>
+  </div>
+</div>
+
+<!-- Vulnerable Modal -->
+<div class="modal-overlay" id="vuln-modal" style="position:fixed;">
+  <div class="modal" style="position:relative; width:520px;">
+    <button class="modal-close" onclick="closeModal('vuln-modal')">✕</button>
+    <div class="modal-title">Vulnerable Clients — At Risk (9)</div>
+    <div class="modal-sub">Consumer Duty heightened standards not fully met for these clients.</div>
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--danger-bg);border-radius:8px;cursor:pointer;" onclick="closeModal('vuln-modal'); window.location='clients.html'"><div><div style="font-size:0.845rem;font-weight:600;">Thompson, Sarah J. — Age 68</div><div style="font-size:0.72rem;color:var(--text-3);">Consumer Duty Assessment missing · AR overdue</div></div><span class="vuln-chip">Vulnerable</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--warning-bg);border-radius:8px;cursor:pointer;" onclick="closeModal('vuln-modal'); window.location='clients.html'"><div><div style="font-size:0.845rem;font-weight:600;">Fraser, Margaret A. — Age 72</div><div style="font-size:0.72rem;color:var(--text-3);">Vulnerability re-assessment due within 30 days</div></div><span class="vuln-chip">Vulnerable</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--warning-bg);border-radius:8px;cursor:pointer;" onclick="closeModal('vuln-modal'); window.location='clients.html'"><div><div style="font-size:0.845rem;font-weight:600;">Okonkwo, David E. — Age 47</div><div style="font-size:0.72rem;color:var(--text-3);">Consumer Duty Assessment missing</div></div><span class="vuln-chip">Vulnerable</span></div>
+    </div>
+    <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('vuln-modal')">Close</button><a href="clients.html" class="btn btn-primary">View All in Clients</a></div>
+  </div>
+</div>
+
+<!-- SLA Settings Modal -->
+<div class="modal-overlay" id="sla-settings-modal" style="position:fixed;">
+  <div class="modal" style="position:relative;">
+    <button class="modal-close" onclick="closeModal('sla-settings-modal')">✕</button>
+    <div class="modal-title">Configure SLAs</div>
+    <div class="modal-sub">Set your firm's service level agreements. Amaea will flag breaches automatically.</div>
+    <div class="form-group"><label class="form-label">Annual review must be held within</label>
+      <select class="form-select"><option>13 months of last review / application</option><option>12 months</option><option>14 months</option></select></div>
+    <div class="form-group"><label class="form-label">Suitability report must be sent within</label>
+      <select class="form-select"><option>5 business days of review</option><option>3 business days</option><option>10 business days</option><option>Custom</option></select></div>
+    <div class="form-group"><label class="form-label">Vulnerability re-assessment required after</label>
+      <select class="form-select"><option>12 months</option><option>24 months</option><option>As needed only</option></select></div>
+    <div class="form-group"><label class="form-label">ID renewal required after</label>
+      <select class="form-select"><option>3 years</option><option>5 years</option><option>Per AML policy</option></select></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('sla-settings-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="showToast('SLA settings saved','success'); closeModal('sla-settings-modal')">Save SLAs</button>
+    </div>
+  </div>
+</div>
+
+<script src="amaea.js"></script>
+</body>
+</html>

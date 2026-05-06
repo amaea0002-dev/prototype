@@ -241,6 +241,125 @@ function removeTyping(container) {
   container.querySelector('.typing-indicator')?.remove();
 }
 
+// ── Milestone click ───────────────────────────────────────────────
+const milestoneData = {
+  'initial-0047': {
+    title: 'Stage 1 — Initial Client Work', date: 'Mar 2023',
+    status: 'at_risk',
+    documents: [
+      { name: 'Client Agreement', status: 'complete', date: '14 Mar 2023' },
+      { name: 'Consent Form', status: 'complete', date: '14 Mar 2023' },
+      { name: 'Applications', status: 'complete', date: '14 Mar 2023' },
+      { name: 'Vulnerability Assessment', status: 'complete', date: '14 Mar 2023' },
+      { name: 'Work Completed (Pension consolidation)', status: 'complete', date: '28 Mar 2023' },
+      { name: 'Suitability Report signed', status: 'expired', date: 'Renewal due' },
+    ]
+  },
+  'adhoc-0047': {
+    title: 'Stage 2 — Ad-hoc Work (Drawdown)', date: 'Sep 2023',
+    status: 'breached',
+    documents: [
+      { name: 'Drawdown Application', status: 'missing', date: null },
+      { name: 'Client Agreement (updated)', status: 'complete', date: '4 Sep 2023' },
+      { name: 'Vulnerability Re-check', status: 'complete', date: '4 Sep 2023' },
+      { name: 'ID Re-check', status: 'complete', date: '4 Sep 2023' },
+    ]
+  },
+  'ar1-0047': {
+    title: 'Stage 3 — Annual Review 1', date: 'Mar 2024',
+    status: 'compliant',
+    sla: { held: 'On time (12 months)', report_sent: 'On time (3 days)', report_signed: true },
+    documents: [
+      { name: 'Annual Review held', status: 'complete', date: '12 Mar 2024' },
+      { name: 'Suitability Report sent', status: 'complete', date: '15 Mar 2024' },
+      { name: 'Suitability Report signed', status: 'complete', date: '18 Mar 2024' },
+      { name: 'Research sheet updated', status: 'complete', date: '12 Mar 2024' },
+    ]
+  },
+  'ar2-0047': {
+    title: 'Stage 3 — Annual Review 2', date: 'Mar 2025 — OVERDUE',
+    status: 'breached',
+    sla: { held: 'Breached — 14 months elapsed', report_sent: 'N/A', report_signed: false },
+    documents: [
+      { name: 'Annual Review held', status: 'missing', date: null },
+      { name: 'Suitability Report sent', status: 'missing', date: null },
+      { name: 'Suitability Report signed', status: 'missing', date: null },
+      { name: 'Consumer Duty Assessment', status: 'missing', date: null },
+    ]
+  },
+  'initial-0089': {
+    title: 'Stage 1 — Initial Client Work', date: 'Jun 2021',
+    status: 'compliant',
+    documents: [
+      { name: 'Client Agreement', status: 'complete', date: '10 Jun 2021' },
+      { name: 'Consent Form', status: 'complete', date: '10 Jun 2021' },
+      { name: 'Applications', status: 'complete', date: '10 Jun 2021' },
+      { name: 'Vulnerability Assessment', status: 'complete', date: '10 Jun 2021' },
+      { name: 'Work Completed (ISA & GIA)', status: 'complete', date: '24 Jun 2021' },
+    ]
+  },
+  'ar1-0089': {
+    title: 'Stage 3 — Annual Review 1', date: 'Jul 2022',
+    status: 'compliant',
+    sla: { held: 'On time (13 months)', report_sent: 'On time (4 days)', report_signed: true },
+    documents: [
+      { name: 'Annual Review held', status: 'complete', date: '8 Jul 2022' },
+      { name: 'Suitability Report sent', status: 'complete', date: '12 Jul 2022' },
+      { name: 'Suitability Report signed', status: 'complete', date: '15 Jul 2022' },
+    ]
+  },
+  'ar2-0089': {
+    title: 'Stage 3 — Annual Review 2', date: 'Jan 2025',
+    status: 'compliant',
+    sla: { held: 'On time (13 months)', report_sent: 'On time (2 days)', report_signed: true },
+    documents: [
+      { name: 'Annual Review held', status: 'complete', date: '14 Jan 2025' },
+      { name: 'Suitability Report sent', status: 'complete', date: '16 Jan 2025' },
+      { name: 'Suitability Report signed', status: 'complete', date: '20 Jan 2025' },
+    ]
+  },
+};
+
+function openMilestone(key) {
+  const data = milestoneData[key];
+  if (!data) return;
+
+  const statusColour = data.status === 'compliant' ? 'var(--success)'
+    : data.status === 'at_risk' ? 'var(--warning)' : 'var(--danger)';
+  const statusLabel = data.status === 'compliant' ? 'Compliant'
+    : data.status === 'at_risk' ? 'Attention Required' : 'Compliance Breach';
+  const statusClass = data.status === 'compliant' ? 'badge-green'
+    : data.status === 'at_risk' ? 'badge-amber' : 'badge-red';
+
+  const docRows = data.documents.map(doc => {
+    const icon = doc.status === 'complete' ? '✓' : doc.status === 'expired' ? '!' : '✕';
+    const cls = doc.status === 'complete' ? 'ok' : doc.status === 'expired' ? 'pending' : 'missing';
+    const dateStr = doc.date ? `<div style="font-size:0.7rem;color:var(--text-3);margin-top:1px;">${doc.date}</div>` : `<div style="font-size:0.7rem;color:var(--danger);margin-top:1px;">Not on file</div>`;
+    return `<div style="display:flex;align-items:flex-start;gap:9px;padding:10px 0;border-bottom:1px solid var(--border);">
+      <div class="doc-check ${cls}" style="width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.65rem;font-weight:700;">${icon}</div>
+      <div style="flex:1;"><div style="font-weight:500;font-size:0.845rem;">${doc.name}</div>${dateStr}</div>
+    </div>`;
+  }).join('');
+
+  const slaHtml = data.sla ? `<div style="background:var(--bg);border-radius:9px;padding:13px 14px;margin-bottom:16px;">
+    <div style="font-size:0.72rem;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:8px;">SLA Performance</div>
+    <div style="font-size:0.82rem;display:flex;flex-direction:column;gap:5px;">
+      <div class="flex-between"><span style="color:var(--text-2);">Review held</span><span style="font-weight:600;color:${data.sla.held.includes('Breach') ? 'var(--danger)' : 'var(--success)'}">${data.sla.held}</span></div>
+      <div class="flex-between"><span style="color:var(--text-2);">Suitability report sent</span><span style="font-weight:600;">${data.sla.report_sent}</span></div>
+      <div class="flex-between"><span style="color:var(--text-2);">Report signed by client</span><span style="font-weight:600;color:${data.sla.report_signed ? 'var(--success)' : 'var(--danger)'}">${data.sla.report_signed ? 'Yes' : 'Not signed'}</span></div>
+    </div>
+  </div>` : '';
+
+  const overlay = document.getElementById('milestone-modal');
+  overlay.querySelector('.modal-title').textContent = data.title;
+  overlay.querySelector('.milestone-date').textContent = data.date;
+  overlay.querySelector('.milestone-status').className = `badge ${statusClass} milestone-status`;
+  overlay.querySelector('.milestone-status').textContent = statusLabel;
+  overlay.querySelector('.milestone-sla').innerHTML = slaHtml;
+  overlay.querySelector('.milestone-docs').innerHTML = docRows;
+  openModal('milestone-modal');
+}
+
 // ── Client detail swap ────────────────────────────────────────────
 const clientData = {
   'CLI-0047': {
@@ -291,6 +410,19 @@ function swapClientDetail(clientId) {
   const panel = document.getElementById('client-detail-panel');
   if (!panel || !clientData[clientId]) return;
   const c = clientData[clientId];
+
+  // Vulnerability data
+  const vulnMap = {
+    'CLI-0047': { label: 'Vulnerable', cls: 'vuln-vulnerable' },
+    'CLI-0203': { label: 'Vulnerable', cls: 'vuln-vulnerable' },
+    'CLI-0156': { label: 'Vulnerable', cls: 'vuln-vulnerable' },
+    'CLI-0112': { label: 'Standard',  cls: 'vuln-standard' },
+    'CLI-0089': { label: 'Standard',  cls: 'vuln-standard' },
+    'CLI-0067': { label: 'Standard',  cls: 'vuln-standard' },
+    'CLI-0178': { label: 'Standard',  cls: 'vuln-standard' },
+  };
+  const vuln = vulnMap[clientId] || { label: 'Standard', cls: 'vuln-standard' };
+
   panel.style.opacity = '0';
   panel.style.transform = 'translateY(6px)';
   setTimeout(() => {
@@ -299,9 +431,13 @@ function swapClientDetail(clientId) {
     panel.querySelector('.client-id-display').textContent = `${c.id} · Adviser: ${c.adviser} · Age ${c.age}`;
     panel.querySelector('.client-status-badge').className = `badge ${c.statusClass} client-status-badge`;
     panel.querySelector('.client-status-badge').textContent = c.status;
+    const vb = panel.querySelector('.client-vuln-badge');
+    if (vb) { vb.className = `vuln-badge ${vuln.cls} client-vuln-badge`; vb.textContent = vuln.label; }
     panel.querySelector('.ai-summary-text').textContent = c.ai;
     const riskBar = panel.querySelector('.client-risk-fill');
     if (riskBar) { riskBar.style.width = c.risk + '%'; riskBar.style.background = c.riskColor; }
+    const riskLabel = panel.querySelector('.client-risk-label');
+    if (riskLabel) { riskLabel.textContent = `${c.riskColor === 'var(--danger)' ? 'High' : c.riskColor === 'var(--warning)' ? 'Medium' : 'Low'} — ${c.risk}`; riskLabel.style.color = c.riskColor; }
     panel.style.opacity = '1';
     panel.style.transform = 'translateY(0)';
   }, 180);
