@@ -133,17 +133,18 @@ body.sb-revealing .sb-header .sb-logo { opacity: 1; transition: opacity 0.18s ea
 body.sb-collapsed .sidebar { width: 62px; overflow-x: hidden; }
 body.sb-collapsed .main    { margin-left: 62px; }
 
-body.sb-collapsed .sb-header { padding: 14px 8px 10px; justify-content: center; }
-body.sb-collapsed .sb-logo   { display: flex; justify-content: center; flex: none; overflow: hidden; }
+/* Strip horizontal padding from all containers so every item centers against the full 62px */
+body.sb-collapsed .sb-header { padding: 14px 0 10px; justify-content: center; }
+body.sb-collapsed .sb-logo   { display: flex; justify-content: center; flex: none; width: 62px; overflow: hidden; }
 
-body.sb-collapsed .sb-nav    { padding: 10px 6px; }
+body.sb-collapsed .sb-nav    { padding: 10px 0; }
 body.sb-collapsed .sb-label  { height: 0; overflow: hidden; padding: 0; margin: 0; }
 
-body.sb-collapsed .nav-item  { justify-content: center; padding: 10px 6px; font-size: 0; gap: 0; }
+body.sb-collapsed .nav-item  { justify-content: center; padding: 9px 0; width: 62px; font-size: 0; gap: 0; }
 body.sb-collapsed .nav-badge { display: none; }
 
-body.sb-collapsed .sb-footer { padding: 8px 6px 12px; }
-body.sb-collapsed .sb-user   { justify-content: center; padding: 8px 6px; }
+body.sb-collapsed .sb-footer { padding: 8px 0 12px; }
+body.sb-collapsed .sb-user   { justify-content: center; padding: 8px 0; width: 62px; }
 body.sb-collapsed .sb-user-name,
 body.sb-collapsed .sb-user-role,
 body.sb-collapsed .sb-user-text,
