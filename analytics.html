@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Analytics — Amaea</title>
+  <title>Analytics | Amaea</title>
   <script>
     (function(){ const t=localStorage.getItem('amaea-theme')||'light'; if(t==='dark') document.documentElement.setAttribute('data-theme','dark'); })();
   </script>
@@ -155,7 +155,7 @@
       <!-- Completion donut -->
       <div class="card tab-active">
         <div class="flex items-center justify-between mb-4">
-          <div><div class="card-title">AR Completion Rate</div><div class="card-sub">This review cycle — 247 clients</div></div>
+          <div><div class="card-title">AR Completion Rate</div><div class="card-sub">This review cycle: 247 clients</div></div>
           <span class="badge badge-amber">63% Complete</span>
         </div>
         <div style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;">
@@ -223,7 +223,7 @@
         </div>
       </div>
 
-      <!-- Vulnerable compliance — full width -->
+      <!-- Vulnerable compliance  -->
       <div class="card analytics-full">
         <div class="card-title mb-4">Vulnerable Customer Compliance</div>
         <div style="display:flex;align-items:center;gap:20px;margin-bottom:16px;">
@@ -294,13 +294,13 @@ function adviserTable(rows) {
 
 function openDrilldown(type) {
   const data = {
-    total:   ['All 247 Clients — Review Cycle Overview', 'Full client book breakdown by adviser.', [['James Morrison',87,52,21,14],['Alex Williams',81,56,14,11],['Kate Davies',79,48,20,11]]],
-    ontime:  ['On Time — 156 Annual Reviews', 'Completed within the FCA 12-month requirement.', [['James Morrison',52,null,null,null],['Alex Williams',56,null,null,null],['Kate Davies',48,null,null,null]]],
-    missed:  ['Missed / Breach — 18 Annual Reviews', 'Outside the 12-month window. Immediate escalation required.', [['James Morrison',7,null,null,null],['Alex Williams',6,null,null,null],['Kate Davies',5,null,null,null]]],
-    inprog:  ['In Progress — 73 Annual Reviews', 'Appointments booked or being arranged. SLA clock running.', [['James Morrison',28,null,null,null],['Alex Williams',22,null,null,null],['Kate Davies',23,null,null,null]]],
-    initial: ['Initial Work Breakdown', '62 clients in the Initial Engagement phase — onboarding and first-touch compliance.', [['James Morrison',22,21,1,0],['Alex Williams',20,19,1,0],['Kate Davies',20,18,2,0]]],
+    total:   ['All 247 Clients: Review Cycle Overview', 'Full client book breakdown by adviser.', [['James Morrison',87,52,21,14],['Alex Williams',81,56,14,11],['Kate Davies',79,48,20,11]]],
+    ontime:  ['On Time: 156 Annual Reviews', 'Completed within the FCA 12-month requirement.', [['James Morrison',52,null,null,null],['Alex Williams',56,null,null,null],['Kate Davies',48,null,null,null]]],
+    missed:  ['Missed / Breach: 18 Annual Reviews', 'Outside the 12-month window. Immediate escalation required.', [['James Morrison',7,null,null,null],['Alex Williams',6,null,null,null],['Kate Davies',5,null,null,null]]],
+    inprog:  ['In Progress: 73 Annual Reviews', 'Appointments booked or being arranged. SLA clock running.', [['James Morrison',28,null,null,null],['Alex Williams',22,null,null,null],['Kate Davies',23,null,null,null]]],
+    initial: ['Initial Work Breakdown', '62 clients in the Initial Engagement phase: onboarding and first-touch compliance.', [['James Morrison',22,21,1,0],['Alex Williams',20,19,1,0],['Kate Davies',20,18,2,0]]],
     adhoc:   ['Ad-hoc Work Breakdown', '81 clients with active ad-hoc compliance work in progress.', [['James Morrison',28,24,3,1],['Alex Williams',27,23,3,1],['Kate Davies',26,22,3,1]]],
-    annual:  ['Annual Reviews Breakdown', '104 clients due for or undergoing annual reviews — the highest-risk category.', [['James Morrison',37,24,6,7],['Alex Williams',34,24,6,4],['Kate Davies',33,23,6,4]]]
+    annual:  ['Annual Reviews Breakdown', '104 clients due for or undergoing annual reviews, the highest-risk category.', [['James Morrison',37,24,6,7],['Alex Williams',34,24,6,4],['Kate Davies',33,23,6,4]]]
   };
   const [title, desc, rows] = data[type] || ['Detail','',[]];
   document.getElementById('drilldown-title').textContent = title;
@@ -330,3 +330,5 @@ function openDrilldown(type) {
 </script>
 </body>
 </html>
+
+

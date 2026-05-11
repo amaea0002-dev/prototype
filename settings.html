@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Settings — Amaea</title>
+  <title>Settings | Amaea</title>
   <script>
     (function(){ const t=localStorage.getItem('amaea-theme')||'light'; if(t==='dark') document.documentElement.setAttribute('data-theme','dark'); })();
   </script>
@@ -168,11 +168,11 @@
       <div style="display:flex;flex-direction:column;gap:10px;">
         <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);">
           <div><div style="font-size:0.88rem;font-weight:600;color:var(--t1);">Export all data</div><div style="font-size:0.78rem;color:var(--t3);margin-top:2px;">Download a full export of your firm's compliance data</div></div>
-          <button class="btn btn-secondary btn-sm" onclick="showToast('Export started — you will receive an email when ready','info',3000)">Export</button>
+          <button class="btn btn-secondary btn-sm" onclick="showToast('Export started: you will receive an email when ready','info',3000)">Export</button>
         </div>
         <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);">
           <div><div style="font-size:0.88rem;font-weight:600;color:var(--t1);">Audit log</div><div style="font-size:0.78rem;color:var(--t3);margin-top:2px;">View all user actions and system events</div></div>
-          <button class="btn btn-secondary btn-sm" onclick="showToast('Audit log — coming soon','info')">View log</button>
+          <button class="btn btn-secondary btn-sm" onclick="showToast('Audit log: coming soon','info')">View log</button>
         </div>
         <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;">
           <div><div style="font-size:0.88rem;font-weight:600;color:var(--t1);">Two-factor authentication</div><div style="font-size:0.78rem;color:var(--t3);margin-top:2px;">Require 2FA for all users in your firm</div></div>
@@ -186,3 +186,5 @@
 <script src="amaea.js"></script>
 </body>
 </html>
+
+

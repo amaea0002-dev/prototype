@@ -1,5 +1,5 @@
-/* ============================================================
-   Amaea v2 — Interactivity
+﻿/* ============================================================
+   Amaea v2: Interactivity
    ============================================================ */
 
 // ── Theme ─────────────────────────────────────────────────────
@@ -230,15 +230,15 @@ const clientData = {
     stage: 'Stage 3', status: 'breach', vuln: 'vulnerable',
     riskProfile: 'Cautious', portfolioValue: '£156,200',
     email: 'r.chen@email.com', phone: '07700 900456',
-    notes: 'Vulnerable customer — Consumer Duty enhanced monitoring required. SOA missing.'
+    notes: 'Vulnerable customer: Consumer Duty enhanced monitoring required. SOA missing.'
   },
   'CLI-0114': {
     name: 'Sarah Fraser', adviser: 'James Morrison',
-    joined: 'Jan 2024', lastReview: '—', nextDue: 'Jan 2025',
+    joined: 'Jan 2024', lastReview: '–', nextDue: 'Jan 2025',
     stage: 'Stage 1', status: 'compliant', vuln: 'standard',
     riskProfile: 'Growth', portfolioValue: '£92,000',
     email: 's.fraser@email.com', phone: '07700 900789',
-    notes: 'New client. Initial work in progress — fact find submitted, awaiting risk assessment.'
+    notes: 'New client. Initial work in progress; fact find submitted, awaiting risk assessment.'
   },
   'CLI-0132': {
     name: 'Priya Singh', adviser: 'Kate Davies',
@@ -246,7 +246,7 @@ const clientData = {
     stage: 'Stage 2', status: 'at-risk', vuln: 'vulnerable',
     riskProfile: 'Cautious', portfolioValue: '£211,000',
     email: 'p.singh@email.com', phone: '07700 900321',
-    notes: 'Ad-hoc pension transfer in progress. Vulnerable — health deterioration flagged by adviser.'
+    notes: 'Ad-hoc pension transfer in progress. Vulnerable: health deterioration flagged by adviser.'
   },
   'CLI-0158': {
     name: 'David Williams', adviser: 'Alex Williams',
@@ -266,7 +266,7 @@ const clientData = {
   },
   'CLI-0178': {
     name: 'James O\'Brien', adviser: 'James Morrison',
-    joined: 'Jul 2023', lastReview: '—', nextDue: 'Jul 2024',
+    joined: 'Jul 2023', lastReview: '–', nextDue: 'Jul 2024',
     stage: 'Stage 2', status: 'at-risk', vuln: 'standard',
     riskProfile: 'Growth', portfolioValue: '£330,000',
     email: 'j.obrien@email.com', phone: '07700 900147',
@@ -277,7 +277,7 @@ const clientData = {
 const milestoneData = {
   'initial-0047': { title: 'Initial Client Engagement', date: 'Mar 2023', status: 'Compliant', docs: [
     { label: 'Client Agreement / Letter of Engagement', status: 'ok' },
-    { label: 'Fact Find — Personal Circumstances', status: 'ok' },
+    { label: 'Fact Find: Personal Circumstances', status: 'ok' },
     { label: 'Risk Profile Assessment', status: 'ok' },
     { label: 'ID & Anti-Money Laundering Checks', status: 'ok' },
     { label: 'Initial Suitability Report', status: 'ok' }
@@ -296,7 +296,7 @@ const milestoneData = {
     { label: 'Consumer Duty Outcome Assessment', status: 'ok' },
     { label: 'Signed Client Acknowledgement', status: 'ok' }
   ]},
-  'ar2-0047': { title: 'Annual Review — OVERDUE', date: 'Due Mar 2025 · 14 months elapsed', status: 'Breach', docs: [
+  'ar2-0047': { title: 'Annual Review: Overdue', date: 'Due Mar 2025 · 14 months elapsed', status: 'Breach', docs: [
     { label: 'Annual Review Suitability Report', status: 'miss' },
     { label: 'Updated Fact Find', status: 'miss' },
     { label: 'Portfolio Valuation & Performance Review', status: 'miss' },
@@ -305,13 +305,13 @@ const milestoneData = {
   ]},
   'initial-0089': { title: 'Initial Client Engagement', date: 'Jun 2022', status: 'Compliant', docs: [
     { label: 'Client Agreement / Letter of Engagement', status: 'ok' },
-    { label: 'Fact Find — Personal Circumstances', status: 'ok' },
+    { label: 'Fact Find: Personal Circumstances', status: 'ok' },
     { label: 'Vulnerability Assessment', status: 'ok' },
     { label: 'ID & Anti-Money Laundering Checks', status: 'ok' },
     { label: 'Initial Suitability Report', status: 'ok' }
   ]},
   'adhoc-0089': { title: 'Portfolio Restructure', date: 'Jan 2023', status: 'Compliant', docs: [
-    { label: 'Suitability Report — Restructure', status: 'ok' },
+    { label: 'Suitability Report: Restructure', status: 'ok' },
     { label: 'Updated Vulnerability Check', status: 'ok' },
     { label: 'Consumer Duty Fair Value Assessment', status: 'ok' },
     { label: 'Client Signed Agreement', status: 'ok' }
@@ -323,7 +323,7 @@ const milestoneData = {
     { label: 'Consumer Duty Outcome Assessment', status: 'ok' },
     { label: 'Signed Client Acknowledgement', status: 'ok' }
   ]},
-  'ar2-0089': { title: 'Annual Review — OVERDUE', date: 'Due Jun 2024 · 11 months elapsed', status: 'Breach', docs: [
+  'ar2-0089': { title: 'Annual Review: Overdue', date: 'Due Jun 2024 · 11 months elapsed', status: 'Breach', docs: [
     { label: 'Annual Review Suitability Report', status: 'miss' },
     { label: 'Updated Vulnerability Re-assessment', status: 'miss' },
     { label: 'Consumer Duty Outcome Assessment', status: 'miss' },
@@ -332,14 +332,14 @@ const milestoneData = {
   ]},
   'initial-0114': { title: 'Initial Client Engagement', date: 'Jan 2024', status: 'In Progress', docs: [
     { label: 'Client Agreement / Letter of Engagement', status: 'ok' },
-    { label: 'Fact Find — Personal Circumstances', status: 'ok' },
+    { label: 'Fact Find: Personal Circumstances', status: 'ok' },
     { label: 'Risk Profile Assessment', status: 'miss' },
     { label: 'ID & Anti-Money Laundering Checks', status: 'ok' },
     { label: 'Initial Suitability Report', status: 'pend' }
   ]},
   'initial-0132': { title: 'Initial Client Engagement', date: 'Sep 2023', status: 'Compliant', docs: [
     { label: 'Client Agreement / Letter of Engagement', status: 'ok' },
-    { label: 'Fact Find — Personal Circumstances', status: 'ok' },
+    { label: 'Fact Find: Personal Circumstances', status: 'ok' },
     { label: 'Vulnerability Assessment', status: 'ok' },
     { label: 'Risk Profile Assessment', status: 'ok' },
     { label: 'Initial Suitability Report', status: 'ok' }
@@ -353,7 +353,7 @@ const milestoneData = {
   ]},
   'initial-0158': { title: 'Initial Client Engagement', date: 'Nov 2022', status: 'Compliant', docs: [
     { label: 'Client Agreement / Letter of Engagement', status: 'ok' },
-    { label: 'Fact Find — Personal Circumstances', status: 'ok' },
+    { label: 'Fact Find: Personal Circumstances', status: 'ok' },
     { label: 'Risk Profile Assessment', status: 'ok' },
     { label: 'ID & Anti-Money Laundering Checks', status: 'ok' },
     { label: 'Initial Suitability Report', status: 'ok' }
@@ -367,7 +367,7 @@ const milestoneData = {
   ]},
   'initial-0163': { title: 'Initial Client Engagement', date: 'Feb 2023', status: 'Compliant', docs: [
     { label: 'Client Agreement / Letter of Engagement', status: 'ok' },
-    { label: 'Fact Find — Personal Circumstances', status: 'ok' },
+    { label: 'Fact Find: Personal Circumstances', status: 'ok' },
     { label: 'Risk Profile Assessment', status: 'ok' },
     { label: 'ID & Anti-Money Laundering Checks', status: 'ok' },
     { label: 'Initial Suitability Report', status: 'ok' }
@@ -381,7 +381,7 @@ const milestoneData = {
   ]},
   'initial-0178': { title: 'Initial Client Engagement', date: 'Jul 2023', status: 'Compliant', docs: [
     { label: 'Client Agreement / Letter of Engagement', status: 'ok' },
-    { label: 'Fact Find — Personal Circumstances', status: 'ok' },
+    { label: 'Fact Find: Personal Circumstances', status: 'ok' },
     { label: 'Risk Profile Assessment', status: 'ok' },
     { label: 'ID & Anti-Money Laundering Checks', status: 'ok' },
     { label: 'Initial Suitability Report', status: 'ok' }
@@ -445,13 +445,13 @@ function openClient(id, rowEl) {
       mkEntry('initial-0047', 'Mar 2023', 'Initial Client Engagement',  'Compliant',         'green', true),
       mkEntry('adhoc-0047',   'Sep 2023', 'Pension Drawdown Review',    'Missing document',  'amber', true),
       mkEntry('ar1-0047',     'Mar 2024', 'Annual Review',              'Compliant',         'green', true),
-      mkEntry('ar2-0047',     'Due Mar 2025', 'Annual Review — OVERDUE','14 months elapsed', 'red',   false)
+      mkEntry('ar2-0047',     'Due Mar 2025', 'Annual Review: Overdue','14 months elapsed', 'red',   false)
     ].join(''),
     'CLI-0089': [
       mkEntry('initial-0089', 'Jun 2022', 'Initial Client Engagement',  'Compliant',         'green', true),
       mkEntry('adhoc-0089',   'Jan 2023', 'Portfolio Restructure',      'Compliant',         'green', true),
       mkEntry('ar1-0089',     'Jun 2023', 'Annual Review',              'Compliant',         'green', true),
-      mkEntry('ar2-0089',     'Due Jun 2024', 'Annual Review — OVERDUE','11 months elapsed', 'red',   false)
+      mkEntry('ar2-0089',     'Due Jun 2024', 'Annual Review: Overdue','11 months elapsed', 'red',   false)
     ].join(''),
     'CLI-0114': [
       mkEntry('initial-0114', 'Jan 2024', 'Initial Client Engagement',  'In progress',       'amber', false)
@@ -507,11 +507,11 @@ function openClient(id, rowEl) {
 const aiPatterns = [
   {
     match: ['margaret', 'thompson', 'cli-0047'],
-    reply: `Margaret Thompson (CLI-0047) is your most urgent case. She's 14 months past her annual review deadline — the longest elapsed in your book. Her Stage 2 pension drawdown file (Sep 2023) is also missing the suitability report. Adviser James Morrison owns this client. I'd escalate this immediately: FCA supervision visits typically start with the oldest outstanding reviews.`
+    reply: `Margaret Thompson (CLI-0047) is your most urgent case. She's 14 months past her annual review deadline, the longest elapsed in your book. Her Stage 2 pension drawdown file (Sep 2023) is also missing the suitability report. Adviser James Morrison owns this client. I'd escalate this immediately: FCA supervision visits typically start with the oldest outstanding reviews.`
   },
   {
     match: ['robert', 'chen', 'cli-0089'],
-    reply: `Robert Chen (CLI-0089) is a vulnerable client with an annual review 11 months overdue and an incomplete suitability file. Under Consumer Duty, vulnerable clients require documented evidence of fair outcomes — missing both the review and the suitability report is a double breach. Adviser Alex Williams should be actioned on this as the highest-priority vulnerable client.`
+    reply: `Robert Chen (CLI-0089) is a vulnerable client with an annual review 11 months overdue and an incomplete suitability file. Under Consumer Duty, vulnerable clients require documented evidence of fair outcomes; missing both the review and the suitability report is a double breach. Adviser Alex Williams should be actioned on this as the highest-priority vulnerable client.`
   },
   {
     match: ['priya', 'singh', 'cli-0132'],
@@ -523,27 +523,27 @@ const aiPatterns = [
   },
   {
     match: ['vulnerable', 'consumer duty vulnerable'],
-    reply: `You have 9 vulnerable clients. 4 are fully compliant, 3 have incomplete documentation, and 2 have overdue reviews. The 2 with overdue reviews — Robert Chen (CLI-0089) and Priya Singh (CLI-0132) — are your highest Consumer Duty exposure. FCA examiners specifically interrogate vulnerable client treatment during visits. I'd recommend completing documentation for all 9 before the Consumer Duty assessment due 31 July.`
+    reply: `You have 9 vulnerable clients. 4 are fully compliant, 3 have incomplete documentation, and 2 have overdue reviews. The 2 with overdue reviews, Robert Chen (CLI-0089) and Priya Singh (CLI-0132), are your highest Consumer Duty exposure. FCA examiners specifically interrogate vulnerable client treatment during visits. I'd recommend completing documentation for all 9 before the Consumer Duty assessment due 31 July.`
   },
   {
     match: ['rmar', 'retail mediation', 'regulatory return'],
-    reply: `Your RMAR is due 31 May — 25 days away. I've pre-populated Sections A and C from Intelliflo and SharePoint. Section B has 3 gaps: (1) complaint volumes, awaiting input from the adviser team, (2) product mix breakdown — the ISA/pension split needs verification against Intelliflo, (3) vulnerable client percentage — requires manual entry. I'd suggest resolving these by 20 May to leave a week for final review before submission.`
+    reply: `Your RMAR is due 31 May, 25 days away. I've pre-populated Sections A and C from Intelliflo and SharePoint. Section B has 3 gaps: (1) complaint volumes, awaiting input from the adviser team, (2) product mix breakdown: the ISA/pension split needs verification against Intelliflo, (3) vulnerable client percentage: requires manual entry. I'd suggest resolving these by 20 May to leave a week for final review before submission.`
   },
   {
     match: ['consumer duty', 'duty assessment', 'fair value', 'fair outcome'],
-    reply: `Your Consumer Duty annual assessment is due 31 July. Current position: Products & Services — strong. Price & Value — strong. Consumer Understanding — moderate (documentation at 61% drags this down). Consumer Support — weak (9 vulnerable clients need documented outcomes). Your overall score is 82/100. Resolving the 34 documentation gaps and 18 overdue reviews would push this to approximately 91. I'd focus on vulnerable client outcomes first as that's where FCA scrutiny is highest.`
+    reply: `Your Consumer Duty annual assessment is due 31 July. Current position: Products & Services: strong. Price & Value: strong. Consumer Understanding: moderate (documentation at 61% drags this down). Consumer Support: weak (9 vulnerable clients need documented outcomes). Your overall score is 82/100. Resolving the 34 documentation gaps and 18 overdue reviews would push this to approximately 91. I'd focus on vulnerable client outcomes first as that's where FCA scrutiny is highest.`
   },
   {
     match: ['suitability', 'soa', 'suitability report', 'suitability letter'],
-    reply: `34 suitability documents are missing or expired. 8 are for vulnerable clients — higher-priority under Consumer Duty. The oldest gap is CLI-0047's Pension Drawdown SOA from September 2023 (still outstanding after 20 months). I'd recommend a systematic sweep: overdue clients first, then vulnerable clients, then the remaining standard clients. Completing these would lift your documentation score from 61% to above 80%.`
+    reply: `34 suitability documents are missing or expired. 8 are for vulnerable clients, higher-priority under Consumer Duty. The oldest gap is CLI-0047's Pension Drawdown SOA from September 2023 (still outstanding after 20 months). I'd recommend a systematic sweep: overdue clients first, then vulnerable clients, then the remaining standard clients. Completing these would lift your documentation score from 61% to above 80%.`
   },
   {
     match: ['deadline', 'due date', 'upcoming', 'when is'],
-    reply: `Three key deadlines: (1) RMAR — 31 May, 25 days away, 3 data gaps remaining. (2) Annual Compliance Review — 15 June, internal board presentation, draft at 40%. (3) Consumer Duty Assessment — 31 July, assessment at 78%. The RMAR is most time-critical. If you clear it this week I can pre-populate the full report by Monday.`
+    reply: `Three key deadlines: (1) RMAR due 31 May, 25 days away, 3 data gaps remaining. (2) Annual Compliance Review: 15 June, internal board presentation, draft at 40%. (3) Consumer Duty Assessment: 31 July, assessment at 78%. The RMAR is most time-critical. If you clear it this week I can pre-populate the full report by Monday.`
   },
   {
     match: ['pattern', 'trend', 'trajectory', 'forecast'],
-    reply: `Three trends to watch: (1) Annual review breaches growing at ~3 per week — projecting 28+ missed by end of June without intervention. (2) Documentation improving slightly (5 SOAs resolved this week) but vulnerable client docs stuck at 44% for three weeks. (3) Stage 2 ad-hoc SLA at 81% vs 90% target — driven by the two active pension transfers which typically take longer. I'd flag the pension transfers to your team for a completion timeline.`
+    reply: `Three trends to watch: (1) annual review breaches growing at ~3 per week, projecting 28+ missed by end of June without intervention. (2) Documentation improving slightly (5 SOAs resolved this week) but vulnerable client docs stuck at 44% for three weeks. (3) Stage 2 ad-hoc SLA at 81% vs 90% target, driven by the two active pension transfers which typically take longer. I'd flag the pension transfers to your team for a completion timeline.`
   },
   {
     match: ['health score', 'compliance score', 'how are we doing', 'overall'],
@@ -551,23 +551,23 @@ const aiPatterns = [
   },
   {
     match: ['james morrison', 'morrison'],
-    reply: `James Morrison has 3 active compliance issues: Margaret Thompson (CLI-0047) — annual review 14 months overdue, pension drawdown SOA missing. James O'Brien (CLI-0178) — ISA consolidation Stage 2 missing client agreement signature. Sarah Fraser (CLI-0114) — Stage 1 fact find submitted but risk assessment outstanding. The Thompson case is the most critical by far. I'd recommend a direct conversation with James this week.`
+    reply: `James Morrison has 3 active compliance issues: Margaret Thompson (CLI-0047): annual review 14 months overdue, pension drawdown SOA missing. James O'Brien (CLI-0178): ISA consolidation Stage 2 missing client agreement signature. Sarah Fraser (CLI-0114): Stage 1 fact find submitted but risk assessment outstanding. The Thompson case is the most critical by far. I'd recommend a direct conversation with James this week.`
   },
   {
     match: ['alex williams', 'williams'],
-    reply: `Alex Williams has 2 clients with compliance issues: Robert Chen (CLI-0089) — vulnerable, annual review 11 months overdue, suitability file incomplete. David Williams (CLI-0158) — Stage 3, all documentation current, next review due November 2024. Robert Chen is the priority — vulnerable status makes this a Consumer Duty issue, not just an AR compliance issue.`
+    reply: `Alex Williams has 2 clients with compliance issues: Robert Chen (CLI-0089): vulnerable, annual review 11 months overdue, suitability file incomplete. David Williams (CLI-0158): Stage 3, all documentation current, next review due November 2024. Robert Chen is the priority; his vulnerable status makes this a Consumer Duty issue, not just an AR compliance issue.`
   },
   {
     match: ['kate davies', 'davies', 'kate'],
-    reply: `Kate Davies has 2 clients flagged: Priya Singh (CLI-0132) — vulnerable, active pension transfer, suitability report outstanding. Anne Morrison (CLI-0163) — suitability letter expired, due renewal before the next annual review. The Singh case is higher urgency given the live ad-hoc transaction and vulnerable classification.`
+    reply: `Kate Davies has 2 clients flagged: Priya Singh (CLI-0132): vulnerable, active pension transfer, suitability report outstanding. Anne Morrison (CLI-0163): suitability letter expired, due renewal before the next annual review. The Singh case is higher urgency given the live ad-hoc transaction and vulnerable classification.`
   },
   {
     match: ['what should i do', 'priority', 'where do i start', 'recommend'],
-    reply: `Based on regulatory exposure, here's your priority order: (1) Escalate CLI-0047 (Thompson) — 14 months overdue, longest elapsed case. (2) Action vulnerable clients CLI-0089 and CLI-0132 — Consumer Duty breach risk. (3) Complete the 3 RMAR data gaps in Section B — due in 25 days. (4) Clear suitability letter backlog for the remaining 26 standard clients. Doing all of this moves your health score from 82 to ~93.`
+    reply: `Based on regulatory exposure, here's your priority order: (1) Escalate CLI-0047 (Thompson): 14 months overdue, longest elapsed case. (2) action vulnerable clients CLI-0089 and CLI-0132, Consumer Duty breach risk. (3) Complete the 3 RMAR data gaps in Section B, due in 25 days. (4) Clear suitability letter backlog for the remaining 26 standard clients. Doing all of this moves your health score from 82 to ~93.`
   }
 ];
 
-const aiDefaultReply = `I'm monitoring 247 clients across all FCA compliance requirements. Right now your top 3 priorities are: (1) 18 overdue annual reviews — CLI-0047 (Thompson) is the most urgent at 14 months. (2) 9 vulnerable clients under Consumer Duty — 5 need immediate action. (3) RMAR due in 25 days with 3 data gaps remaining. Ask me about a specific client, adviser, deadline, or compliance area — I can give you a detailed breakdown.`;
+const aiDefaultReply = `I'm monitoring 247 clients across all FCA compliance requirements. Right now your top 3 priorities are: (1) 18 overdue annual reviews, with CLI-0047 (Thompson) the most urgent at 14 months. (2) 9 vulnerable clients under Consumer Duty, 5 need immediate action. (3) RMAR due in 25 days with 3 data gaps remaining. Ask me about a specific client, adviser, deadline, or compliance area and I can give you a detailed breakdown.`;
 
 function getAIResponse(msg) {
   const lower = msg.toLowerCase();
@@ -598,9 +598,9 @@ function sendMessage(inputId, containerid) {
 // ── Analytics drilldown ────────────────────────────────────────
 function openDrilldown(type) {
   const data = {
-    ontime: { title: 'On Time — 156 Annual Reviews', desc: 'Completed within the 12-month FCA requirement window.' },
-    missed: { title: 'Missed — 18 Annual Reviews', desc: 'These clients have not received a review within 12 months. Regulatory breach — immediate action required.' },
-    inprog: { title: 'In Progress — 73 Annual Reviews', desc: 'Appointments booked or in the process of being arranged. SLA clock still running.' }
+    ontime: { title: 'On Time: 156 Annual Reviews', desc: 'Completed within the 12-month FCA requirement window.' },
+    missed: { title: 'Missed: 18 Annual Reviews', desc: 'These clients have not received a review within 12 months. Regulatory breach: immediate action required.' },
+    inprog: { title: 'In Progress: 73 Annual Reviews', desc: 'Appointments booked or in the process of being arranged. SLA clock still running.' }
   };
   const d = data[type];
   if (!d) return;
@@ -659,3 +659,6 @@ function _syncInsightCount() {
   const notifRmar = document.getElementById('notif-rmar-days');
   if (notifRmar) notifRmar.textContent = 'RMAR due in ' + days + ' days';
 })();
+
+
+

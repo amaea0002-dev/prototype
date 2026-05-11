@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashboard — Amaea</title>
+  <title>Dashboard | Amaea</title>
   <script>
     (function(){ const t=localStorage.getItem('amaea-theme')||'light'; if(t==='dark') document.documentElement.setAttribute('data-theme','dark'); })();
   </script>
@@ -243,7 +243,7 @@
             <div class="risk-num" style="background:var(--red)">1</div>
             <div class="risk-body">
               <div class="risk-title">18 clients overdue for annual review</div>
-              <div class="risk-desc">FCA 12-month requirement breached. Regulatory exposure increasing — review client list and escalate priority cases.</div>
+              <div class="risk-desc">FCA 12-month requirement breached. Regulatory exposure increasing; review the client list and escalate priority cases.</div>
             </div>
             <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();window.location='clients.html'">Review</button>
           </div>
@@ -259,7 +259,7 @@
             <div class="risk-num" style="background:var(--blue)">3</div>
             <div class="risk-body">
               <div class="risk-title">RMAR submission window opens in <span class="rmar-days">25</span> days</div>
-              <div class="risk-desc">FCA return due <span class="rmar-date">31 May</span>. 3 data gaps identified — review report before submission window closes.</div>
+              <div class="risk-desc">FCA return due <span class="rmar-date">31 May</span>. 3 data gaps identified; review report before submission window closes.</div>
             </div>
             <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();window.location='reports.html'">View</button>
           </div>
@@ -283,7 +283,7 @@
           </div>
           <div class="alert-item" onclick="window.location='reports.html'">
             <div class="alert-icon blue"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></div>
-            <div><div class="alert-title">RMAR submission due in <span class="rmar-days">25</span> days</div><div class="alert-desc">FCA return — data ready to review.</div><div class="alert-time">2 days ago</div></div>
+            <div><div class="alert-title">RMAR submission due in <span class="rmar-days">25</span> days</div><div class="alert-desc">FCA return; data ready to review.</div><div class="alert-time">2 days ago</div></div>
           </div>
         </div>
 
@@ -293,11 +293,11 @@
             <div><div class="deadline-name">FCA RMAR Submission</div><div class="deadline-sub">Retail Mediation Activities Return</div></div>
             <span class="badge badge-red rmar-date">31 May</span>
           </div>
-          <div class="deadline-item" onclick="showToast('Annual Compliance Review — 15 June','info')">
-            <div><div class="deadline-name">Annual Compliance Review</div><div class="deadline-sub">Internal — board presentation</div></div>
+          <div class="deadline-item" onclick="showToast('Annual Compliance Review: 15 June','info')">
+            <div><div class="deadline-name">Annual Compliance Review</div><div class="deadline-sub">Internal: board presentation</div></div>
             <span class="badge badge-amber">15 Jun</span>
           </div>
-          <div class="deadline-item" onclick="showToast('Consumer Duty Review — 31 July','info')">
+          <div class="deadline-item" onclick="showToast('Consumer Duty Review: 31 July','info')">
             <div><div class="deadline-name">Consumer Duty Review</div><div class="deadline-sub">FCA Consumer Duty annual assessment</div></div>
             <span class="badge badge-blue">31 Jul</span>
           </div>
@@ -331,3 +331,6 @@
 <script src="amaea.js"></script>
 </body>
 </html>
+
+
+

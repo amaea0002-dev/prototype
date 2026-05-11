@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Clients — Amaea</title>
+  <title>Clients | Amaea</title>
   <script>
     (function(){ const t=localStorage.getItem('amaea-theme')||'light'; if(t==='dark') document.documentElement.setAttribute('data-theme','dark'); })();
   </script>
@@ -163,7 +163,7 @@
               <tr onclick="openClient('CLI-0114',this)" data-status="Compliant" data-vuln="Standard">
                 <td><div class="td-name">Sarah Fraser</div><div style="font-size:0.71rem;color:var(--t3);">CLI-0114</div></td>
                 <td>James Morrison</td>
-                <td>—</td>
+                <td>–</td>
                 <td>Jan 2025</td>
                 <td><span class="badge badge-neutral">Standard</span></td>
                 <td><span class="badge badge-green">Compliant</span></td>
@@ -195,7 +195,7 @@
               <tr onclick="openClient('CLI-0178',this)" data-status="At Risk" data-vuln="Standard">
                 <td><div class="td-name">James O'Brien</div><div style="font-size:0.71rem;color:var(--t3);">CLI-0178</div></td>
                 <td>James Morrison</td>
-                <td>—</td>
+                <td>–</td>
                 <td>Jul 2024</td>
                 <td><span class="badge badge-neutral">Standard</span></td>
                 <td><span class="badge badge-amber">At Risk</span></td>
@@ -236,9 +236,9 @@
     <button class="modal-close" onclick="closeModal('flag-modal')">✕</button>
     <div class="modal-title">Flag Compliance Gap</div>
     <div class="modal-sub">Log a compliance issue for this client.</div>
-    <div class="form-group"><label class="form-label">Gap description</label><input class="form-input" placeholder="e.g. Suitability letter expired — renewal required"/></div>
+    <div class="form-group"><label class="form-label">Gap description</label><input class="form-input" placeholder="e.g. Suitability letter expired: renewal required"/></div>
     <div class="form-group"><label class="form-label">Severity</label>
-      <select class="form-select"><option>High — Regulatory breach risk</option><option>Medium — Action required</option><option>Low — Monitor</option></select>
+      <select class="form-select"><option>High: Regulatory breach risk</option><option>Medium: Action required</option><option>Low: Monitor</option></select>
     </div>
     <div class="form-group"><label class="form-label">Assign to</label>
       <select class="form-select"><option>James Morrison</option><option>Alex Williams</option><option>Kate Davies</option><option>Sarah Clarke</option></select>
@@ -383,3 +383,5 @@ function closeAllMenus() {
 </script>
 </body>
 </html>
+
+
