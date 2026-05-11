@@ -22,6 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Wire pill toggle
   document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
 
+  // Time-of-day greeting
+  const greetTimeEl = document.getElementById('page-greeting-time');
+  if (greetTimeEl) {
+    const h = new Date().getHours();
+    greetTimeEl.textContent = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+  }
+
   // ── Menu button: desktop = collapse, mobile = open/close ──────
   document.querySelectorAll('.menu-btn').forEach(btn => {
     btn.removeAttribute('onclick');
