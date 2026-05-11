@@ -33,10 +33,32 @@
     <a href="integrations.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Integrations</a>
     <a href="#" class="nav-item" onclick="showToast('Settings coming soon','info');return false;"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Settings</a>
   </nav>
-  <div class="sb-footer">
-    <div class="sb-user" onclick="showToast('Profile settings coming soon','info')">
-      <div class="sb-avatar">SC</div>
-      <div><div class="sb-user-name">Sarah Clarke</div><div class="sb-user-role">Head of Compliance</div></div>
+  <div class="sb-footer" style="position:relative;">
+    <div class="sb-user-panel" id="sb-user-panel">
+      <button class="sb-user-option" data-user="hasna">
+        <div class="sb-option-avatar" style="background:linear-gradient(135deg,#4C2C4B,#8B6189);">H</div>
+        <div class="sb-user-option-info">
+          <div class="sb-user-option-name">Hasna Sahul Hameed</div>
+          <div class="sb-user-option-role">CEO &amp; Co-founder</div>
+        </div>
+        <span class="sb-user-tick" id="tick-hasna">✓</span>
+      </button>
+      <button class="sb-user-option" data-user="milan">
+        <div class="sb-option-avatar" style="background:linear-gradient(135deg,#1a4080,#4292c6);">M</div>
+        <div class="sb-user-option-info">
+          <div class="sb-user-option-name">Milan Sajiv</div>
+          <div class="sb-user-option-role">CTO &amp; Co-founder</div>
+        </div>
+        <span class="sb-user-tick" id="tick-milan" style="opacity:0;">✓</span>
+      </button>
+    </div>
+    <div class="sb-user sb-user-clickable" id="sb-user-area" title="Switch user">
+      <div class="sb-avatar" id="sb-avatar" style="background:linear-gradient(135deg,#4C2C4B,#8B6189);">H</div>
+      <div class="sb-user-text">
+        <div class="sb-user-name" id="sb-user-name">Hasna Sahul Hameed</div>
+        <div class="sb-user-role" id="sb-user-role">CEO &amp; Co-founder</div>
+      </div>
+      <svg width="11" height="11" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-left:auto;"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
   </div>
 </aside>
@@ -52,11 +74,8 @@
       <input type="text" placeholder="Search reports…"/>
     </div>
     <div class="topbar-actions">
-      <button class="icon-btn" onclick="toggleTheme()" title="Toggle dark mode">
-        <svg class="icon-sun" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        <svg class="icon-moon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      </button>
-      <div class="topbar-avatar" onclick="showToast('Profile settings coming soon','info')">SC</div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"></button>
+      <div class="topbar-avatar" id="topbar-avatar" title="Current user">H</div>
     </div>
   </header>
 
