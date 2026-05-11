@@ -691,3 +691,18 @@ tbody td { padding: 11px 14px; color: var(--t2); vertical-align: middle; }
   .page-header h1 { font-size: 1.2rem; }
   .modal { padding: 20px; border-radius: var(--r4); }
 }
+
+/* ── Settings toggle pill ── */
+.toggle-pill {
+  position: relative; width: 40px; height: 22px; border-radius: 11px;
+  background: var(--border-mid); cursor: pointer; flex-shrink: 0;
+  transition: background 0.25s;
+}
+.toggle-pill::before {
+  content: ''; position: absolute; top: 2px; left: 2px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: transform 0.25s cubic-bezier(0.34,1.4,0.64,1);
+}
+.toggle-pill.on { background: var(--plum-soft); }
+.toggle-pill.on::before { transform: translateX(18px); }
