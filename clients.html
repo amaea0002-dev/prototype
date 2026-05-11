@@ -106,22 +106,26 @@
     <div class="page-header fade-up">
       <div>
         <h1>Clients</h1>
-        <p>247 active clients · 18 overdue reviews · 9 vulnerable</p>
+        <p>247 clients across your book · 18 overdue reviews · 9 vulnerable</p>
       </div>
-      <div class="page-actions">
-        <div class="dropdown">
-          <button class="btn btn-ghost btn-sm" data-dropdown="filter-menu">
-            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46"/></svg>
-            Filter
-          </button>
-          <div class="dropdown-menu" id="filter-menu">
-            <div class="dropdown-item" onclick="showToast('Showing all clients','info');closeAllMenus()">All clients</div>
-            <div class="dropdown-item" onclick="showToast('Filtered: Overdue','info');closeAllMenus()">Overdue only</div>
-            <div class="dropdown-item" onclick="showToast('Filtered: Vulnerable','info');closeAllMenus()">Vulnerable only</div>
-            <div class="dropdown-item" onclick="showToast('Filtered: At risk','info');closeAllMenus()">At risk only</div>
-          </div>
-        </div>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="fade-up" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:16px;">
+      <span style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--t3);">Status</span>
+      <div id="status-filters" style="display:flex;gap:4px;flex-wrap:wrap;">
+        <button class="filter-pill active" data-filter="status" data-val="">All</button>
+        <button class="filter-pill" data-filter="status" data-val="Overdue,Breach">Overdue / Breach</button>
+        <button class="filter-pill" data-filter="status" data-val="At Risk">At Risk</button>
+        <button class="filter-pill" data-filter="status" data-val="Compliant">Compliant</button>
       </div>
+      <span style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--t3);margin-left:8px;">Vulnerability</span>
+      <div id="vuln-filters" style="display:flex;gap:4px;flex-wrap:wrap;">
+        <button class="filter-pill active" data-filter="vuln" data-val="">All</button>
+        <button class="filter-pill" data-filter="vuln" data-val="Vulnerable">Vulnerable</button>
+        <button class="filter-pill" data-filter="vuln" data-val="Standard">Standard</button>
+      </div>
+      <span id="client-count" style="margin-left:auto;font-size:0.78rem;color:var(--t3);">Showing 7 of 247 clients</span>
     </div>
 
     <div class="clients-layout fade-up fade-up-1">
@@ -140,7 +144,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr onclick="openClient('CLI-0047',this)">
+              <tr onclick="openClient('CLI-0047',this)" data-status="Overdue" data-vuln="Standard">
                 <td><div class="td-name">Margaret Thompson</div><div style="font-size:0.71rem;color:var(--t3);">CLI-0047</div></td>
                 <td>James Morrison</td>
                 <td>Mar 2024</td>
@@ -148,7 +152,7 @@
                 <td><span class="badge badge-neutral">Standard</span></td>
                 <td><span class="badge badge-amber">Overdue</span></td>
               </tr>
-              <tr onclick="openClient('CLI-0089',this)">
+              <tr onclick="openClient('CLI-0089',this)" data-status="Breach" data-vuln="Vulnerable">
                 <td><div class="td-name">Robert Chen</div><div style="font-size:0.71rem;color:var(--t3);">CLI-0089</div></td>
                 <td>Alex Williams</td>
                 <td>Jun 2023</td>
@@ -156,7 +160,7 @@
                 <td><span class="badge badge-amber">Vulnerable</span></td>
                 <td><span class="badge badge-red">Breach</span></td>
               </tr>
-              <tr onclick="openClient('CLI-0114',this)">
+              <tr onclick="openClient('CLI-0114',this)" data-status="Compliant" data-vuln="Standard">
                 <td><div class="td-name">Sarah Fraser</div><div style="font-size:0.71rem;color:var(--t3);">CLI-0114</div></td>
                 <td>James Morrison</td>
                 <td>—</td>
@@ -164,7 +168,7 @@
                 <td><span class="badge badge-neutral">Standard</span></td>
                 <td><span class="badge badge-green">Compliant</span></td>
               </tr>
-              <tr onclick="openClient('CLI-0132',this)">
+              <tr onclick="openClient('CLI-0132',this)" data-status="At Risk" data-vuln="Vulnerable">
                 <td><div class="td-name">Priya Singh</div><div style="font-size:0.71rem;color:var(--t3);">CLI-0132</div></td>
                 <td>Kate Davies</td>
                 <td>Dec 2023</td>
@@ -172,7 +176,7 @@
                 <td><span class="badge badge-amber">Vulnerable</span></td>
                 <td><span class="badge badge-amber">At Risk</span></td>
               </tr>
-              <tr onclick="openClient('CLI-0158',this)">
+              <tr onclick="openClient('CLI-0158',this)" data-status="Compliant" data-vuln="Standard">
                 <td><div class="td-name">David Williams</div><div style="font-size:0.71rem;color:var(--t3);">CLI-0158</div></td>
                 <td>Alex Williams</td>
                 <td>Nov 2023</td>
@@ -180,7 +184,7 @@
                 <td><span class="badge badge-neutral">Standard</span></td>
                 <td><span class="badge badge-green">Compliant</span></td>
               </tr>
-              <tr onclick="openClient('CLI-0163',this)">
+              <tr onclick="openClient('CLI-0163',this)" data-status="At Risk" data-vuln="Standard">
                 <td><div class="td-name">Anne Morrison</div><div style="font-size:0.71rem;color:var(--t3);">CLI-0163</div></td>
                 <td>Kate Davies</td>
                 <td>Feb 2024</td>
@@ -188,7 +192,7 @@
                 <td><span class="badge badge-neutral">Standard</span></td>
                 <td><span class="badge badge-amber">At Risk</span></td>
               </tr>
-              <tr onclick="openClient('CLI-0178',this)">
+              <tr onclick="openClient('CLI-0178',this)" data-status="At Risk" data-vuln="Standard">
                 <td><div class="td-name">James O'Brien</div><div style="font-size:0.71rem;color:var(--t3);">CLI-0178</div></td>
                 <td>James Morrison</td>
                 <td>—</td>
@@ -248,6 +252,40 @@
 
 <script src="amaea.js"></script>
 <script>
+// ── Client filter state ──────────────────────────────────────
+let _statusFilter = '', _vFilter = '';
+
+function applyFilters() {
+  const rows = document.querySelectorAll('#client-table tbody tr');
+  let visible = 0;
+  rows.forEach(r => {
+    const status = r.dataset.status || '';
+    const vuln   = r.dataset.vuln   || '';
+    const statusOk = !_statusFilter || _statusFilter.split(',').includes(status);
+    const vulnOk   = !_vFilter     || vuln === _vFilter;
+    const show = statusOk && vulnOk;
+    r.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  const countEl = document.getElementById('client-count');
+  if (countEl) countEl.textContent = 'Showing ' + visible + ' of 247 clients';
+}
+
+function setFilter(type, val, btn) {
+  if (type === 'status') _statusFilter = val;
+  else _vFilter = val;
+  // Update active pill
+  btn.closest('div').querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.filter-pill').forEach(btn => {
+    btn.addEventListener('click', () => setFilter(btn.dataset.filter, btn.dataset.val, btn));
+  });
+});
+
 function filterClients(q) {
   const rows = document.querySelectorAll('#client-table tbody tr');
   const lower = q.toLowerCase();

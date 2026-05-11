@@ -604,5 +604,25 @@ function dismissInsight(id) {
   card.style.transform = 'translateY(-8px)';
   card.style.maxHeight = card.offsetHeight + 'px';
   requestAnimationFrame(() => { card.style.maxHeight = '0'; card.style.marginBottom = '0'; card.style.padding = '0'; });
-  setTimeout(() => { card.remove(); showToast('Insight dismissed', 'info', 2000); }, 420);
+  setTimeout(() => { card.remove(); showToast('Insight dismissed', 'info', 2000); _syncInsightCount(); }, 420);
+}
+
+function dismissAllInsights() {
+  const cards = document.querySelectorAll('.insight-card');
+  cards.forEach(card => {
+    card.style.transition = 'opacity 0.3s, max-height 0.4s, margin 0.4s, padding 0.4s';
+    card.style.opacity = '0'; card.style.maxHeight = '0';
+    card.style.marginBottom = '0'; card.style.padding = '0';
+  });
+  setTimeout(() => { cards.forEach(c => c.remove()); _syncInsightCount(); showToast('All insights dismissed', 'info'); }, 400);
+}
+
+function _syncInsightCount() {
+  const n = document.querySelectorAll('.insight-card').length;
+  const countEl = document.getElementById('active-alert-count');
+  if (countEl) countEl.textContent = n;
+  const subEl = document.getElementById('insights-subtitle');
+  if (subEl) subEl.textContent = n + ' active alert' + (n !== 1 ? 's' : '') + ' · Amaea has identified the following compliance risks';
+  const navBadge = document.querySelector('a[href="insights.html"] .nav-badge');
+  if (navBadge) navBadge.textContent = n;
 }

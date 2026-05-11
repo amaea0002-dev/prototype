@@ -692,6 +692,18 @@ tbody td { padding: 11px 14px; color: var(--t2); vertical-align: middle; }
   .modal { padding: 20px; border-radius: var(--r4); }
 }
 
+/* ── Client filter pills ── */
+.filter-pill {
+  font-size: 0.75rem; font-weight: 600;
+  padding: 4px 12px; border-radius: var(--pill);
+  border: 1.5px solid var(--border-mid);
+  background: var(--surface); color: var(--t2);
+  cursor: pointer; transition: all 0.15s;
+  font-family: inherit;
+}
+.filter-pill:hover { border-color: var(--plum-border); color: var(--plum-soft); }
+.filter-pill.active { background: var(--plum-tint); border-color: var(--plum-border); color: var(--plum-soft); font-weight: 700; }
+
 /* ── Settings toggle pill ── */
 .toggle-pill {
   position: relative; width: 40px; height: 22px; border-radius: 11px;
