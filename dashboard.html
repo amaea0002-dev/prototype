@@ -107,7 +107,7 @@
           </div>
           <div class="notif-item" onclick="window.location='reports.html'">
             <div class="notif-indicator"></div>
-            <div><div class="notif-title">RMAR due in 25 days</div><div class="notif-time">Yesterday</div></div>
+            <div><div class="notif-title"><span id="notif-rmar-days">RMAR due in 25 days</span></div><div class="notif-time">Yesterday</div></div>
           </div>
           <div class="notif-item">
             <div class="notif-indicator read"></div>
@@ -258,8 +258,8 @@
           <div class="risk-item" onclick="window.location='reports.html'">
             <div class="risk-num" style="background:var(--blue)">3</div>
             <div class="risk-body">
-              <div class="risk-title">RMAR submission window opens in 25 days</div>
-              <div class="risk-desc">FCA return due 31 May. 3 data gaps identified — review report before submission window closes.</div>
+              <div class="risk-title">RMAR submission window opens in <span class="rmar-days">25</span> days</div>
+              <div class="risk-desc">FCA return due <span class="rmar-date">31 May</span>. 3 data gaps identified — review report before submission window closes.</div>
             </div>
             <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();window.location='reports.html'">View</button>
           </div>
@@ -283,7 +283,7 @@
           </div>
           <div class="alert-item" onclick="window.location='reports.html'">
             <div class="alert-icon blue"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></div>
-            <div><div class="alert-title">RMAR submission due in 25 days</div><div class="alert-desc">FCA return — data ready to review.</div><div class="alert-time">2 days ago</div></div>
+            <div><div class="alert-title">RMAR submission due in <span class="rmar-days">25</span> days</div><div class="alert-desc">FCA return — data ready to review.</div><div class="alert-time">2 days ago</div></div>
           </div>
         </div>
 
@@ -291,7 +291,7 @@
           <div class="card-title mb-4">Upcoming Deadlines</div>
           <div class="deadline-item" onclick="window.location='reports.html'">
             <div><div class="deadline-name">FCA RMAR Submission</div><div class="deadline-sub">Retail Mediation Activities Return</div></div>
-            <span class="badge badge-red">31 May</span>
+            <span class="badge badge-red rmar-date">31 May</span>
           </div>
           <div class="deadline-item" onclick="showToast('Annual Compliance Review — 15 June','info')">
             <div><div class="deadline-name">Annual Compliance Review</div><div class="deadline-sub">Internal — board presentation</div></div>

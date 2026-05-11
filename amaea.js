@@ -639,4 +639,23 @@ function _syncInsightCount() {
   if (subEl) subEl.textContent = n + ' active alert' + (n !== 1 ? 's' : '') + ' · Amaea has identified the following compliance risks';
   const navBadge = document.querySelector('a[href="insights.html"] .nav-badge');
   if (navBadge) navBadge.textContent = n;
+  // Hide notification dot when all insights are dismissed
+  document.querySelectorAll('.notif-dot').forEach(dot => {
+    dot.style.display = n === 0 ? 'none' : '';
+  });
 }
+
+// ── Dynamic RMAR deadline ─────────────────────────────────────
+(function updateRmarDate() {
+  const now = new Date();
+  let deadline = new Date(now.getFullYear(), 4, 31); // 31 May this year
+  if (now >= deadline) deadline = new Date(now.getFullYear() + 1, 4, 31);
+  const days = Math.ceil((deadline - now) / (1000 * 60 * 60 * 24));
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const dateStr = deadline.getDate() + ' ' + months[deadline.getMonth()];
+  document.querySelectorAll('.rmar-days').forEach(el => { el.textContent = days; });
+  document.querySelectorAll('.rmar-date').forEach(el => { el.textContent = dateStr; });
+  // Also update the notif span if present
+  const notifRmar = document.getElementById('notif-rmar-days');
+  if (notifRmar) notifRmar.textContent = 'RMAR due in ' + days + ' days';
+})();
