@@ -25,7 +25,7 @@
   <nav class="sb-nav">
     <span class="sb-label">Main</span>
     <a href="dashboard.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Dashboard</a>
-    <a href="clients.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Clients<span class="nav-badge">18</span></a>
+    <a href="clients.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Clients</a>
     <a href="analytics.html" class="nav-item active"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Analytics</a>
     <a href="insights.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>AI Insights<span class="nav-badge amber">4</span></a>
     <a href="reports.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>Reports</a>
@@ -172,21 +172,21 @@
 
       <!-- Stage breakdown -->
       <div class="card">
-        <div class="card-title mb-4">Stage Breakdown</div>
+        <div class="card-title mb-4">Work Type Breakdown</div>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Stage</th><th>Total</th><th>Clean</th><th>At Risk</th><th>Breach</th></tr></thead>
+            <thead><tr><th>Work Type</th><th>Total</th><th>Clean</th><th>At Risk</th><th>Breach</th></tr></thead>
             <tbody>
-              <tr onclick="showToast('Stage 1 drill-down coming soon','info')">
-                <td><span class="badge badge-blue">Stage 1</span><div style="font-size:0.69rem;color:var(--t3);margin-top:2px;">Initial Work</div></td>
+              <tr style="cursor:pointer;" onclick="openDrilldown('initial')">
+                <td><span class="badge badge-blue">Initial Work</span></td>
                 <td class="td-name">62</td><td style="color:var(--green);font-weight:600;">58</td><td style="color:var(--amber);font-weight:600;">4</td><td style="color:var(--red);font-weight:600;">0</td>
               </tr>
-              <tr onclick="showToast('Stage 2 drill-down coming soon','info')">
-                <td><span class="badge badge-amber" style="background:var(--amber-bg);color:var(--amber);">Stage 2</span><div style="font-size:0.69rem;color:var(--t3);margin-top:2px;">Ad-hoc Work</div></td>
+              <tr style="cursor:pointer;" onclick="openDrilldown('adhoc')">
+                <td><span class="badge badge-amber" style="background:var(--amber-bg);color:var(--amber);">Ad-hoc Work</span></td>
                 <td class="td-name">81</td><td style="color:var(--green);font-weight:600;">69</td><td style="color:var(--amber);font-weight:600;">9</td><td style="color:var(--red);font-weight:600;">3</td>
               </tr>
-              <tr onclick="showToast('Stage 3 drill-down coming soon','info')">
-                <td><span class="badge badge-plum">Stage 3</span><div style="font-size:0.69rem;color:var(--t3);margin-top:2px;">Annual Reviews</div></td>
+              <tr style="cursor:pointer;" onclick="openDrilldown('annual')">
+                <td><span class="badge badge-plum">Annual Reviews</span></td>
                 <td class="td-name">104</td><td style="color:var(--green);font-weight:600;">71</td><td style="color:var(--amber);font-weight:600;">18</td><td style="color:var(--red);font-weight:600;">15</td>
               </tr>
             </tbody>
@@ -199,17 +199,17 @@
         <div class="card-title mb-4">SLA Performance</div>
         <div style="display:flex;flex-direction:column;gap:14px;">
           <div>
-            <div style="display:flex;justify-content:space-between;font-size:0.79rem;margin-bottom:6px;"><span style="color:var(--t2);font-weight:500;">Stage 1 · Initial Work</span><span style="font-weight:700;color:var(--green)">94%</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.79rem;margin-bottom:6px;"><span style="color:var(--t2);font-weight:500;">Initial Work</span><span style="font-weight:700;color:var(--green)">94%</span></div>
             <div class="progress"><div class="progress-fill fill-green" style="width:94%"></div></div>
             <div style="font-size:0.69rem;color:var(--t3);margin-top:3px;">Target 90% · SLA: 30 days from onboarding</div>
           </div>
           <div>
-            <div style="display:flex;justify-content:space-between;font-size:0.79rem;margin-bottom:6px;"><span style="color:var(--t2);font-weight:500;">Stage 2 · Ad-hoc Work</span><span style="font-weight:700;color:var(--amber)">81%</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.79rem;margin-bottom:6px;"><span style="color:var(--t2);font-weight:500;">Ad-hoc Work</span><span style="font-weight:700;color:var(--amber)">81%</span></div>
             <div class="progress"><div class="progress-fill fill-amber" style="width:81%"></div></div>
             <div style="font-size:0.69rem;color:var(--t3);margin-top:3px;">Target 90% · SLA: 20 business days</div>
           </div>
           <div>
-            <div style="display:flex;justify-content:space-between;font-size:0.79rem;margin-bottom:6px;"><span style="color:var(--t2);font-weight:500;">Stage 3 · Annual Reviews</span><span style="font-weight:700;color:var(--red)">63%</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.79rem;margin-bottom:6px;"><span style="color:var(--t2);font-weight:500;">Annual Reviews</span><span style="font-weight:700;color:var(--red)">63%</span></div>
             <div class="progress"><div class="progress-fill fill-red" style="width:63%"></div></div>
             <div style="font-size:0.69rem;color:var(--t3);margin-top:3px;">Target 95% · SLA: 12 months (FCA requirement)</div>
           </div>
@@ -247,10 +247,10 @@
     <button class="modal-close" onclick="closeModal('drilldown-modal')">✕</button>
     <div class="modal-title" id="drilldown-title">Detail View</div>
     <div class="modal-sub" id="drilldown-desc"></div>
-    <div style="font-size:0.76rem;color:var(--t3);padding:16px 0;border-top:1px solid var(--border);margin-top:4px;">Full client-level drill-down available in next release. Use the Clients tab to filter by status today.</div>
+    <div id="drilldown-body" style="margin-bottom:16px;"></div>
     <div class="modal-footer">
       <button class="btn btn-ghost" onclick="closeModal('drilldown-modal')">Close</button>
-      <button class="btn btn-primary" onclick="closeModal('drilldown-modal');window.location='clients.html'">Go to Clients</button>
+      <button class="btn btn-primary" onclick="closeModal('drilldown-modal');window.location='clients.html'">View Clients →</button>
     </div>
   </div>
 </div>
@@ -261,9 +261,9 @@
     <button class="modal-close" onclick="closeModal('sla-modal')">✕</button>
     <div class="modal-title">Configure SLAs</div>
     <div class="modal-sub">Set compliance deadlines for each stage of the client journey.</div>
-    <div class="form-group"><label class="form-label">Stage 1 · Initial Work (days from onboarding)</label><input class="form-input" type="number" value="30"/></div>
-    <div class="form-group"><label class="form-label">Stage 2 · Ad-hoc Work (business days)</label><input class="form-input" type="number" value="20"/></div>
-    <div class="form-group"><label class="form-label">Stage 3 · Annual Reviews (months)</label><input class="form-input" type="number" value="12"/></div>
+    <div class="form-group"><label class="form-label">Initial Work (days from onboarding)</label><input class="form-input" type="number" value="30"/></div>
+    <div class="form-group"><label class="form-label">Ad-hoc Work (business days)</label><input class="form-input" type="number" value="20"/></div>
+    <div class="form-group"><label class="form-label">Annual Reviews (months)</label><input class="form-input" type="number" value="12"/></div>
     <div class="form-group"><label class="form-label">Vulnerable customer enhanced SLA</label>
       <select class="form-select"><option>Same as standard</option><option>20% tighter deadline</option><option>Custom</option></select>
     </div>
@@ -276,16 +276,33 @@
 
 <script src="amaea.js"></script>
 <script>
+function adviserTable(rows) {
+  return `<div class="table-wrap" style="margin-top:12px;">
+    <table style="font-size:0.8rem;">
+      <thead><tr><th>Adviser</th><th style="text-align:right;">Total</th><th style="text-align:right;color:var(--green);">Clean</th><th style="text-align:right;color:var(--amber);">At Risk</th><th style="text-align:right;color:var(--red);">Breach</th></tr></thead>
+      <tbody>${rows.map(r=>`<tr><td style="font-weight:600;color:var(--t1);">${r[0]}</td><td style="text-align:right;">${r[1]}</td><td style="text-align:right;color:var(--green);font-weight:600;">${r[2]}</td><td style="text-align:right;color:var(--amber);font-weight:600;">${r[3]}</td><td style="text-align:right;color:var(--red);font-weight:600;">${r[4]}</td></tr>`).join('')}</tbody>
+    </table>
+  </div>`;
+}
+
 function openDrilldown(type) {
-  const map = {
-    total: ['All 247 Clients — Full Review Cycle', 'Complete view of all clients due for an annual review in this cycle.'],
-    ontime: ['On Time — 156 Annual Reviews', 'Completed within the 12-month FCA requirement. 63.2% completion rate against 95% target.'],
-    missed: ['Missed / Breach — 18 Annual Reviews', 'These clients have not received a review within 12 months. This is a regulatory breach — immediate escalation required.'],
-    inprog: ['In Progress — 73 Annual Reviews', 'Appointments booked or in the process of being arranged. SLA clock is still running.']
+  const data = {
+    total:   ['All 247 Clients — Review Cycle Overview', 'Full client book breakdown by adviser.', [['James Morrison',87,52,21,14],['Alex Williams',81,56,14,11],['Kate Davies',79,48,20,11]]],
+    ontime:  ['On Time — 156 Annual Reviews', 'Completed within the FCA 12-month requirement.', [['James Morrison',52,null,null,null],['Alex Williams',56,null,null,null],['Kate Davies',48,null,null,null]]],
+    missed:  ['Missed / Breach — 18 Annual Reviews', 'Outside the 12-month window. Immediate escalation required.', [['James Morrison',7,null,null,null],['Alex Williams',6,null,null,null],['Kate Davies',5,null,null,null]]],
+    inprog:  ['In Progress — 73 Annual Reviews', 'Appointments booked or being arranged. SLA clock running.', [['James Morrison',28,null,null,null],['Alex Williams',22,null,null,null],['Kate Davies',23,null,null,null]]],
+    initial: ['Initial Work Breakdown', '62 clients in the Initial Engagement phase — onboarding and first-touch compliance.', [['James Morrison',22,21,1,0],['Alex Williams',20,19,1,0],['Kate Davies',20,18,2,0]]],
+    adhoc:   ['Ad-hoc Work Breakdown', '81 clients with active ad-hoc compliance work in progress.', [['James Morrison',28,24,3,1],['Alex Williams',27,23,3,1],['Kate Davies',26,22,3,1]]],
+    annual:  ['Annual Reviews Breakdown', '104 clients due for or undergoing annual reviews — the highest-risk category.', [['James Morrison',37,24,6,7],['Alex Williams',34,24,6,4],['Kate Davies',33,23,6,4]]]
   };
-  const [title, desc] = map[type] || ['Detail', ''];
+  const [title, desc, rows] = data[type] || ['Detail','',[]];
   document.getElementById('drilldown-title').textContent = title;
   document.getElementById('drilldown-desc').textContent = desc;
+  // For ontime/missed/inprog show simpler single-column table
+  const isSimple = ['ontime','missed','inprog'].includes(type);
+  document.getElementById('drilldown-body').innerHTML = isSimple
+    ? `<div class="table-wrap" style="margin-top:12px;"><table style="font-size:0.8rem;"><thead><tr><th>Adviser</th><th style="text-align:right;">Count</th></tr></thead><tbody>${rows.map(r=>`<tr><td style="font-weight:600;color:var(--t1);">${r[0]}</td><td style="text-align:right;font-weight:700;">${r[1]}</td></tr>`).join('')}</tbody></table></div>`
+    : adviserTable(rows);
   openModal('drilldown-modal');
 }
 </script>

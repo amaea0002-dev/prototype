@@ -29,6 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
     greetTimeEl.textContent = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
   }
 
+  // Dynamic date on any page that has it
+  const dateEl = document.getElementById('page-date');
+  if (dateEl) {
+    const now = new Date();
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    dateEl.textContent = days[now.getDay()] + ', ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+  }
+
   // ── Menu button: desktop = collapse, mobile = open/close ──────
   document.querySelectorAll('.menu-btn').forEach(btn => {
     btn.removeAttribute('onclick');
@@ -63,6 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (roleEl)     roleEl.textContent = u.role;
     if (topbarAv)   { topbarAv.textContent = u.initial; topbarAv.style.background = u.bg; }
     if (greetingEl) greetingEl.textContent = u.firstName;
+    // Update AI chat greeting if present
+    const firstChatMsg = document.querySelector('.msg.msg-ai .msg-bubble');
+    if (firstChatMsg && firstChatMsg.textContent.startsWith('Hello ')) {
+      firstChatMsg.textContent = 'Hello ' + u.firstName + '. I\'m monitoring your compliance position across all 247 clients. Ask me about overdue reviews, documentation gaps, vulnerable customers, or upcoming regulatory deadlines.';
+    }
 
     document.querySelectorAll('.sb-user-tick').forEach(el => el.style.opacity = '0');
     const tick = document.getElementById('tick-' + key);
