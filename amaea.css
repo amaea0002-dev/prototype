@@ -115,9 +115,22 @@ svg { flex-shrink: 0; }
 
 /* Desktop sidebar width transitions */
 @media (min-width: 961px) {
-  .sidebar { transition: width 0.26s var(--ease); }
-  .main    { transition: margin-left 0.26s var(--ease); }
+  .sidebar { transition: width 0.3s var(--ease); }
+  .main    { transition: margin-left 0.3s var(--ease); }
 }
+
+/* ── Sidebar internals: transition everything that changes on collapse ── */
+.sb-header { transition: padding 0.3s var(--ease); }
+.sb-nav    { transition: padding 0.3s var(--ease); }
+.sb-footer { transition: padding 0.3s var(--ease); }
+.sb-user   { transition: padding 0.3s var(--ease); }
+.sb-label  { overflow: hidden; transition: height 0.3s var(--ease), opacity 0.2s var(--ease), padding 0.3s var(--ease), margin 0.3s var(--ease); }
+.nav-item  { transition: background 0.14s, color 0.14s, padding 0.3s var(--ease), font-size 0.25s var(--ease), gap 0.25s var(--ease); }
+.nav-badge { transition: opacity 0.18s, transform 0.18s; transform-origin: center; }
+.sb-logo   { transition: flex 0.3s var(--ease); }
+/* User text: animate out with opacity + width instead of display:none */
+.sb-user-text { overflow: hidden; max-width: 200px; transition: opacity 0.22s var(--ease), max-width 0.3s var(--ease); }
+.sb-user-clickable > svg { overflow: hidden; max-width: 20px; transition: opacity 0.18s var(--ease), max-width 0.25s var(--ease); }
 
 /* ── Sidebar collapsed (desktop) ─────────────────────────────── */
 body.sb-collapsed .sidebar { width: 62px; overflow-x: hidden; }
@@ -127,18 +140,16 @@ body.sb-collapsed .sb-header { padding: 14px 8px 10px; justify-content: center; 
 body.sb-collapsed .sb-logo   { display: flex; justify-content: center; flex: none; overflow: hidden; }
 
 body.sb-collapsed .sb-nav    { padding: 10px 6px; }
-body.sb-collapsed .sb-label  { height: 0; overflow: hidden; padding: 0; margin: 0; }
+body.sb-collapsed .sb-label  { height: 0; opacity: 0; padding: 0; margin: 0; }
 
-/* Hide text nodes via font-size:0; SVGs keep their width/height attrs */
+/* Text shrinks to 0; SVG icons keep their explicit width/height attrs */
 body.sb-collapsed .nav-item  { justify-content: center; padding: 10px 6px; font-size: 0; gap: 0; }
-body.sb-collapsed .nav-badge { display: none; }
+body.sb-collapsed .nav-badge { opacity: 0; transform: scale(0.5); pointer-events: none; }
 
 body.sb-collapsed .sb-footer { padding: 8px 6px 12px; }
 body.sb-collapsed .sb-user   { justify-content: center; padding: 8px 6px; }
-body.sb-collapsed .sb-user-name,
-body.sb-collapsed .sb-user-role,
-body.sb-collapsed .sb-user-text,
-body.sb-collapsed .sb-user-clickable > svg { display: none; }
+body.sb-collapsed .sb-user-text  { opacity: 0; max-width: 0; }
+body.sb-collapsed .sb-user-clickable > svg { opacity: 0; max-width: 0; }
 body.sb-collapsed .sb-user-panel { display: none !important; }
 
 /* Rotate toggle arrow when collapsed */
