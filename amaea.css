@@ -133,9 +133,9 @@ body.sb-revealing .sb-header .sb-logo { opacity: 1; transition: opacity 0.18s ea
 body.sb-collapsed .sidebar { width: 62px; overflow-x: hidden; }
 body.sb-collapsed .main    { margin-left: 62px; }
 
-/* Strip horizontal padding from all containers so every item centers against the full 62px */
-body.sb-collapsed .sb-header { padding: 14px 0 10px; justify-content: center; }
-body.sb-collapsed .sb-logo   { display: flex; justify-content: center; flex: none; width: 62px; overflow: hidden; }
+/* Header keeps the same horizontal padding so logo stays in exactly the same position */
+body.sb-collapsed .sb-header { padding: 14px 16px 10px; }
+body.sb-collapsed .sb-logo   { overflow: hidden; flex-shrink: 0; }
 
 body.sb-collapsed .sb-nav    { padding: 10px 0; }
 body.sb-collapsed .sb-label  { height: 0; overflow: hidden; padding: 0; margin: 0; }
