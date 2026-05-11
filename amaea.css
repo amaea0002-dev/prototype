@@ -128,7 +128,7 @@ body.sb-collapsed .sb-header { padding: 14px 16px 10px; }
 body.sb-collapsed .sb-logo   { overflow: hidden; flex-shrink: 0; }
 
 body.sb-collapsed .sb-nav    { padding: 10px 0; }
-body.sb-collapsed .sb-label  { height: 0; overflow: hidden; padding: 0; margin: 0; }
+body.sb-collapsed .sb-label  { height: 1px; background: rgba(255,255,255,0.07); padding: 0; margin: 6px 14px; overflow: hidden; font-size: 0; }
 
 body.sb-collapsed .nav-item  { justify-content: center; padding: 9px 0; width: 62px; font-size: 0; gap: 0; }
 body.sb-collapsed .nav-badge { display: none; }
