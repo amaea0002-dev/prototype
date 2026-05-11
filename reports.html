@@ -122,7 +122,7 @@
         <div style="font-size:0.84rem;font-weight:700;color:var(--red);margin-bottom:1px;">RMAR due in 25 days — action required</div>
         <div style="font-size:0.75rem;color:var(--t3);">3 data gaps identified in section B. Review and complete before the 31 May submission window.</div>
       </div>
-      <button class="btn btn-primary btn-sm" onclick="openModal('preview-modal')">Review Now</button>
+      <button class="btn btn-primary btn-sm" onclick="openPreview('rmar')">Review Now</button>
     </div>
 
     <div class="report-grid fade-up fade-up-2">
@@ -142,7 +142,7 @@
         </div>
         <div class="report-footer">
           <button class="btn btn-primary btn-sm" id="rmar-btn" onclick="simulateGenerate(this,'RMAR ready')">Generate Report</button>
-          <button class="btn btn-secondary btn-sm" onclick="openModal('preview-modal')">Preview</button>
+          <button class="btn btn-secondary btn-sm" onclick="openPreview('rmar')">Preview</button>
         </div>
       </div>
 
@@ -162,7 +162,7 @@
         </div>
         <div class="report-footer">
           <button class="btn btn-primary btn-sm" id="suit-btn" onclick="simulateGenerate(this,'Suitability report ready')">Generate Report</button>
-          <button class="btn btn-secondary btn-sm" onclick="showToast('Preview coming soon','info')">Preview</button>
+          <button class="btn btn-secondary btn-sm" onclick="openPreview('suitability')">Preview</button>
         </div>
       </div>
 
@@ -182,7 +182,7 @@
         </div>
         <div class="report-footer">
           <button class="btn btn-primary btn-sm" id="cd-btn" onclick="simulateGenerate(this,'Consumer Duty report ready')">Generate Report</button>
-          <button class="btn btn-secondary btn-sm" onclick="showToast('Preview coming soon','info')">Preview</button>
+          <button class="btn btn-secondary btn-sm" onclick="openPreview('consumer_duty')">Preview</button>
         </div>
       </div>
 
@@ -202,7 +202,7 @@
         </div>
         <div class="report-footer">
           <button class="btn btn-primary btn-sm" id="log-btn" onclick="simulateGenerate(this,'Compliance log exported')">Export Log</button>
-          <button class="btn btn-secondary btn-sm" onclick="showToast('Preview coming soon','info')">Preview</button>
+          <button class="btn btn-secondary btn-sm" onclick="openPreview('log')">Preview</button>
         </div>
       </div>
 
@@ -222,7 +222,7 @@
         </div>
         <div class="report-footer">
           <button class="btn btn-primary btn-sm" id="vuln-btn" onclick="simulateGenerate(this,'Vulnerable report ready')">Generate Report</button>
-          <button class="btn btn-secondary btn-sm" onclick="showToast('Preview coming soon','info')">Preview</button>
+          <button class="btn btn-secondary btn-sm" onclick="openPreview('vulnerable')">Preview</button>
         </div>
       </div>
 
@@ -242,39 +242,187 @@
         </div>
         <div class="report-footer">
           <button class="btn btn-primary btn-sm" id="board-btn" onclick="simulateGenerate(this,'Board report ready')">Generate Draft</button>
-          <button class="btn btn-secondary btn-sm" onclick="showToast('Preview coming soon','info')">Preview</button>
+          <button class="btn btn-secondary btn-sm" onclick="openPreview('board')">Preview</button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Preview modal -->
+<!-- Preview modal (dynamic) -->
 <div class="modal-overlay" id="preview-modal">
   <div class="modal" style="max-width:580px;">
     <button class="modal-close" onclick="closeModal('preview-modal')">✕</button>
-    <div class="modal-title">RMAR Report Preview</div>
-    <div class="modal-sub">Retail Mediation Activities Return · Due 31 May 2026</div>
-    <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r2);padding:14px;margin-bottom:16px;">
-      <div style="font-size:0.8rem;font-weight:700;color:var(--t1);margin-bottom:10px;">Section A — Firm Details</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:0.77rem;">
-        <div><span style="color:var(--t3);">FCA Reference:</span> <span style="font-weight:600;color:var(--t1);">FRN 123456</span></div>
-        <div><span style="color:var(--t3);">Period:</span> <span style="font-weight:600;color:var(--t1);">Jan–Dec 2025</span></div>
-        <div><span style="color:var(--t3);">Total clients:</span> <span style="font-weight:600;color:var(--t1);">247</span></div>
-        <div><span style="color:var(--t3);">Advisers:</span> <span style="font-weight:600;color:var(--t1);">3</span></div>
-      </div>
-    </div>
-    <div style="background:var(--red-bg);border:1px solid var(--red-ring);border-radius:var(--r2);padding:12px 14px;margin-bottom:16px;font-size:0.78rem;">
-      <div style="font-weight:700;color:var(--red);margin-bottom:4px;">3 data gaps in Section B</div>
-      <div style="color:var(--t2);">• Complaint volumes — figures not yet submitted by adviser team<br>• Product mix breakdown — ISA/pension split needs verification<br>• Vulnerable client percentage — requires manual input</div>
-    </div>
+    <div class="modal-title" id="preview-title">Report Preview</div>
+    <div class="modal-sub" id="preview-sub"></div>
+    <div id="preview-body" style="margin-bottom:16px;"></div>
     <div class="modal-footer">
       <button class="btn btn-ghost" onclick="closeModal('preview-modal')">Close</button>
-      <button class="btn btn-primary" onclick="showToast('RMAR exported as PDF','success');closeModal('preview-modal')">Download PDF</button>
+      <button class="btn btn-primary" id="preview-dl" onclick="showToast('Report exported','success');closeModal('preview-modal')">Download PDF</button>
     </div>
   </div>
 </div>
 
 <script src="amaea.js"></script>
+<script>
+function openPreview(type) {
+  const row = (date, event, user) =>
+    `<div style="display:grid;grid-template-columns:80px 1fr auto;gap:12px;padding:9px 14px;border-bottom:1px solid var(--border);font-size:0.78rem;align-items:start;">
+      <span style="color:var(--t3);white-space:nowrap;">${date}</span>
+      <span style="color:var(--t1);">${event}</span>
+      <span style="color:var(--t3);white-space:nowrap;font-size:0.72rem;">${user}</span>
+    </div>`;
+  const pill = (label, color) =>
+    `<span style="font-size:0.68rem;font-weight:700;background:var(--${color}-bg);color:var(--${color});border:1px solid var(--${color}-ring);border-radius:var(--pill);padding:2px 8px;">${label}</span>`;
+  const gap = (name, id, detail, severity) =>
+    `<div style="padding:10px 12px;background:var(--${severity}-bg);border:1px solid var(--${severity}-ring);border-radius:var(--r2);">
+      <div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span style="font-size:0.82rem;font-weight:600;color:var(--t1);">${name} (${id})</span>${pill(severity==='red'?'Breach risk':'Action needed',severity)}</div>
+      <div style="font-size:0.75rem;color:var(--t3);">${detail}</div>
+    </div>`;
+  const action = (num, text, severity) =>
+    `<div style="display:flex;gap:10px;padding:9px 12px;background:var(--${severity}-bg);border:1px solid var(--${severity}-ring);border-radius:var(--r2);font-size:0.79rem;align-items:flex-start;">
+      <span style="font-weight:700;color:var(--${severity});flex-shrink:0;">${num}.</span>
+      <span style="color:var(--t1);">${text}</span>
+    </div>`;
+
+  const R = {
+    rmar: {
+      title: 'FCA RMAR Report Preview', dl: 'Download RMAR PDF',
+      sub: 'Retail Mediation Activities Return · Due 31 May 2026',
+      body: `<div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r2);padding:14px;margin-bottom:12px;">
+        <div style="font-size:0.8rem;font-weight:700;color:var(--t1);margin-bottom:10px;">Section A — Firm Details</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:0.77rem;">
+          <div><span style="color:var(--t3);">FCA Reference:</span> <span style="font-weight:600;color:var(--t1);">FRN 789012</span></div>
+          <div><span style="color:var(--t3);">Period:</span> <span style="font-weight:600;color:var(--t1);">Jan–Dec 2025</span></div>
+          <div><span style="color:var(--t3);">Total clients:</span> <span style="font-weight:600;color:var(--t1);">247</span></div>
+          <div><span style="color:var(--t3);">Advisers:</span> <span style="font-weight:600;color:var(--t1);">3</span></div>
+        </div>
+      </div>
+      <div style="background:var(--red-bg);border:1px solid var(--red-ring);border-radius:var(--r2);padding:12px 14px;font-size:0.78rem;">
+        <div style="font-weight:700;color:var(--red);margin-bottom:4px;">3 data gaps in Section B</div>
+        <div style="color:var(--t2);">• Complaint volumes — figures not yet submitted by adviser team<br>• Product mix breakdown — ISA/pension split needs verification<br>• Vulnerable client percentage — requires manual input</div>
+      </div>`
+    },
+    suitability: {
+      title: 'Suitability Review Report', dl: 'Download PDF',
+      sub: 'Suitability letters & SOAs across 247 clients · 11 May 2026',
+      body: `<div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r2);padding:14px;margin-bottom:12px;">
+        <div style="font-size:0.8rem;font-weight:700;color:var(--t1);margin-bottom:10px;">Documentation Summary</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:0.77rem;">
+          <div><span style="color:var(--t3);">Total clients:</span> <span style="font-weight:600;color:var(--t1);">247</span></div>
+          <div><span style="color:var(--t3);">SOAs complete:</span> <span style="font-weight:600;color:var(--green);">150 (61%)</span></div>
+          <div><span style="color:var(--t3);">Missing documents:</span> <span style="font-weight:600;color:var(--red);">34</span></div>
+          <div><span style="color:var(--t3);">Expired suitability letters:</span> <span style="font-weight:600;color:var(--amber);">12</span></div>
+        </div>
+      </div>
+      <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--t3);margin-bottom:8px;">Priority gaps</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        ${gap('Margaret Thompson','CLI-0047','SOA missing · Annual review overdue 14 months · Escalation required immediately','red')}
+        ${gap('Robert Chen','CLI-0089','SOA missing · Vulnerable client · Consumer Duty breach risk','red')}
+        ${gap('Priya Singh','CLI-0132','Pension transfer suitability report outstanding · Vulnerable','amber')}
+        <div style="font-size:0.75rem;color:var(--t3);text-align:center;padding-top:2px;">+ 31 more clients with documentation gaps</div>
+      </div>`
+    },
+    consumer_duty: {
+      title: 'Consumer Duty Annual Assessment', dl: 'Download PDF',
+      sub: 'FCA Consumer Duty · Assessment period: Jan–Dec 2025',
+      body: `<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+        <div style="background:var(--green-bg);border:1px solid var(--green-ring);border-radius:var(--r2);padding:12px 14px;">
+          <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--green);margin-bottom:4px;">Products &amp; Services</div>
+          <div style="font-size:1.5rem;font-weight:800;color:var(--t1);">82%</div>
+          <div style="font-size:0.72rem;color:var(--t3);">Outcome: Satisfactory</div>
+        </div>
+        <div style="background:var(--amber-bg);border:1px solid var(--amber-ring);border-radius:var(--r2);padding:12px 14px;">
+          <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--amber);margin-bottom:4px;">Price &amp; Value</div>
+          <div style="font-size:1.5rem;font-weight:800;color:var(--t1);">76%</div>
+          <div style="font-size:0.72rem;color:var(--t3);">Action required</div>
+        </div>
+        <div style="background:var(--green-bg);border:1px solid var(--green-ring);border-radius:var(--r2);padding:12px 14px;">
+          <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--green);margin-bottom:4px;">Consumer Understanding</div>
+          <div style="font-size:1.5rem;font-weight:800;color:var(--t1);">91%</div>
+          <div style="font-size:0.72rem;color:var(--t3);">Outcome: Good</div>
+        </div>
+        <div style="background:var(--amber-bg);border:1px solid var(--amber-ring);border-radius:var(--r2);padding:12px 14px;">
+          <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--amber);margin-bottom:4px;">Consumer Support</div>
+          <div style="font-size:1.5rem;font-weight:800;color:var(--t1);">78%</div>
+          <div style="font-size:0.72rem;color:var(--t3);">Needs improvement</div>
+        </div>
+      </div>
+      <div style="background:var(--amber-bg);border:1px solid var(--amber-ring);border-radius:var(--r2);padding:12px 14px;font-size:0.78rem;">
+        <div style="font-weight:700;color:var(--amber);margin-bottom:4px;">Vulnerable clients — 9 flagged · 44% documentation complete</div>
+        <div style="color:var(--t2);">Robert Chen and Priya Singh require immediate action. Consumer Duty requires documented fair outcomes for all vulnerable clients before the July assessment.</div>
+      </div>`
+    },
+    log: {
+      title: 'Compliance Activity Log', dl: 'Export as CSV',
+      sub: 'Audit trail · 1 Apr – 11 May 2026 · 47 entries',
+      body: `<div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;">
+        <div style="display:grid;grid-template-columns:80px 1fr auto;gap:12px;padding:9px 14px;border-bottom:1px solid var(--border);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--t3);">
+          <span>Date</span><span>Event</span><span>User</span>
+        </div>
+        ${row('11 May','Intelliflo sync complete — 247 client records updated','System')}
+        ${row('9 May','Risk flag raised: CLI-0047 annual review overdue 14 months','System')}
+        ${row('8 May','Document uploaded: CLI-0158 Annual Review Suitability Report','A. Williams')}
+        ${row('7 May','Alert sent: RMAR submission deadline in 25 days','System')}
+        ${row('6 May','Vulnerability status updated: CLI-0132 health deterioration','K. Davies')}
+        ${row('4 May','Annual review completed: CLI-0158 David Williams','A. Williams')}
+        <div style="padding:9px 14px;font-size:0.75rem;color:var(--t3);text-align:center;">+ 41 more entries</div>
+      </div>`
+    },
+    vulnerable: {
+      title: 'Vulnerable Customer Report', dl: 'Download PDF',
+      sub: '9 vulnerable clients · Consumer Duty · Generated 11 May 2026',
+      body: `<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px;">
+        <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r2);padding:12px;text-align:center;">
+          <div style="font-size:1.6rem;font-weight:800;color:var(--t1);">9</div>
+          <div style="font-size:0.72rem;color:var(--t3);">Flagged vulnerable</div>
+        </div>
+        <div style="background:var(--green-bg);border:1px solid var(--green-ring);border-radius:var(--r2);padding:12px;text-align:center;">
+          <div style="font-size:1.6rem;font-weight:800;color:var(--green);">5</div>
+          <div style="font-size:0.72rem;color:var(--t3);">Fully documented</div>
+        </div>
+        <div style="background:var(--red-bg);border:1px solid var(--red-ring);border-radius:var(--r2);padding:12px;text-align:center;">
+          <div style="font-size:1.6rem;font-weight:800;color:var(--red);">4</div>
+          <div style="font-size:0.72rem;color:var(--t3);">Documentation gaps</div>
+        </div>
+      </div>
+      <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--t3);margin-bottom:8px;">Clients requiring action</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        ${gap('Robert Chen','CLI-0089','Health vulnerability · Annual review 11 months overdue · SOA, Consumer Duty assessment and vulnerability re-assessment all missing','red')}
+        ${gap('Priya Singh','CLI-0132','Health deterioration · Pension transfer SOA missing · Consumer Duty outcome assessment outstanding','amber')}
+        <div style="font-size:0.75rem;color:var(--t3);text-align:center;padding-top:2px;">+ 2 more clients with partial documentation gaps</div>
+      </div>`
+    },
+    board: {
+      title: 'Board Compliance Presentation', dl: 'Download PowerPoint',
+      sub: 'Executive summary · Prepared for 15 June 2026 board meeting',
+      body: `<div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r2);padding:14px;margin-bottom:12px;">
+        <div style="font-size:0.8rem;font-weight:700;color:var(--t1);margin-bottom:10px;">Compliance Health — At a Glance</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:0.77rem;">
+          <div><span style="color:var(--t3);">Health score:</span> <span style="font-weight:700;color:var(--amber);">82 / 100</span></div>
+          <div><span style="color:var(--t3);">Change since last board:</span> <span style="font-weight:600;color:var(--green);">↑ +4</span></div>
+          <div><span style="color:var(--t3);">Overdue annual reviews:</span> <span style="font-weight:600;color:var(--red);">18</span></div>
+          <div><span style="color:var(--t3);">Missing documents:</span> <span style="font-weight:600;color:var(--amber);">34</span></div>
+        </div>
+      </div>
+      <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--t3);margin-bottom:8px;">Recommended board actions</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        ${action(1,'Escalate 18 overdue annual reviews — FCA regulatory exposure increasing. Adviser James Morrison to provide written completion timeline by 20 May.','red')}
+        ${action(2,'Approve RMAR Section B completion plan — 3 data gaps must be resolved before 31 May submission window closes.','amber')}
+        ${action(3,'Ratify Consumer Duty remediation plan for 4 vulnerable clients with incomplete outcome documentation ahead of July FCA assessment.','surface-2'.replace('surface-2','t2')?'t2':'surface-2')}
+      </div>`
+    }
+  };
+
+  const r = R[type] || R.rmar;
+  document.getElementById('preview-title').textContent = r.title;
+  document.getElementById('preview-sub').textContent = r.sub;
+  document.getElementById('preview-body').innerHTML = r.body;
+  const dl = document.getElementById('preview-dl');
+  dl.textContent = r.dl;
+  dl.onclick = () => { showToast(r.dl + ' — downloading…', 'success'); closeModal('preview-modal'); };
+  openModal('preview-modal');
+}
+</script>
 </body>
 </html>
