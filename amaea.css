@@ -89,9 +89,9 @@ body.theme-ready, body.theme-ready * {
 }
 
 /* ── Base ────────────────────────────────────────────────────── */
-html { font-size: 15px; }
+html { font-size: 16px; }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Inter, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", sans-serif;
   background: var(--bg);
   color: var(--t1);
   line-height: 1.5;
