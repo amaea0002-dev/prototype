@@ -77,12 +77,14 @@ document.addEventListener('click', e => {
 
 // ── Mobile sidebar ─────────────────────────────────────────────
 function toggleSidebar() {
-  document.querySelector('.sidebar')?.classList.toggle('open');
-  document.querySelector('.sb-overlay')?.classList.toggle('open');
+  const open = document.querySelector('.sidebar')?.classList.toggle('open');
+  document.querySelector('.sb-overlay')?.classList.toggle('open', open);
+  document.body.classList.toggle('mobile-nav-open', open);
 }
 function closeSidebar() {
   document.querySelector('.sidebar')?.classList.remove('open');
   document.querySelector('.sb-overlay')?.classList.remove('open');
+  document.body.classList.remove('mobile-nav-open');
 }
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.nav-item').forEach(item => {
