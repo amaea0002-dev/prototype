@@ -124,9 +124,7 @@ body.sb-collapsed .sidebar { width: 62px; overflow-x: hidden; }
 body.sb-collapsed .main    { margin-left: 62px; }
 
 body.sb-collapsed .sb-header { padding: 14px 8px 10px; justify-content: center; }
-body.sb-collapsed .sb-logo   { display: flex; justify-content: center; flex: none; }
-body.sb-collapsed .sb-logo img  { display: none !important; }
-body.sb-collapsed .logo-fallback { display: flex !important; }
+body.sb-collapsed .sb-logo   { display: flex; justify-content: center; flex: none; overflow: hidden; }
 
 body.sb-collapsed .sb-nav    { padding: 10px 6px; }
 body.sb-collapsed .sb-label  { height: 0; overflow: hidden; padding: 0; margin: 0; }
