@@ -19,13 +19,22 @@ function toggleTheme() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Wire pill toggle (replaces onclick="toggleTheme()")
+  // Wire pill toggle
   document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+
+  // ── Menu button: desktop = collapse, mobile = open/close ──────
+  document.querySelectorAll('.menu-btn').forEach(btn => {
+    btn.removeAttribute('onclick');
+    btn.addEventListener('click', () => {
+      if (window.innerWidth > 960) toggleSidebarCollapse();
+      else toggleSidebar();
+    });
+  });
 
   // ── User switcher ─────────────────────────────────────────────
   const USERS = {
-    hasna: { name: 'Hasna Sahul Hameed', role: 'CEO & Co-founder', initial: 'H', bg: 'linear-gradient(135deg,#4C2C4B,#8B6189)' },
-    milan: { name: 'Milan Sajiv',         role: 'CTO & Co-founder', initial: 'M', bg: 'linear-gradient(135deg,#1a4080,#4292c6)' }
+    hasna: { name: 'Hasna Sahul Hameed', firstName: 'Hasna', role: 'CEO & Co-founder', initial: 'H', bg: 'linear-gradient(135deg,#4C2C4B,#8B6189)' },
+    milan: { name: 'Milan Sajiv',         firstName: 'Milan', role: 'CTO & Co-founder', initial: 'M', bg: 'linear-gradient(135deg,#1a4080,#4292c6)' }
   };
 
   let currentUser = localStorage.getItem('amaea-proto-user') || 'hasna';
@@ -36,15 +45,17 @@ document.addEventListener('DOMContentLoaded', () => {
     currentUser = key;
     localStorage.setItem('amaea-proto-user', key);
 
-    const avatar   = document.getElementById('sb-avatar');
-    const name     = document.getElementById('sb-user-name');
-    const role     = document.getElementById('sb-user-role');
-    const topbarAv = document.getElementById('topbar-avatar');
+    const avatar     = document.getElementById('sb-avatar');
+    const nameEl     = document.getElementById('sb-user-name');
+    const roleEl     = document.getElementById('sb-user-role');
+    const topbarAv   = document.getElementById('topbar-avatar');
+    const greetingEl = document.getElementById('page-greeting-name');
 
-    if (avatar)   { avatar.textContent = u.initial; avatar.style.background = u.bg; }
-    if (name)     name.textContent = u.name;
-    if (role)     role.textContent = u.role;
-    if (topbarAv) { topbarAv.textContent = u.initial; topbarAv.style.background = u.bg; }
+    if (avatar)     { avatar.textContent = u.initial; avatar.style.background = u.bg; }
+    if (nameEl)     nameEl.textContent = u.name;
+    if (roleEl)     roleEl.textContent = u.role;
+    if (topbarAv)   { topbarAv.textContent = u.initial; topbarAv.style.background = u.bg; }
+    if (greetingEl) greetingEl.textContent = u.firstName;
 
     document.querySelectorAll('.sb-user-tick').forEach(el => el.style.opacity = '0');
     const tick = document.getElementById('tick-' + key);
