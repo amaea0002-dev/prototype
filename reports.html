@@ -109,7 +109,7 @@
         <p>FCA regulatory reports · Auto-populated from your connected data sources</p>
       </div>
       <div class="page-actions">
-        <button class="btn btn-ghost btn-sm" onclick="showToast('Report archive coming soon','info')">Archive</button>
+        <button class="btn btn-ghost btn-sm" onclick="openModal('archive-modal')">Archive</button>
       </div>
     </div>
 
@@ -259,6 +259,56 @@
     <div class="modal-footer">
       <button class="btn btn-ghost" onclick="closeModal('preview-modal')">Close</button>
       <button class="btn btn-primary" id="preview-dl" onclick="showToast('Report exported','success');closeModal('preview-modal')">Download PDF</button>
+    </div>
+  </div>
+</div>
+
+<!-- Archive modal -->
+<div class="modal-overlay" id="archive-modal">
+  <div class="modal" style="max-width:560px;">
+    <button class="modal-close" onclick="closeModal('archive-modal')">✕</button>
+    <div class="modal-title">Report Archive</div>
+    <div class="modal-sub">Previously generated reports — click any to download</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r3);">
+        <div>
+          <div style="font-size:0.84rem;font-weight:600;color:var(--t1);">FCA RMAR Q1 2026</div>
+          <div style="font-size:0.72rem;color:var(--t3);margin-top:2px;">Generated 31 Mar 2026 · PDF · Submitted</div>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="showToast('RMAR Q1 2026 downloaded','success')">Download</button>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r3);">
+        <div>
+          <div style="font-size:0.84rem;font-weight:600;color:var(--t1);">Consumer Duty Annual Assessment 2025</div>
+          <div style="font-size:0.72rem;color:var(--t3);margin-top:2px;">Generated 15 Jan 2026 · PDF · Board approved</div>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="showToast('Consumer Duty 2025 downloaded','success')">Download</button>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r3);">
+        <div>
+          <div style="font-size:0.84rem;font-weight:600;color:var(--t1);">Suitability Review Report Q4 2025</div>
+          <div style="font-size:0.72rem;color:var(--t3);margin-top:2px;">Generated 12 Dec 2025 · PDF</div>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="showToast('Suitability Q4 2025 downloaded','success')">Download</button>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r3);">
+        <div>
+          <div style="font-size:0.84rem;font-weight:600;color:var(--t1);">Board Compliance Report — November 2025</div>
+          <div style="font-size:0.72rem;color:var(--t3);margin-top:2px;">Generated 5 Nov 2025 · PDF · Board approved</div>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="showToast('Board report Nov 2025 downloaded','success')">Download</button>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r3);">
+        <div>
+          <div style="font-size:0.84rem;font-weight:600;color:var(--t1);">FCA RMAR Q3 2025</div>
+          <div style="font-size:0.72rem;color:var(--t3);margin-top:2px;">Generated 30 Sep 2025 · PDF · Submitted</div>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="showToast('RMAR Q3 2025 downloaded','success')">Download</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('archive-modal')">Close</button>
+      <button class="btn btn-primary" onclick="showToast('Full archive exported as ZIP','success');closeModal('archive-modal')">Export all →</button>
     </div>
   </div>
 </div>
