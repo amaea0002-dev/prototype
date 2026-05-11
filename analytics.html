@@ -144,9 +144,16 @@
       </div>
     </div>
 
+    <div class="analytics-tabs" id="analytics-tabs">
+      <button class="analytics-tab-btn active" data-tab="0">Completion</button>
+      <button class="analytics-tab-btn" data-tab="1">By Type</button>
+      <button class="analytics-tab-btn" data-tab="2">SLA</button>
+      <button class="analytics-tab-btn" data-tab="3">Vulnerable</button>
+    </div>
+
     <div class="analytics-layout fade-up fade-up-2">
       <!-- Completion donut -->
-      <div class="card">
+      <div class="card tab-active">
         <div class="flex items-center justify-between mb-4">
           <div><div class="card-title">AR Completion Rate</div><div class="card-sub">This review cycle — 247 clients</div></div>
           <span class="badge badge-amber">63% Complete</span>
@@ -305,6 +312,21 @@ function openDrilldown(type) {
     : adviserTable(rows);
   openModal('drilldown-modal');
 }
+
+// Analytics mobile tabs
+(function () {
+  var tabBtns = document.querySelectorAll('.analytics-tab-btn');
+  var tabCards = document.querySelectorAll('.analytics-layout .card');
+  tabBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var idx = parseInt(btn.dataset.tab);
+      tabBtns.forEach(function (b) { b.classList.remove('active'); });
+      tabCards.forEach(function (c) { c.classList.remove('tab-active'); });
+      btn.classList.add('active');
+      if (tabCards[idx]) tabCards[idx].classList.add('tab-active');
+    });
+  });
+})();
 </script>
 </body>
 </html>

@@ -612,6 +612,24 @@ tbody td { padding: 11px 14px; color: var(--t2); vertical-align: middle; }
 /* ── Analytics ───────────────────────────────────────────────── */
 .analytics-layout { display: grid; grid-template-columns: 1.35fr 1fr 1fr; gap: 14px; }
 .analytics-full { grid-column: 1 / -1; }
+
+/* ── Analytics mobile tab strip ── */
+.analytics-tabs {
+  display: none;
+  border: 1px solid var(--border-mid); border-radius: var(--r2);
+  overflow: hidden; margin-bottom: 12px; background: var(--surface-2);
+}
+.analytics-tab-btn {
+  flex: 1; padding: 8px 4px;
+  font-size: 0.65rem; font-weight: 700; line-height: 1.2;
+  color: var(--t3); background: none; border: none;
+  cursor: pointer; font-family: inherit; text-align: center;
+  transition: background 0.15s, color 0.15s;
+}
+.analytics-tab-btn.active {
+  background: var(--surface); color: var(--plum-soft);
+  box-shadow: inset 0 0 0 1px var(--border-mid);
+}
 .donut-wrap { position: relative; width: 120px; height: 120px; flex-shrink: 0; }
 .donut-wrap svg { width: 100%; height: 100%; }
 .donut-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; pointer-events: none; }
@@ -718,12 +736,24 @@ tbody td { padding: 11px 14px; color: var(--t2); vertical-align: middle; }
   .page { padding: 20px 16px 40px; }
 }
 @media (max-width: 520px) {
-  .metric-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .page-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .metric-grid { grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .metric-card { padding: 12px 14px; }
+  .metric-value { font-size: 1.6rem; margin-bottom: 3px; }
+  .metric-trend { display: none; }
+  .page-header { flex-direction: column; align-items: flex-start; gap: 6px; }
   .page-header h1 { font-size: 1.2rem; }
+  .page-actions { display: none; }
+  .card { padding: 14px 16px; }
+  .donut-wrap { width: 90px; height: 90px; }
+  .donut-pct { font-size: 1.2rem; }
   .modal { padding: 20px; border-radius: var(--r4); }
   .topbar { padding: 0 12px; gap: 8px; }
   .topbar-actions { gap: 2px; }
+  /* Analytics tabs */
+  .analytics-tabs { display: flex; }
+  .analytics-layout .card { display: none; }
+  .analytics-layout .card.tab-active { display: block; animation: fadeUp 0.2s ease both; }
+  .analytics-full { grid-column: 1; }
 }
 
 /* ── Client filter pills ── */
