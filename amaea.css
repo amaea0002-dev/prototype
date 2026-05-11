@@ -119,17 +119,7 @@ svg { flex-shrink: 0; }
   .main    { transition: margin-left 0.28s cubic-bezier(0.4, 0, 0.2, 1); }
 }
 
-/* Phase 1 — content fades out before width collapses */
-body.sb-collapsing .sb-nav,
-body.sb-collapsing .sb-footer,
-body.sb-collapsing .sb-header .sb-logo { opacity: 0; transition: opacity 0.12s ease; }
-
-/* Phase 2 — content fades in after width has expanded */
-body.sb-revealing .sb-nav,
-body.sb-revealing .sb-footer,
-body.sb-revealing .sb-header .sb-logo { opacity: 1; transition: opacity 0.18s ease; }
-
-/* ── Sidebar collapsed state (no transitions here — pure layout) ── */
+/* ── Sidebar collapsed state ── */
 body.sb-collapsed .sidebar { width: 62px; overflow-x: hidden; }
 body.sb-collapsed .main    { margin-left: 62px; }
 
@@ -210,6 +200,7 @@ body.sb-collapsed .sb-toggle svg { transform: rotate(180deg); }
   font-size: 0.63rem; font-weight: 700; letter-spacing: 0.09em;
   text-transform: uppercase; color: rgba(255,255,255,0.32);
   padding: 10px 10px 4px; display: block;
+  white-space: nowrap; overflow: hidden;
 }
 .sb-label:first-child { padding-top: 4px; }
 .nav-item {
@@ -217,6 +208,7 @@ body.sb-collapsed .sb-toggle svg { transform: rotate(180deg); }
   padding: 8px 10px; border-radius: var(--r2);
   color: var(--sb-text); font-size: 0.84rem; font-weight: 500;
   transition: background 0.14s, color 0.14s; position: relative;
+  white-space: nowrap; overflow: hidden;
 }
 .nav-item:hover { background: var(--sb-hover); color: rgba(255,255,255,0.9); }
 .nav-item.active { background: var(--sb-active); color: #fff; font-weight: 600; }
