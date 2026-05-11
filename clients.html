@@ -286,12 +286,96 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// ── Extra clients (generated rows) ──────────────────────────
+const EXTRA_CLIENTS = [
+  {id:'CLI-0201',name:'Patricia Hughes',    adviser:'James Morrison', last:'Jan 2024',due:'Jan 2025', vuln:'Standard',  status:'Compliant'},
+  {id:'CLI-0202',name:'Tom Richardson',     adviser:'Alex Williams',  last:'Mar 2023',due:'Mar 2024', vuln:'Standard',  status:'Overdue'},
+  {id:'CLI-0203',name:'Claire Watson',      adviser:'Kate Davies',    last:'May 2024',due:'May 2025', vuln:'Standard',  status:'Compliant'},
+  {id:'CLI-0204',name:'Graham Foster',      adviser:'James Morrison', last:'Oct 2023',due:'Oct 2024', vuln:'Standard',  status:'At Risk'},
+  {id:'CLI-0205',name:'Helen Clarke',       adviser:'Alex Williams',  last:'Dec 2023',due:'Dec 2024', vuln:'Vulnerable',status:'At Risk'},
+  {id:'CLI-0206',name:'Michael Evans',      adviser:'Kate Davies',    last:'Feb 2024',due:'Feb 2025', vuln:'Standard',  status:'Compliant'},
+  {id:'CLI-0207',name:'Susan Bailey',       adviser:'James Morrison', last:'Apr 2024',due:'Apr 2025', vuln:'Standard',  status:'Compliant'},
+  {id:'CLI-0208',name:'David Taylor',       adviser:'Alex Williams',  last:'Nov 2022',due:'Nov 2023', vuln:'Standard',  status:'Overdue'},
+  {id:'CLI-0209',name:'Amanda Cooper',      adviser:'Kate Davies',    last:'Jul 2024',due:'Jul 2025', vuln:'Standard',  status:'Compliant'},
+  {id:'CLI-0210',name:'Peter Jackson',      adviser:'James Morrison', last:'Sep 2023',due:'Sep 2024', vuln:'Standard',  status:'At Risk'},
+  {id:'CLI-0211',name:'Sarah Collins',      adviser:'Alex Williams',  last:'Jan 2024',due:'Jan 2025', vuln:'Standard',  status:'Compliant'},
+  {id:'CLI-0212',name:'Richard Parker',     adviser:'Kate Davies',    last:'Mar 2024',due:'Mar 2025', vuln:'Vulnerable',status:'At Risk'},
+  {id:'CLI-0213',name:'Emma White',         adviser:'James Morrison', last:'Jun 2024',due:'Jun 2025', vuln:'Standard',  status:'Compliant'},
+  {id:'CLI-0214',name:'John Harris',        adviser:'Alex Williams',  last:'Aug 2023',due:'Aug 2024', vuln:'Standard',  status:'Overdue'},
+  {id:'CLI-0215',name:'Catherine Lewis',    adviser:'Kate Davies',    last:'Apr 2024',due:'Apr 2025', vuln:'Standard',  status:'Compliant'},
+  {id:'CLI-0216',name:'Andrew Martin',      adviser:'James Morrison', last:'Dec 2023',due:'Dec 2024', vuln:'Standard',  status:'Compliant'},
+  {id:'CLI-0217',name:'Linda Thompson',     adviser:'Alex Williams',  last:'Feb 2024',due:'Feb 2025', vuln:'Standard',  status:'Compliant'},
+  {id:'CLI-0218',name:'Stephen Brown',      adviser:'Kate Davies',    last:'Oct 2024',due:'Oct 2025', vuln:'Standard',  status:'Compliant'},
+  {id:'CLI-0219',name:'Angela Davis',       adviser:'James Morrison', last:'May 2023',due:'May 2024', vuln:'Vulnerable',status:'Breach'},
+  {id:'CLI-0220',name:'Jonathan Green',     adviser:'Alex Williams',  last:'Jul 2023',due:'Jul 2024', vuln:'Standard',  status:'At Risk'}
+];
+
+(function buildExtraRows() {
+  const tbody = document.querySelector('#client-table tbody');
+  const statusBadge = s => s==='Compliant'?'badge-green':s==='Breach'?'badge-red':'badge-amber';
+  EXTRA_CLIENTS.forEach(c => {
+    const tr = document.createElement('tr');
+    tr.dataset.status = c.status; tr.dataset.vuln = c.vuln;
+    const dueStyle = (c.status==='Overdue'||c.status==='Breach') ? 'style="color:var(--red);font-weight:600;"' : '';
+    tr.innerHTML = `
+      <td><div class="td-name">${c.name}</div><div style="font-size:0.71rem;color:var(--t3);">${c.id}</div></td>
+      <td>${c.adviser}</td>
+      <td>${c.last}</td>
+      <td ${dueStyle}>${c.due}</td>
+      <td><span class="badge ${c.vuln==='Vulnerable'?'badge-amber':'badge-neutral'}">${c.vuln}</span></td>
+      <td><span class="badge ${statusBadge(c.status)}">${c.status}</span></td>`;
+    tr.addEventListener('click', () => showClientPlaceholder(c, tr));
+    tbody.appendChild(tr);
+  });
+  // Update count after rows appended
+  const n = document.querySelectorAll('#client-table tbody tr').length;
+  const countEl = document.getElementById('client-count');
+  if (countEl) countEl.textContent = 'Showing ' + n + ' of 247 clients';
+})();
+
+function showClientPlaceholder(c, rowEl) {
+  document.querySelectorAll('tbody tr').forEach(r => r.classList.remove('row-selected'));
+  rowEl.classList.add('row-selected');
+  const statusBadge = c.status==='Compliant'?'badge-green':c.status==='Breach'?'badge-red':'badge-amber';
+  document.getElementById('client-detail').innerHTML = `
+    <div class="flex items-center justify-between mb-4">
+      <div>
+        <div style="font-size:0.95rem;font-weight:800;letter-spacing:-0.03em;color:var(--t1);">${c.name}</div>
+        <div style="font-size:0.78rem;color:var(--t3);margin-top:2px;">${c.id} · Adviser: ${c.adviser}</div>
+      </div>
+      <span class="badge ${statusBadge}">${c.status}</span>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+      <span class="badge ${c.vuln==='Vulnerable'?'badge-amber':'badge-neutral'}">${c.vuln}</span>
+      <span style="font-size:0.78rem;color:var(--t3);">Last review: ${c.last} · Next due: ${c.due}</span>
+    </div>
+    <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--t3);margin-bottom:10px;">Client Journey</div>
+    <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r3);padding:18px;text-align:center;">
+      <svg width="28" height="28" fill="none" stroke="var(--border-mid)" stroke-width="1.5" viewBox="0 0 24 24" style="margin:0 auto 10px;display:block;"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+      <div style="font-size:0.85rem;font-weight:600;color:var(--t2);margin-bottom:4px;">Journey history syncing</div>
+      <div style="font-size:0.77rem;color:var(--t3);">Full compliance timeline loads after the next Intelliflo sync. Next sync: Today at 18:00.</div>
+    </div>
+    <div class="compliance-actions" style="margin-top:16px;">
+      <button class="btn btn-secondary btn-sm" onclick="openModal('flag-modal')">Flag Compliance Gap</button>
+      <button class="btn btn-secondary btn-sm" onclick="showToast('Escalated to senior compliance officer','info')">Escalate</button>
+    </div>`;
+}
+
 function filterClients(q) {
   const rows = document.querySelectorAll('#client-table tbody tr');
   const lower = q.toLowerCase();
+  let visible = 0;
   rows.forEach(r => {
-    r.style.display = r.textContent.toLowerCase().includes(lower) ? '' : 'none';
+    const match = r.textContent.toLowerCase().includes(lower);
+    // respect active filters too
+    const statusOk = !_statusFilter || _statusFilter.split(',').includes(r.dataset.status);
+    const vulnOk   = !_vFilter     || r.dataset.vuln === _vFilter;
+    const show = match && statusOk && vulnOk;
+    r.style.display = show ? '' : 'none';
+    if (show) visible++;
   });
+  const countEl = document.getElementById('client-count');
+  if (countEl) countEl.textContent = 'Showing ' + visible + ' of 247 clients';
 }
 function closeAllMenus() {
   document.querySelectorAll('.dropdown-menu.open').forEach(d => d.classList.remove('open'));
