@@ -136,7 +136,10 @@ body.sb-collapsed .nav-badge { display: none; }
 body.sb-collapsed .sb-footer { padding: 8px 6px 12px; }
 body.sb-collapsed .sb-user   { justify-content: center; padding: 8px 6px; }
 body.sb-collapsed .sb-user-name,
-body.sb-collapsed .sb-user-role { display: none; }
+body.sb-collapsed .sb-user-role,
+body.sb-collapsed .sb-user-text,
+body.sb-collapsed .sb-user-clickable > svg { display: none; }
+body.sb-collapsed .sb-user-panel { display: none !important; }
 
 /* Rotate toggle arrow when collapsed */
 body.sb-collapsed .sb-toggle svg { transform: rotate(180deg); }
