@@ -9,6 +9,70 @@
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link href="amaea.css" rel="stylesheet"/>
+  <style>
+    .rpt-overlay{position:fixed;inset:0;z-index:500;background:var(--bg);display:none;flex-direction:column;overflow:hidden;}
+    .rpt-overlay.open{display:flex;}
+    .rpt-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;}
+    .rpt-toolbar-title{font-size:0.88rem;font-weight:700;color:var(--t1);}
+    .rpt-scroll{flex:1;overflow-y:auto;padding:32px 16px;background:#e8e6ed;}
+    [data-theme="dark"] .rpt-scroll{background:#160c15;}
+    .rpt-page{background:#fff;color:#17131E;width:100%;max-width:760px;margin:0 auto;padding:52px 56px;box-shadow:0 4px 40px rgba(0,0,0,0.14);font-family:'Inter',sans-serif;font-size:13.5px;line-height:1.6;}
+    .rpt-logo{font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#40243F;margin-bottom:2px;}
+    .rpt-header{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:24px;border-bottom:3px solid #40243F;margin-bottom:28px;}
+    .rpt-header-left h1{font-size:20px;font-weight:800;letter-spacing:-0.03em;color:#17131E;margin:8px 0 4px;}
+    .rpt-header-left p{font-size:12px;color:#9088A3;margin:0;}
+    .rpt-header-right{text-align:right;font-size:12px;color:#47405A;line-height:1.8;}
+    .rpt-header-right strong{color:#17131E;}
+    .rpt-status{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:4px;font-size:11.5px;font-weight:700;margin-bottom:24px;}
+    .rpt-status.draft{background:#FFFBEB;color:#D97706;border:1px solid #FDE68A;}
+    .rpt-status.complete{background:#ECFDF5;color:#059669;border:1px solid #A7F3D0;}
+    .rpt-h2{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#40243F;margin:28px 0 12px;padding-bottom:6px;border-bottom:1px solid #E8E6ED;}
+    .rpt-h3{font-size:13px;font-weight:700;color:#17131E;margin:16px 0 8px;}
+    .rpt-table{width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:16px;}
+    .rpt-table th{background:#F3F2F6;color:#47405A;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;padding:8px 12px;text-align:left;border-bottom:2px solid #E8E6ED;}
+    .rpt-table td{padding:9px 12px;border-bottom:1px solid #F3F2F6;color:#17131E;vertical-align:top;}
+    .rpt-table tr:last-child td{border-bottom:none;}
+    .rpt-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;}
+    .rpt-badge.red{background:#FEF2F2;color:#DC2626;}
+    .rpt-badge.amber{background:#FFFBEB;color:#D97706;}
+    .rpt-badge.green{background:#ECFDF5;color:#059669;}
+    .rpt-badge.blue{background:#EEF2FF;color:#4F46E5;}
+    .rpt-kpi-row{display:grid;gap:12px;margin-bottom:20px;}
+    .rpt-kpi{background:#F9F8FA;border:1px solid #E8E6ED;border-radius:6px;padding:14px 16px;}
+    .rpt-kpi-label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#9088A3;margin-bottom:4px;}
+    .rpt-kpi-value{font-size:22px;font-weight:800;letter-spacing:-0.03em;color:#17131E;line-height:1;}
+    .rpt-kpi-sub{font-size:11px;color:#9088A3;margin-top:3px;}
+    .rpt-kpi.green .rpt-kpi-value{color:#059669;}
+    .rpt-kpi.amber .rpt-kpi-value{color:#D97706;}
+    .rpt-kpi.red .rpt-kpi-value{color:#DC2626;}
+    .rpt-gap{padding:10px 14px;border-radius:6px;margin-bottom:8px;font-size:12.5px;}
+    .rpt-gap.red{background:#FEF2F2;border:1px solid rgba(239,68,68,0.2);}
+    .rpt-gap.amber{background:#FFFBEB;border:1px solid rgba(245,158,11,0.2);}
+    .rpt-gap-name{font-weight:700;color:#17131E;}
+    .rpt-gap-detail{color:#6B7280;font-size:12px;margin-top:2px;}
+    .rpt-footer{margin-top:40px;padding-top:16px;border-top:1px solid #E8E6ED;font-size:11px;color:#9088A3;display:flex;justify-content:space-between;}
+    .rpt-sign{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:28px;}
+    .rpt-sign-box{border-top:1.5px solid #17131E;padding-top:8px;font-size:12px;color:#47405A;}
+    .rpt-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;font-size:12.5px;margin-bottom:16px;}
+    .rpt-info-row{display:flex;gap:8px;}
+    .rpt-info-label{color:#9088A3;flex-shrink:0;min-width:160px;}
+    .rpt-info-val{font-weight:600;color:#17131E;}
+    .rpt-alert{padding:12px 14px;border-radius:6px;margin-bottom:16px;font-size:12.5px;}
+    .rpt-alert.red{background:#FEF2F2;border:1px solid rgba(239,68,68,0.25);}
+    .rpt-alert.amber{background:#FFFBEB;border:1px solid rgba(245,158,11,0.25);}
+    .rpt-alert-title{font-weight:700;margin-bottom:4px;}
+    .rpt-alert.red .rpt-alert-title{color:#DC2626;}
+    .rpt-alert.amber .rpt-alert-title{color:#D97706;}
+    .rpt-section-num{font-size:11px;font-weight:700;color:#40243F;opacity:0.6;margin-right:6px;}
+    @media print{
+      .rpt-toolbar{display:none!important;}
+      .rpt-scroll{padding:0;background:white;}
+      .rpt-overlay{position:static!important;}
+      .rpt-page{box-shadow:none;padding:20mm 22mm;max-width:none;}
+      .sidebar,.main .topbar{display:none!important;}
+    }
+    @media(max-width:600px){.rpt-page{padding:28px 20px;}.rpt-info-grid{grid-template-columns:1fr;}.rpt-sign{grid-template-columns:1fr;}.rpt-header{flex-direction:column;gap:12px;}.rpt-header-right{text-align:left;}}
+  </style>
 </head>
 <body>
 
@@ -141,7 +205,7 @@
           <div class="progress"><div class="progress-fill fill-amber" style="width:87%"></div></div>
         </div>
         <div class="report-footer">
-          <button class="btn btn-primary btn-sm" id="rmar-btn" onclick="simulateGenerate(this,'RMAR ready')">Generate Report</button>
+          <button class="btn btn-primary btn-sm" id="rmar-btn" onclick="openReportViewerBtn('rmar')">Generate Report</button>
           <button class="btn btn-secondary btn-sm" onclick="openPreview('rmar')">Preview</button>
         </div>
       </div>
@@ -161,7 +225,7 @@
           <div class="progress"><div class="progress-fill fill-red" style="width:61%"></div></div>
         </div>
         <div class="report-footer">
-          <button class="btn btn-primary btn-sm" id="suit-btn" onclick="simulateGenerate(this,'Suitability report ready')">Generate Report</button>
+          <button class="btn btn-primary btn-sm" id="suit-btn" onclick="openReportViewerBtn('suitability')">Generate Report</button>
           <button class="btn btn-secondary btn-sm" onclick="openPreview('suitability')">Preview</button>
         </div>
       </div>
@@ -181,7 +245,7 @@
           <div class="progress"><div class="progress-fill fill-green" style="width:78%"></div></div>
         </div>
         <div class="report-footer">
-          <button class="btn btn-primary btn-sm" id="cd-btn" onclick="simulateGenerate(this,'Consumer Duty report ready')">Generate Report</button>
+          <button class="btn btn-primary btn-sm" id="cd-btn" onclick="openReportViewerBtn('consumer_duty')">Generate Report</button>
           <button class="btn btn-secondary btn-sm" onclick="openPreview('consumer_duty')">Preview</button>
         </div>
       </div>
@@ -201,7 +265,7 @@
           <div class="progress"><div class="progress-fill fill-green" style="width:100%"></div></div>
         </div>
         <div class="report-footer">
-          <button class="btn btn-primary btn-sm" id="log-btn" onclick="simulateGenerate(this,'Compliance log exported')">Export Log</button>
+          <button class="btn btn-primary btn-sm" id="log-btn" onclick="openReportViewerBtn('log')">Export Log</button>
           <button class="btn btn-secondary btn-sm" onclick="openPreview('log')">Preview</button>
         </div>
       </div>
@@ -221,7 +285,7 @@
           <div class="progress"><div class="progress-fill fill-amber" style="width:44%"></div></div>
         </div>
         <div class="report-footer">
-          <button class="btn btn-primary btn-sm" id="vuln-btn" onclick="simulateGenerate(this,'Vulnerable report ready')">Generate Report</button>
+          <button class="btn btn-primary btn-sm" id="vuln-btn" onclick="openReportViewerBtn('vulnerable')">Generate Report</button>
           <button class="btn btn-secondary btn-sm" onclick="openPreview('vulnerable')">Preview</button>
         </div>
       </div>
@@ -241,7 +305,7 @@
           <div class="progress"><div class="progress-fill fill-blue" style="width:40%"></div></div>
         </div>
         <div class="report-footer">
-          <button class="btn btn-primary btn-sm" id="board-btn" onclick="simulateGenerate(this,'Board report ready')">Generate Draft</button>
+          <button class="btn btn-primary btn-sm" id="board-btn" onclick="openReportViewerBtn('board')">Generate Draft</button>
           <button class="btn btn-secondary btn-sm" onclick="openPreview('board')">Preview</button>
         </div>
       </div>
@@ -313,8 +377,385 @@
   </div>
 </div>
 
+<!-- Full-screen report viewer -->
+<div class="rpt-overlay" id="rpt-overlay">
+  <div class="rpt-toolbar">
+    <button class="btn btn-ghost btn-sm" onclick="closeReportViewer()">← Back</button>
+    <span class="rpt-toolbar-title" id="rpt-toolbar-title">Report</span>
+    <button class="btn btn-primary btn-sm" onclick="window.print()">
+      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="margin-right:5px;vertical-align:middle;"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Print / Download PDF
+    </button>
+  </div>
+  <div class="rpt-scroll">
+    <div class="rpt-page" id="rpt-content"></div>
+  </div>
+</div>
+
 <script src="amaea.js"></script>
 <script>
+// ── Report viewer ──────────────────────────────────────────────────────────
+function closeReportViewer() {
+  document.getElementById('rpt-overlay').classList.remove('open');
+}
+
+function openReportViewer(type) {
+  var builders = { rmar: buildRMAR, suitability: buildSuitability, consumer_duty: buildConsumerDuty, log: buildComplianceLog, vulnerable: buildVulnerable, board: buildBoard };
+  var titles   = { rmar: 'FCA RMAR Submission', suitability: 'Suitability Review Report', consumer_duty: 'Consumer Duty Annual Assessment', log: 'Compliance Activity Log', vulnerable: 'Vulnerable Customer Report', board: 'Board Compliance Presentation' };
+  document.getElementById('rpt-toolbar-title').textContent = titles[type] || 'Report';
+  document.getElementById('rpt-content').innerHTML = (builders[type] || buildRMAR)();
+  var overlay = document.getElementById('rpt-overlay');
+  overlay.classList.add('open');
+  overlay.querySelector('.rpt-scroll').scrollTop = 0;
+}
+
+function openReportViewerBtn(type) {
+  showToast('Generating report…', 'info', 700);
+  setTimeout(function() { openReportViewer(type); }, 550);
+}
+
+// ── Shared helpers ─────────────────────────────────────────────────────────
+function rptHeader(title, sub, firmInfo, status, statusClass) {
+  return '<div class="rpt-header"><div class="rpt-header-left"><div class="rpt-logo">Amaea</div><h1>' + title + '</h1><p>' + sub + '</p></div><div class="rpt-header-right">' + firmInfo + '</div></div><div><span class="rpt-status ' + statusClass + '">' + status + '</span></div>';
+}
+
+function rptTable(headers, rows) {
+  var ths = headers.map(function(h){ return '<th>' + h + '</th>'; }).join('');
+  var trs = rows.map(function(r){ return '<tr>' + r.map(function(c){ return '<td>' + c + '</td>'; }).join('') + '</tr>'; }).join('');
+  return '<table class="rpt-table"><thead><tr>' + ths + '</tr></thead><tbody>' + trs + '</tbody></table>';
+}
+
+function rptKpis(cols, items) {
+  var cells = items.map(function(k){ return '<div class="rpt-kpi ' + (k.color||'') + '"><div class="rpt-kpi-label">' + k.label + '</div><div class="rpt-kpi-value">' + k.value + '</div><div class="rpt-kpi-sub">' + k.sub + '</div></div>'; }).join('');
+  return '<div class="rpt-kpi-row" style="grid-template-columns:repeat(' + cols + ',1fr);">' + cells + '</div>';
+}
+
+function rptGap(name, id, detail, color) {
+  return '<div class="rpt-gap ' + color + '"><div class="rpt-gap-name">' + name + ' <span style="font-weight:400;color:#9088A3;font-size:12px;">' + id + '</span></div><div class="rpt-gap-detail">' + detail + '</div></div>';
+}
+
+function rptAlert(title, body, color) {
+  return '<div class="rpt-alert ' + color + '"><div class="rpt-alert-title">' + title + '</div><div>' + body + '</div></div>';
+}
+
+function rptFooter(ref) {
+  var d = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  return '<div class="rpt-footer"><span>Generated by Amaea Compliance Platform &middot; ' + d + '</span><span>' + ref + '</span></div>';
+}
+
+function rptSign(left, right) {
+  return '<div class="rpt-sign"><div class="rpt-sign-box">' + left + '</div><div class="rpt-sign-box">' + right + '</div></div>';
+}
+
+function rptInfoGrid(rows) {
+  return '<div class="rpt-info-grid">' + rows.map(function(r){ return '<div class="rpt-info-row"><span class="rpt-info-label">' + r[0] + '</span><span class="rpt-info-val">' + r[1] + '</span></div>'; }).join('') + '</div>';
+}
+
+var TODAY = new Date().toLocaleDateString('en-GB');
+
+// ── RMAR ──────────────────────────────────────────────────────────────────
+function buildRMAR() {
+  return rptHeader('FCA RMAR Submission','Retail Mediation Activities Return',
+    '<strong>Sterling IFA Ltd</strong><br>FCA Ref: FRN 789012<br>Period: 1 Jan 2025 – 31 Dec 2025<br>Prepared by: Hasna Sahul Hameed<br>Date: ' + TODAY,
+    '⚠ Draft: 3 data gaps outstanding','draft') +
+
+  '<div class="rpt-h2"><span class="rpt-section-num">A</span>Firm Details</div>' +
+  rptInfoGrid([
+    ['Firm name','Sterling IFA Ltd'],
+    ['FCA firm reference','FRN 789012'],
+    ['Reporting period','1 January 2025 – 31 December 2025'],
+    ['Report filed by','Hasna Sahul Hameed (CEO)'],
+    ['Number of advisers','3 (James Morrison, Alex Williams, Kate Davies)'],
+    ['Total active clients','247'],
+    ['Regulatory category','Independent Financial Adviser'],
+    ['Submission deadline','31 May 2026'],
+  ]) +
+
+  '<div class="rpt-h2"><span class="rpt-section-num">B</span>Complaints</div>' +
+  rptAlert('3 data gaps — section incomplete','The following data points have not yet been submitted and must be completed before RMAR can be filed.','amber') +
+  rptTable(['Data Point','Status','Required Action'],[
+    ['Complaint volumes by category','<span class="rpt-badge amber">Pending</span>','Adviser team to submit complaint log by 20 May'],
+    ['Complaint resolution times','<span class="rpt-badge amber">Pending</span>','Extracted from CRM; verification required'],
+    ['Redress paid (total £)','<span class="rpt-badge amber">Pending</span>','Finance team to confirm figures'],
+    ['Number of complaints upheld','<span class="rpt-badge green">Complete</span> — 4','Pre-populated from Intelliflo'],
+    ['Number of complaints received','<span class="rpt-badge green">Complete</span> — 7','Pre-populated from Intelliflo'],
+  ]) +
+
+  '<div class="rpt-h2"><span class="rpt-section-num">F</span>Business Volumes</div>' +
+  rptKpis(4,[
+    {label:'Total policies arranged',value:'182',sub:'Full year 2025',color:''},
+    {label:'Funds under advice',value:'£24.7m',sub:'AUM as at 31 Dec 2025',color:''},
+    {label:'Total premium income',value:'£3.2m',sub:'New and renewal business',color:''},
+    {label:'Active client book',value:'247',sub:'As at 31 Dec 2025',color:''},
+  ]) +
+  rptTable(['Product Type','Policies Arranged','% of Book','FUM (£)'],[
+    ['Personal Pensions / SIPP','82','45%','£11.1m'],
+    ['ISAs (Stocks &amp; Shares / Cash)','55','30%','£7.4m'],
+    ['Protection (Life / CI / IP)','32','18%','£3.7m'],
+    ['Other (GIA, VCT, AIM)','13','7%','£2.5m'],
+  ]) +
+
+  '<div class="rpt-h2"><span class="rpt-section-num">K</span>Consumer Duty</div>' +
+  rptKpis(3,[
+    {label:'Vulnerable clients identified',value:'9',sub:'3.6% of client book',color:'amber'},
+    {label:'Consumer understanding score',value:'91%',sub:'Communications assessment',color:''},
+    {label:'Fair value confirmations',value:'247/247',sub:'All clients assessed',color:'green'},
+  ]) +
+  rptAlert('Vulnerable client documentation: 44% complete','5 of 9 vulnerable clients are fully documented. Robert Chen (CLI-0089) and Priya Singh (CLI-0132) have outstanding Consumer Duty outcome assessments. These must be completed before the 31 July Consumer Duty submission.','red') +
+  rptAlert('Vulnerable client percentage requires manual input','Section K.4 requires the percentage of clients identified as vulnerable. Current figure: 3.6% (9 of 247). Confirm with compliance officer before submission.','amber') +
+
+  '<div class="rpt-h2">Certification</div>' +
+  '<p style="font-size:12.5px;color:#47405A;margin-bottom:20px;">I confirm that the information provided in this return is, to the best of my knowledge and belief, accurate and complete. I understand that it is an offence to provide false information to the FCA.</p>' +
+  rptSign('Responsible Person<br><strong>Hasna Sahul Hameed</strong><br>CEO, Sterling IFA Ltd','Date<br><br><span style="color:#9088A3;font-style:italic;">Pending signature</span>') +
+  rptFooter('Ref: RMAR-2025-FRN789012');
+}
+
+// ── Suitability ────────────────────────────────────────────────────────────
+function buildSuitability() {
+  return rptHeader('Suitability Review Report','Consolidated suitability letters and SOA status across all clients',
+    '<strong>Sterling IFA Ltd</strong><br>FCA Ref: FRN 789012<br>Report date: ' + TODAY + '<br>Prepared by: Hasna Sahul Hameed',
+    '⚠ 34 documentation gaps identified','draft') +
+
+  '<div class="rpt-h2">Executive Summary</div>' +
+  rptKpis(4,[
+    {label:'Total clients',value:'247',sub:'All active',color:''},
+    {label:'Documentation complete',value:'61%',sub:'150 of 247 clients',color:'amber'},
+    {label:'Missing documents',value:'34',sub:'SOAs and suitability letters',color:'red'},
+    {label:'Expired letters',value:'12',sub:'Due for renewal',color:'amber'},
+  ]) +
+  '<p style="font-size:12.5px;color:#47405A;margin-bottom:20px;">Documentation completeness has improved by 4 percentage points since the last review (57% in Q4 2025). However, 34 clients still have missing or incomplete suitability documentation. 8 of these are vulnerable clients under Consumer Duty obligation.</p>' +
+
+  '<div class="rpt-h2">Priority Gaps: Immediate Action Required</div>' +
+  rptGap('Margaret Thompson','CLI-0047','Annual review 14 months overdue (longest elapsed in firm). Pension Drawdown SOA from Sep 2023 outstanding. Adviser: James Morrison. FCA regulatory breach; escalation required immediately.','red') +
+  rptGap('Robert Chen','CLI-0089','Vulnerable client (health condition). Annual review 11 months overdue. SOA missing. Consumer Duty outcome assessment and vulnerability re-assessment outstanding. Adviser: Alex Williams.','red') +
+  rptGap('Anne Morrison','CLI-0163','Suitability letter expired. Annual review due. Adviser: Kate Davies. Renewal required before next client interaction.','amber') +
+  rptGap('Priya Singh','CLI-0132','Vulnerable client (health deterioration). Pension transfer in progress. Suitability report for transfer outstanding. Consumer Duty outcome assessment required. Adviser: Kate Davies.','amber') +
+  '<p style="font-size:12px;color:#9088A3;text-align:center;padding:8px 0;">+ 30 further clients with documentation gaps (see adviser breakdown below)</p>' +
+
+  '<div class="rpt-h2">Adviser Breakdown</div>' +
+  rptTable(['Adviser','Clients','Complete','Gaps','Breach Risk','Action'],[
+    ['James Morrison','87','52 (60%)','<span class="rpt-badge red">14 gaps</span>','2 clients (CLI-0047 critical)','<span class="rpt-badge red">Immediate</span>'],
+    ['Alex Williams','81','56 (69%)','<span class="rpt-badge amber">11 gaps</span>','1 client (CLI-0089 vulnerable)','<span class="rpt-badge red">Urgent</span>'],
+    ['Kate Davies','79','42 (53%)','<span class="rpt-badge amber">9 gaps</span>','2 clients (CLI-0132, CLI-0163)','<span class="rpt-badge amber">This week</span>'],
+  ]) +
+
+  '<div class="rpt-h2">Documentation by Stage</div>' +
+  rptTable(['Client Stage','Clients','SOA Complete','Letters Current','Missing','Completion'],[
+    ['Initial Engagement (Stage 1)','62','58 (94%)','58 (94%)','4','94%'],
+    ['Ad-hoc Work (Stage 2)','81','69 (85%)','69 (85%)','12','85%'],
+    ['Annual Reviews (Stage 3)','104','71 (68%)','68 (65%)','18','67%'],
+  ]) +
+
+  '<div class="rpt-h2">Recommended Actions</div>' +
+  '<ol style="font-size:12.5px;color:#47405A;padding-left:18px;line-height:2;">' +
+  '<li>Immediate: Escalate CLI-0047 (Thompson) to James Morrison. Written completion plan required by 20 May 2026.</li>' +
+  '<li>Urgent: Complete SOA and Consumer Duty assessment for CLI-0089 (Robert Chen) before 30 May.</li>' +
+  '<li>This week: Kate Davies to complete suitability report for CLI-0132 (Priya Singh) pension transfer and renew CLI-0163 (Anne Morrison) letter.</li>' +
+  '<li>Ongoing: Systematically clear remaining 30 standard documentation gaps over next 6 weeks. Target 85% completion by 30 June.</li>' +
+  '</ol>' +
+  rptFooter('Ref: SUIT-2026-001 · Sterling IFA Ltd');
+}
+
+// ── Consumer Duty ──────────────────────────────────────────────────────────
+function buildConsumerDuty() {
+  return rptHeader('Consumer Duty Annual Assessment','FCA Consumer Duty (PS22/9) — Assessment Period: 1 January – 31 December 2025',
+    '<strong>Sterling IFA Ltd</strong><br>FCA Ref: FRN 789012<br>Board submission deadline: 31 July 2026<br>Prepared by: Hasna Sahul Hameed',
+    '78% complete: action required before July submission','draft') +
+
+  '<div class="rpt-h2">Overall Assessment</div>' +
+  rptKpis(4,[
+    {label:'Overall compliance score',value:'82/100',sub:'Up 4 points since last review',color:'amber'},
+    {label:'Clients assessed',value:'247',sub:'Full client book',color:''},
+    {label:'Vulnerable clients',value:'9',sub:'3.6% of book — 44% documented',color:'amber'},
+    {label:'Outstanding actions',value:'34',sub:'Must resolve before July',color:'red'},
+  ]) +
+
+  '<div class="rpt-h2">Four Outcome Areas</div>' +
+  rptTable(['Outcome Area','Score','Status','Key Findings'],[
+    ['Products &amp; Services','82%','<span class="rpt-badge green">Satisfactory</span>','All 247 clients in suitable products. 4 suitability reviews pending but product match confirmed.'],
+    ['Price &amp; Value','76%','<span class="rpt-badge amber">Action required</span>','Fair value assessments completed. 12 clients with expired suitability letters require fee justification renewal.'],
+    ['Consumer Understanding','91%','<span class="rpt-badge green">Good</span>','Communications reviewed and assessed as clear and fair. All key documents issued in plain English.'],
+    ['Consumer Support','78%','<span class="rpt-badge amber">Needs improvement</span>','Annual review completion at 63%. 18 overdue reviews represent a Consumer Support failure. Vulnerable client support at 44%.'],
+  ]) +
+
+  '<div class="rpt-h2">Vulnerable Clients</div>' +
+  rptKpis(3,[
+    {label:'Flagged vulnerable',value:'9',sub:'3.6% of client book',color:''},
+    {label:'Fully documented',value:'5',sub:'Consumer Duty compliant',color:'green'},
+    {label:'Documentation gaps',value:'4',sub:'Immediate action required',color:'red'},
+  ]) +
+  rptTable(['Client','ID','Vulnerability Driver','Review Status','Documentation','Action'],[
+    ['Robert Chen','CLI-0089','Health condition','11 months overdue','<span class="rpt-badge red">Missing</span>','<span class="rpt-badge red">Immediate</span>'],
+    ['Priya Singh','CLI-0132','Health deterioration','Active ad-hoc','<span class="rpt-badge amber">Incomplete</span>','<span class="rpt-badge red">Urgent</span>'],
+    ['Client CLI-0201','CLI-0201','Financial resilience','Up to date','<span class="rpt-badge amber">Incomplete</span>','<span class="rpt-badge amber">This month</span>'],
+    ['Client CLI-0218','CLI-0218','Life event (bereavement)','Up to date','<span class="rpt-badge amber">Incomplete</span>','<span class="rpt-badge amber">This month</span>'],
+    ['5 further clients','Various','Various drivers','Various','<span class="rpt-badge green">Complete</span>','No action needed'],
+  ]) +
+
+  '<div class="rpt-h2">Annual Review Compliance</div>' +
+  rptTable(['Adviser','Clients','On Time','In Progress','Overdue','SLA Rate'],[
+    ['James Morrison','87','52','21','14','60%'],
+    ['Alex Williams','81','56','14','11','69%'],
+    ['Kate Davies','79','48','20','11','61%'],
+    ['<strong>Total</strong>','<strong>247</strong>','<strong>156</strong>','<strong>55</strong>','<strong>18</strong>','<strong>63%</strong>'],
+  ]) +
+  rptAlert('Annual review compliance below FCA expectation','With 18 overdue annual reviews and an overall completion rate of 63%, this represents a Consumer Support outcome failure. A remediation plan is required as part of this board submission.','red') +
+
+  '<div class="rpt-h2">Board Attestation</div>' +
+  '<p style="font-size:12.5px;color:#47405A;margin-bottom:20px;">The board of Sterling IFA Ltd confirms that it has reviewed this Consumer Duty Annual Assessment and is satisfied that the firm is taking appropriate steps to deliver good outcomes for all customers, including those with characteristics of vulnerability.</p>' +
+  rptSign('CEO<br><strong>Hasna Sahul Hameed</strong><br>Sterling IFA Ltd','Date of board approval<br><br><span style="color:#9088A3;font-style:italic;">Pending — due 31 July 2026</span>') +
+  rptFooter('Ref: CD-2025-FRN789012 · FCA Consumer Duty PS22/9');
+}
+
+// ── Compliance Log ─────────────────────────────────────────────────────────
+function buildComplianceLog() {
+  function logRow(date, cat, event, user, ref) {
+    var colour = cat === 'Breach' ? 'red' : cat === 'Alert' ? 'amber' : 'blue';
+    return '<tr><td style="white-space:nowrap;">' + date + '</td><td><span class="rpt-badge ' + colour + '" style="font-size:10px;">' + cat + '</span></td><td>' + event + '</td><td style="white-space:nowrap;">' + user + '</td><td style="font-size:11px;color:#9088A3;">' + ref + '</td></tr>';
+  }
+  return rptHeader('Compliance Activity Log','Full audit trail of all compliance actions and system events',
+    '<strong>Sterling IFA Ltd</strong><br>FCA Ref: FRN 789012<br>Period: 1 April 2026 – ' + TODAY + '<br>Total entries: 47',
+    '✓ Complete: audit trail up to date','complete') +
+
+  '<div class="rpt-h2">Period Summary</div>' +
+  rptKpis(4,[
+    {label:'Total events',value:'47',sub:'1 Apr – 11 May 2026',color:''},
+    {label:'Risk flags raised',value:'6',sub:'System generated',color:'amber'},
+    {label:'Documents uploaded',value:'12',sub:'By advisers',color:'green'},
+    {label:'Alerts sent',value:'9',sub:'Deadline reminders',color:''},
+  ]) +
+
+  '<div class="rpt-h2">Activity Log</div>' +
+  '<table class="rpt-table"><thead><tr><th>Date</th><th>Category</th><th>Event</th><th>User</th><th>Reference</th></tr></thead><tbody>' +
+  logRow('11 May 2026','Sync','Intelliflo sync complete: 247 client records updated and reconciled','System','SYNC-0089') +
+  logRow('09 May 2026','Breach','Risk flag raised: CLI-0047 (Thompson) annual review 14 months overdue','System','FLAG-0047') +
+  logRow('08 May 2026','Document','Annual Review Suitability Report uploaded for CLI-0158 (David Williams)','A. Williams','DOC-0158') +
+  logRow('07 May 2026','Alert','RMAR submission deadline alert sent: 25 days remaining','System','ALERT-RMAR') +
+  logRow('06 May 2026','Update','Vulnerability status updated: CLI-0132 (Priya Singh), health deterioration noted','K. Davies','VUL-0132') +
+  logRow('04 May 2026','Document','Annual review completed and documented: CLI-0158 (David Williams)','A. Williams','AR-0158') +
+  logRow('02 May 2026','Alert','Consumer Duty: vulnerable client documentation below 50% threshold','System','CD-ALERT-001') +
+  logRow('30 Apr 2026','Breach','Risk flag: CLI-0089 (Robert Chen) approaching 12-month review threshold','System','FLAG-0089') +
+  logRow('29 Apr 2026','Document','Fact find updated: CLI-0201 personal circumstances reviewed','J. Morrison','FF-0201') +
+  logRow('28 Apr 2026','Update','RMAR Section A data pre-populated from Intelliflo','System','RMAR-SYNC') +
+  logRow('25 Apr 2026','Alert','Annual review alert: 5 clients approaching 11-month threshold','System','ALERT-AR-011') +
+  logRow('22 Apr 2026','Document','Suitability letter issued: CLI-0178 (James O\'Brien) ISA consolidation','J. Morrison','SL-0178') +
+  logRow('18 Apr 2026','Breach','Risk flag: CLI-0047 suitability letter from Oct 2023 expired, no renewal found','System','FLAG-SL-0047') +
+  logRow('15 Apr 2026','Update','Compliance health score recalculated: 82/100 (up 4 points)','System','SCORE-0426') +
+  logRow('10 Apr 2026','Document','Consumer Duty outcome assessment completed: CLI-0158, CLI-0178, CLI-0201','A. Williams','CD-0426') +
+  logRow('07 Apr 2026','Alert','RMAR preparation started: data extraction from Intelliflo initiated','System','RMAR-PREP') +
+  logRow('03 Apr 2026','Sync','Intelliflo sync: 3 new clients onboarded (CLI-0245, CLI-0246, CLI-0247)','System','SYNC-0088') +
+  logRow('01 Apr 2026','Report','Period start: compliance monitoring resumed for Q2 2026','System','PERIOD-Q2') +
+  '</tbody></table>' +
+  '<p style="font-size:11.5px;color:#9088A3;text-align:center;padding:8px 0;">Showing 18 of 47 entries. Full log available on request.</p>' +
+  rptFooter('Ref: LOG-Q2-2026 · Sterling IFA Ltd · Data retained 7 years per FCA requirements');
+}
+
+// ── Vulnerable ─────────────────────────────────────────────────────────────
+function buildVulnerable() {
+  return rptHeader('Vulnerable Customer Report','Consumer Duty — Vulnerable Client Identification, Monitoring and Outcome Evidence',
+    '<strong>Sterling IFA Ltd</strong><br>FCA Ref: FRN 789012<br>Report date: ' + TODAY + '<br>Assessment period: 1 Jan – 31 Dec 2025',
+    '⚠ 4 clients require immediate documentation','draft') +
+
+  '<div class="rpt-h2">Summary</div>' +
+  rptKpis(4,[
+    {label:'Vulnerable clients flagged',value:'9',sub:'3.6% of 247 clients',color:'amber'},
+    {label:'Fully documented',value:'5',sub:'Consumer Duty compliant',color:'green'},
+    {label:'Partially documented',value:'2',sub:'Action in progress',color:'amber'},
+    {label:'Documentation missing',value:'2',sub:'Immediate action required',color:'red'},
+  ]) +
+
+  '<div class="rpt-h2">FCA Vulnerability Drivers — Client Distribution</div>' +
+  rptTable(['Vulnerability Driver','Clients','% of Vulnerable'],[
+    ['Health and disability (physical or mental)','4','44%'],
+    ['Life events (bereavement, divorce, job loss)','2','22%'],
+    ['Low financial resilience (debt, low savings)','2','22%'],
+    ['Low capability or confidence (literacy, age)','1','12%'],
+  ]) +
+
+  '<div class="rpt-h2">Clients Requiring Immediate Action</div>' +
+  rptGap('Robert Chen','CLI-0089','Driver: Health condition (disclosed Apr 2025). Annual review 11 months overdue (due Jun 2024). Missing: Annual Review Suitability Report, Consumer Duty Outcome Assessment, Vulnerability Re-assessment. Adviser: Alex Williams. Status: CRITICAL — Consumer Duty breach risk.','red') +
+  rptGap('Priya Singh','CLI-0132','Driver: Health deterioration (updated by Kate Davies, 6 May 2026). Active ad-hoc pension transfer in progress. Missing: Pension Transfer Suitability Report, Consumer Duty Outcome Assessment. Adviser: Kate Davies. Status: URGENT — ad-hoc transaction incomplete.','red') +
+
+  '<div class="rpt-h2">Clients with Partial Documentation</div>' +
+  rptGap('Client CLI-0201','CLI-0201','Driver: Financial resilience. Annual review current. Consumer Duty Outcome Assessment draft in progress. Adviser: James Morrison. Target completion: 31 May 2026.','amber') +
+  rptGap('Client CLI-0218','CLI-0218','Driver: Life event (bereavement, Oct 2025). Annual review current. Vulnerability re-assessment and adapted communications record outstanding. Adviser: James Morrison. Target completion: 31 May 2026.','amber') +
+
+  '<div class="rpt-h2">Fully Documented Clients</div>' +
+  rptTable(['Client Reference','Driver','Annual Review','SOA','CD Assessment','Adapted Approach'],[
+    ['CLI-0103','Health (stable)','Current','<span class="rpt-badge green">✓</span>','<span class="rpt-badge green">✓</span>','<span class="rpt-badge green">✓</span>'],
+    ['CLI-0144','Financial resilience','Current','<span class="rpt-badge green">✓</span>','<span class="rpt-badge green">✓</span>','<span class="rpt-badge green">✓</span>'],
+    ['CLI-0167','Life event (resolved)','Current','<span class="rpt-badge green">✓</span>','<span class="rpt-badge green">✓</span>','<span class="rpt-badge green">✓</span>'],
+    ['CLI-0188','Low capability','Current','<span class="rpt-badge green">✓</span>','<span class="rpt-badge green">✓</span>','<span class="rpt-badge green">✓</span>'],
+    ['CLI-0209','Financial resilience','Current','<span class="rpt-badge green">✓</span>','<span class="rpt-badge green">✓</span>','<span class="rpt-badge green">✓</span>'],
+  ]) +
+
+  '<div class="rpt-h2">Monitoring Approach</div>' +
+  '<ol style="font-size:12.5px;color:#47405A;padding-left:18px;line-height:2.2;">' +
+  '<li>All vulnerable clients are flagged in Amaea and reviewed at every client interaction.</li>' +
+  '<li>Vulnerability status is re-assessed at each annual review or when circumstances change.</li>' +
+  '<li>Adapted communications are documented and stored against the client record.</li>' +
+  '<li>Consumer Duty Outcome Assessments are completed separately from standard suitability letters.</li>' +
+  '<li>Fair value is reviewed annually for all vulnerable clients irrespective of product type.</li>' +
+  '</ol>' +
+  rptFooter('Ref: VUL-2025-FRN789012 · FCA Consumer Duty PS22/9 · PRIN 12');
+}
+
+// ── Board ──────────────────────────────────────────────────────────────────
+function buildBoard() {
+  return rptHeader('Board Compliance Presentation','Executive Summary — Prepared for 15 June 2026 Board Meeting',
+    '<strong>Sterling IFA Ltd</strong><br>FCA Ref: FRN 789012<br>Presented by: Hasna Sahul Hameed (CEO)<br>Date: ' + TODAY,
+    '40% complete: draft for board review','draft') +
+
+  '<div class="rpt-h2">Compliance Health at a Glance</div>' +
+  rptKpis(4,[
+    {label:'Health score',value:'82/100',sub:'Up 4 points since last board',color:'amber'},
+    {label:'Active clients',value:'247',sub:'All monitored by Amaea',color:''},
+    {label:'Overdue annual reviews',value:'18',sub:'FCA regulatory exposure',color:'red'},
+    {label:'RMAR status',value:'87%',sub:'Due 31 May — 3 gaps remain',color:'amber'},
+  ]) +
+
+  '<div class="rpt-h2">Section 1: Annual Review Compliance</div>' +
+  rptTable(['Adviser','Client Book','On Time','In Progress','Overdue (Breach)','Completion Rate'],[
+    ['James Morrison','87 clients','52','21','14','60%'],
+    ['Alex Williams','81 clients','56','14','11','69%'],
+    ['Kate Davies','79 clients','48','20','11','61%'],
+    ['<strong>Total</strong>','<strong>247 clients</strong>','<strong>156</strong>','<strong>55</strong>','<strong>18</strong>','<strong>63%</strong>'],
+  ]) +
+  rptAlert('Board action required: 18 overdue annual reviews','The firm\'s annual review completion rate of 63% is below the 95% target. CLI-0047 (Margaret Thompson) is the oldest at 14 months elapsed. Board endorsement of an escalation plan is required at this meeting.','red') +
+
+  '<div class="rpt-h2">Section 2: Consumer Duty</div>' +
+  rptTable(['Outcome Area','Score','Trend','Board Action'],[
+    ['Products &amp; Services','82%','↑ Stable','None required'],
+    ['Price &amp; Value','76%','→ Flat','Approve fair value review schedule'],
+    ['Consumer Understanding','91%','↑ Improving','None required'],
+    ['Consumer Support','78%','↓ Declining','Approve annual review remediation plan'],
+  ]) +
+  '<p style="font-size:12.5px;color:#47405A;margin-bottom:16px;">Consumer Support has declined due to the increase in overdue annual reviews. The board must ratify a remediation plan before the 31 July Consumer Duty board submission deadline.</p>' +
+
+  '<div class="rpt-h2">Section 3: RMAR Filing</div>' +
+  rptInfoGrid([
+    ['Submission deadline','31 May 2026'],
+    ['Completion status','87% (3 data gaps)'],
+    ['Sections A, F, K','Pre-populated from Intelliflo'],
+    ['Section B gaps','Complaint volumes, resolution times, redress paid'],
+  ]) +
+  rptAlert('Board approval required for RMAR completion plan','Section B data gaps must be resolved and RMAR submitted by 31 May. The board is requested to approve the completion timeline and nominate a section owner for the complaint data.','amber') +
+
+  '<div class="rpt-h2">Section 4: Recommended Board Actions</div>' +
+  '<ol style="font-size:12.5px;color:#47405A;padding-left:18px;line-height:2.4;margin-bottom:20px;">' +
+  '<li><strong>Approve annual review escalation plan.</strong> James Morrison to provide written completion timeline for 14 overdue clients by 20 May. Board to review progress at next meeting.</li>' +
+  '<li><strong>Ratify RMAR Section B completion plan.</strong> Nominate section owner. Confirm all 3 data gaps resolved before 31 May submission window closes.</li>' +
+  '<li><strong>Endorse Consumer Duty remediation plan.</strong> Approve actions for Robert Chen (CLI-0089) and Priya Singh (CLI-0132). Target full vulnerable client documentation by 30 June ahead of the 31 July board submission.</li>' +
+  '<li><strong>Note compliance health score of 82/100.</strong> Target of 90+ by end Q3 2026 through resolution of outstanding review and documentation gaps.</li>' +
+  '</ol>' +
+
+  '<div class="rpt-h2">Board Resolution</div>' +
+  '<p style="font-size:12.5px;color:#47405A;margin-bottom:24px;">The board of Sterling IFA Ltd resolves to: (1) approve the annual review escalation plan as presented; (2) approve the RMAR completion timeline; (3) ratify the Consumer Duty remediation plan for vulnerable clients; and (4) note the firm\'s compliance health score of 82/100.</p>' +
+  rptSign('Chair of the Board<br><br><span style="color:#9088A3;font-style:italic;">To be signed at board meeting</span>','Date<br><br><span style="color:#9088A3;font-style:italic;">15 June 2026</span>') +
+  rptFooter('Ref: BOARD-JUN26 · Sterling IFA Ltd · Confidential board document');
+}
+
+// ── Preview modal (keep existing) ──────────────────────────────────────────
 function openPreview(type) {
   const row = (date, event, user) =>
     `<div style="display:grid;grid-template-columns:80px 1fr auto;gap:12px;padding:9px 14px;border-bottom:1px solid var(--border);font-size:0.78rem;align-items:start;">
