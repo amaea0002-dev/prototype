@@ -254,85 +254,123 @@ const clientData = {
 };
 
 const milestoneData = {
-  'initial-0047': {
-    title: 'Initial Client Engagement', stage: 'Stage 1 · Initial Work', date: 'Mar 2023', status: 'Compliant',
-    docs: [
-      { label: 'Client Agreement / Letter of Engagement', status: 'ok' },
-      { label: 'Fact Find — Personal Circumstances', status: 'ok' },
-      { label: 'Risk Profile Assessment', status: 'ok' },
-      { label: 'ID & Anti-Money Laundering Checks', status: 'ok' },
-      { label: 'Initial Suitability Report', status: 'ok' }
-    ]
-  },
-  'adhoc-0047': {
-    title: 'Pension Drawdown Review', stage: 'Stage 2 · Ad-hoc Work', date: 'Sep 2023', status: 'Missing document',
-    docs: [
-      { label: 'Drawdown Suitability Report', status: 'miss' },
-      { label: 'Updated Risk Profile', status: 'ok' },
-      { label: 'Flexi-Access Drawdown Illustration', status: 'ok' },
-      { label: 'Client Signed Agreement', status: 'ok' },
-      { label: 'Transfer Value Analysis (if applicable)', status: 'pend' }
-    ]
-  },
-  'ar1-0047': {
-    title: 'Annual Review 1', stage: 'Stage 3 · Annual Review', date: 'Mar 2024', status: 'Compliant',
-    docs: [
-      { label: 'Annual Review Suitability Report', status: 'ok' },
-      { label: 'Updated Fact Find', status: 'ok' },
-      { label: 'Portfolio Valuation & Performance Review', status: 'ok' },
-      { label: 'Consumer Duty Outcome Assessment', status: 'ok' },
-      { label: 'Signed Client Acknowledgement', status: 'ok' }
-    ]
-  },
-  'ar2-0047': {
-    title: 'Annual Review 2 — OVERDUE', stage: 'Stage 3 · Annual Review', date: 'Due Mar 2025 (14 months elapsed)', status: 'Breach',
-    docs: [
-      { label: 'Annual Review Suitability Report', status: 'miss' },
-      { label: 'Updated Fact Find', status: 'miss' },
-      { label: 'Portfolio Valuation & Performance Review', status: 'miss' },
-      { label: 'Consumer Duty Outcome Assessment', status: 'miss' },
-      { label: 'Signed Client Acknowledgement', status: 'pend' }
-    ]
-  },
-  'initial-0089': {
-    title: 'Initial Client Engagement', stage: 'Stage 1 · Initial Work', date: 'Jun 2022', status: 'Compliant',
-    docs: [
-      { label: 'Client Agreement / Letter of Engagement', status: 'ok' },
-      { label: 'Fact Find — Personal Circumstances', status: 'ok' },
-      { label: 'Vulnerability Assessment', status: 'ok' },
-      { label: 'ID & Anti-Money Laundering Checks', status: 'ok' },
-      { label: 'Initial Suitability Report', status: 'ok' }
-    ]
-  },
-  'adhoc-0089': {
-    title: 'Portfolio Restructure', stage: 'Stage 2 · Ad-hoc Work', date: 'Jan 2023', status: 'Compliant',
-    docs: [
-      { label: 'Suitability Report — Restructure', status: 'ok' },
-      { label: 'Updated Vulnerability Check', status: 'ok' },
-      { label: 'Consumer Duty Fair Value Assessment', status: 'ok' },
-      { label: 'Client Signed Agreement', status: 'ok' }
-    ]
-  },
-  'ar1-0089': {
-    title: 'Annual Review 1', stage: 'Stage 3 · Annual Review', date: 'Jun 2023', status: 'Compliant',
-    docs: [
-      { label: 'Annual Review Suitability Report', status: 'ok' },
-      { label: 'Updated Fact Find', status: 'ok' },
-      { label: 'Vulnerability Re-assessment', status: 'ok' },
-      { label: 'Consumer Duty Outcome Assessment', status: 'ok' },
-      { label: 'Signed Client Acknowledgement', status: 'ok' }
-    ]
-  },
-  'ar2-0089': {
-    title: 'Annual Review 2 — OVERDUE', stage: 'Stage 3 · Annual Review', date: 'Due Jun 2024 (11 months elapsed)', status: 'Breach',
-    docs: [
-      { label: 'Annual Review Suitability Report', status: 'miss' },
-      { label: 'Updated Vulnerability Re-assessment', status: 'miss' },
-      { label: 'Consumer Duty Outcome Assessment', status: 'miss' },
-      { label: 'Portfolio Valuation & Performance Review', status: 'pend' },
-      { label: 'Signed Client Acknowledgement', status: 'miss' }
-    ]
-  }
+  'initial-0047': { title: 'Initial Client Engagement', date: 'Mar 2023', status: 'Compliant', docs: [
+    { label: 'Client Agreement / Letter of Engagement', status: 'ok' },
+    { label: 'Fact Find — Personal Circumstances', status: 'ok' },
+    { label: 'Risk Profile Assessment', status: 'ok' },
+    { label: 'ID & Anti-Money Laundering Checks', status: 'ok' },
+    { label: 'Initial Suitability Report', status: 'ok' }
+  ]},
+  'adhoc-0047': { title: 'Pension Drawdown Review', date: 'Sep 2023', status: 'Missing document', docs: [
+    { label: 'Drawdown Suitability Report', status: 'miss' },
+    { label: 'Updated Risk Profile', status: 'ok' },
+    { label: 'Flexi-Access Drawdown Illustration', status: 'ok' },
+    { label: 'Client Signed Agreement', status: 'ok' },
+    { label: 'Transfer Value Analysis', status: 'pend' }
+  ]},
+  'ar1-0047': { title: 'Annual Review', date: 'Mar 2024', status: 'Compliant', docs: [
+    { label: 'Annual Review Suitability Report', status: 'ok' },
+    { label: 'Updated Fact Find', status: 'ok' },
+    { label: 'Portfolio Valuation & Performance Review', status: 'ok' },
+    { label: 'Consumer Duty Outcome Assessment', status: 'ok' },
+    { label: 'Signed Client Acknowledgement', status: 'ok' }
+  ]},
+  'ar2-0047': { title: 'Annual Review — OVERDUE', date: 'Due Mar 2025 · 14 months elapsed', status: 'Breach', docs: [
+    { label: 'Annual Review Suitability Report', status: 'miss' },
+    { label: 'Updated Fact Find', status: 'miss' },
+    { label: 'Portfolio Valuation & Performance Review', status: 'miss' },
+    { label: 'Consumer Duty Outcome Assessment', status: 'miss' },
+    { label: 'Signed Client Acknowledgement', status: 'pend' }
+  ]},
+  'initial-0089': { title: 'Initial Client Engagement', date: 'Jun 2022', status: 'Compliant', docs: [
+    { label: 'Client Agreement / Letter of Engagement', status: 'ok' },
+    { label: 'Fact Find — Personal Circumstances', status: 'ok' },
+    { label: 'Vulnerability Assessment', status: 'ok' },
+    { label: 'ID & Anti-Money Laundering Checks', status: 'ok' },
+    { label: 'Initial Suitability Report', status: 'ok' }
+  ]},
+  'adhoc-0089': { title: 'Portfolio Restructure', date: 'Jan 2023', status: 'Compliant', docs: [
+    { label: 'Suitability Report — Restructure', status: 'ok' },
+    { label: 'Updated Vulnerability Check', status: 'ok' },
+    { label: 'Consumer Duty Fair Value Assessment', status: 'ok' },
+    { label: 'Client Signed Agreement', status: 'ok' }
+  ]},
+  'ar1-0089': { title: 'Annual Review', date: 'Jun 2023', status: 'Compliant', docs: [
+    { label: 'Annual Review Suitability Report', status: 'ok' },
+    { label: 'Updated Fact Find', status: 'ok' },
+    { label: 'Vulnerability Re-assessment', status: 'ok' },
+    { label: 'Consumer Duty Outcome Assessment', status: 'ok' },
+    { label: 'Signed Client Acknowledgement', status: 'ok' }
+  ]},
+  'ar2-0089': { title: 'Annual Review — OVERDUE', date: 'Due Jun 2024 · 11 months elapsed', status: 'Breach', docs: [
+    { label: 'Annual Review Suitability Report', status: 'miss' },
+    { label: 'Updated Vulnerability Re-assessment', status: 'miss' },
+    { label: 'Consumer Duty Outcome Assessment', status: 'miss' },
+    { label: 'Portfolio Valuation & Performance Review', status: 'pend' },
+    { label: 'Signed Client Acknowledgement', status: 'miss' }
+  ]},
+  'initial-0114': { title: 'Initial Client Engagement', date: 'Jan 2024', status: 'In Progress', docs: [
+    { label: 'Client Agreement / Letter of Engagement', status: 'ok' },
+    { label: 'Fact Find — Personal Circumstances', status: 'ok' },
+    { label: 'Risk Profile Assessment', status: 'miss' },
+    { label: 'ID & Anti-Money Laundering Checks', status: 'ok' },
+    { label: 'Initial Suitability Report', status: 'pend' }
+  ]},
+  'initial-0132': { title: 'Initial Client Engagement', date: 'Sep 2023', status: 'Compliant', docs: [
+    { label: 'Client Agreement / Letter of Engagement', status: 'ok' },
+    { label: 'Fact Find — Personal Circumstances', status: 'ok' },
+    { label: 'Vulnerability Assessment', status: 'ok' },
+    { label: 'Risk Profile Assessment', status: 'ok' },
+    { label: 'Initial Suitability Report', status: 'ok' }
+  ]},
+  'adhoc-0132': { title: 'Pension Transfer', date: 'Jan 2024', status: 'Missing document', docs: [
+    { label: 'Pension Transfer Suitability Report', status: 'miss' },
+    { label: 'Vulnerability Re-assessment', status: 'ok' },
+    { label: 'Transfer Value Analysis', status: 'ok' },
+    { label: 'Consumer Duty Fair Value Assessment', status: 'miss' },
+    { label: 'Client Consent Form', status: 'pend' }
+  ]},
+  'initial-0158': { title: 'Initial Client Engagement', date: 'Nov 2022', status: 'Compliant', docs: [
+    { label: 'Client Agreement / Letter of Engagement', status: 'ok' },
+    { label: 'Fact Find — Personal Circumstances', status: 'ok' },
+    { label: 'Risk Profile Assessment', status: 'ok' },
+    { label: 'ID & Anti-Money Laundering Checks', status: 'ok' },
+    { label: 'Initial Suitability Report', status: 'ok' }
+  ]},
+  'ar1-0158': { title: 'Annual Review', date: 'Nov 2023', status: 'Compliant', docs: [
+    { label: 'Annual Review Suitability Report', status: 'ok' },
+    { label: 'Updated Fact Find', status: 'ok' },
+    { label: 'Portfolio Valuation & Performance Review', status: 'ok' },
+    { label: 'Consumer Duty Outcome Assessment', status: 'ok' },
+    { label: 'Signed Client Acknowledgement', status: 'ok' }
+  ]},
+  'initial-0163': { title: 'Initial Client Engagement', date: 'Feb 2023', status: 'Compliant', docs: [
+    { label: 'Client Agreement / Letter of Engagement', status: 'ok' },
+    { label: 'Fact Find — Personal Circumstances', status: 'ok' },
+    { label: 'Risk Profile Assessment', status: 'ok' },
+    { label: 'ID & Anti-Money Laundering Checks', status: 'ok' },
+    { label: 'Initial Suitability Report', status: 'ok' }
+  ]},
+  'ar1-0163': { title: 'Annual Review', date: 'Feb 2024', status: 'At Risk', docs: [
+    { label: 'Annual Review Suitability Report', status: 'ok' },
+    { label: 'Updated Fact Find', status: 'ok' },
+    { label: 'Suitability Letter', status: 'miss' },
+    { label: 'Consumer Duty Outcome Assessment', status: 'ok' },
+    { label: 'Signed Client Acknowledgement', status: 'pend' }
+  ]},
+  'initial-0178': { title: 'Initial Client Engagement', date: 'Jul 2023', status: 'Compliant', docs: [
+    { label: 'Client Agreement / Letter of Engagement', status: 'ok' },
+    { label: 'Fact Find — Personal Circumstances', status: 'ok' },
+    { label: 'Risk Profile Assessment', status: 'ok' },
+    { label: 'ID & Anti-Money Laundering Checks', status: 'ok' },
+    { label: 'Initial Suitability Report', status: 'ok' }
+  ]},
+  'adhoc-0178': { title: 'ISA Consolidation', date: 'Nov 2023', status: 'Missing document', docs: [
+    { label: 'ISA Consolidation Suitability Report', status: 'ok' },
+    { label: 'Client Agreement Signature', status: 'miss' },
+    { label: 'Transfer Authority Form', status: 'ok' },
+    { label: 'Updated Risk Profile', status: 'ok' }
+  ]}
 };
 
 // ── Open milestone modal ───────────────────────────────────────
@@ -346,7 +384,7 @@ function openMilestone(key) {
       <span>${doc.label}</span>
     </div>`).join('');
   document.getElementById('milestone-modal-title').textContent = d.title;
-  document.getElementById('milestone-modal-sub').innerHTML = `<span style="font-weight:600;color:var(--t2);">${d.stage}</span> · ${d.date} · <span class="badge badge-${statusColor}">${d.status}</span>`;
+  document.getElementById('milestone-modal-sub').innerHTML = `${d.date} · <span class="badge badge-${statusColor}">${d.status}</span>`;
   document.getElementById('milestone-modal-docs').innerHTML = checkHtml;
   openModal('milestone-modal');
 }
@@ -370,47 +408,49 @@ function openClient(id, rowEl) {
     ? `<span class="badge badge-red">Breach</span>`
     : `<span class="badge badge-amber">At Risk</span>`;
 
+  function mkEntry(key, date, title, statusText, color, hasLine) {
+    return `<button class="milestone-btn" onclick="openMilestone('${key}')">
+      <div class="milestone-dot-col"><div class="m-dot" style="color:var(--${color});background:var(--${color});"></div>${hasLine ? '<div class="m-line"></div>' : ''}</div>
+      <div class="milestone-body" style="${hasLine ? '' : 'padding-bottom:0'}">
+        <div class="m-type">${date}</div>
+        <div class="m-title" style="${color === 'red' ? 'color:var(--red);' : ''}">${title}</div>
+        <div class="m-sub"><span style="color:var(--${color});font-weight:600;">${statusText}</span> · Click to review</div>
+      </div>
+    </button>`;
+  }
+
   const timelines = {
-    'CLI-0047': `
-      <div class="stage-header"><span class="stage-tag" style="color:var(--blue);">Stage 1 · Initial Work</span><div class="stage-line"></div></div>
-      <button class="milestone-btn" onclick="openMilestone('initial-0047')">
-        <div class="milestone-dot-col"><div class="m-dot" style="color:var(--green);background:var(--green);"></div><div class="m-line"></div></div>
-        <div class="milestone-body"><div class="m-type" style="color:var(--blue);">Initial Work</div><div class="m-title">Initial Client Engagement</div><div class="m-sub">Mar 2023 · <span style="color:var(--green);font-weight:600;">Compliant</span> · Click to review documents</div></div>
-      </button>
-      <div class="stage-header"><span class="stage-tag" style="color:var(--amber);">Stage 2 · Ad-hoc Work</span><div class="stage-line"></div></div>
-      <button class="milestone-btn" onclick="openMilestone('adhoc-0047')">
-        <div class="milestone-dot-col"><div class="m-dot" style="color:var(--amber);background:var(--amber);"></div><div class="m-line"></div></div>
-        <div class="milestone-body"><div class="m-type" style="color:var(--amber);">Ad-hoc</div><div class="m-title">Pension Drawdown</div><div class="m-sub">Sep 2023 · <span style="color:var(--amber);font-weight:600;">Missing document</span> · Click to review</div></div>
-      </button>
-      <div class="stage-header"><span class="stage-tag" style="color:var(--plum-soft);">Stage 3 · Annual Reviews</span><div class="stage-line"></div></div>
-      <button class="milestone-btn" onclick="openMilestone('ar1-0047')">
-        <div class="milestone-dot-col"><div class="m-dot" style="color:var(--green);background:var(--green);"></div><div class="m-line"></div></div>
-        <div class="milestone-body"><div class="m-type" style="color:var(--plum-soft);">Annual Review 1</div><div class="m-title">Annual Review — March 2024</div><div class="m-sub">Mar 2024 · <span style="color:var(--green);font-weight:600;">Compliant</span> · Click to review</div></div>
-      </button>
-      <button class="milestone-btn" onclick="openMilestone('ar2-0047')">
-        <div class="milestone-dot-col"><div class="m-dot" style="color:var(--red);background:var(--red);"></div></div>
-        <div class="milestone-body" style="padding-bottom:0"><div class="m-type" style="color:var(--plum-soft);">Annual Review 2</div><div class="m-title" style="color:var(--red);">Annual Review 2 — OVERDUE</div><div class="m-sub">Due Mar 2025 · <span style="color:var(--red);font-weight:600;">14 months elapsed · Click to see gaps</span></div></div>
-      </button>`,
-    'CLI-0089': `
-      <div class="stage-header"><span class="stage-tag" style="color:var(--blue);">Stage 1 · Initial Work</span><div class="stage-line"></div></div>
-      <button class="milestone-btn" onclick="openMilestone('initial-0089')">
-        <div class="milestone-dot-col"><div class="m-dot" style="color:var(--green);background:var(--green);"></div><div class="m-line"></div></div>
-        <div class="milestone-body"><div class="m-type" style="color:var(--blue);">Initial Work</div><div class="m-title">Initial Client Engagement</div><div class="m-sub">Jun 2022 · <span style="color:var(--green);font-weight:600;">Compliant</span></div></div>
-      </button>
-      <div class="stage-header"><span class="stage-tag" style="color:var(--amber);">Stage 2 · Ad-hoc Work</span><div class="stage-line"></div></div>
-      <button class="milestone-btn" onclick="openMilestone('adhoc-0089')">
-        <div class="milestone-dot-col"><div class="m-dot" style="color:var(--green);background:var(--green);"></div><div class="m-line"></div></div>
-        <div class="milestone-body"><div class="m-type" style="color:var(--amber);">Ad-hoc</div><div class="m-title">Portfolio Restructure</div><div class="m-sub">Jan 2023 · <span style="color:var(--green);font-weight:600;">Compliant</span></div></div>
-      </button>
-      <div class="stage-header"><span class="stage-tag" style="color:var(--plum-soft);">Stage 3 · Annual Reviews</span><div class="stage-line"></div></div>
-      <button class="milestone-btn" onclick="openMilestone('ar1-0089')">
-        <div class="milestone-dot-col"><div class="m-dot" style="color:var(--green);background:var(--green);"></div><div class="m-line"></div></div>
-        <div class="milestone-body"><div class="m-type" style="color:var(--plum-soft);">Annual Review 1</div><div class="m-title">Annual Review — June 2023</div><div class="m-sub">Jun 2023 · <span style="color:var(--green);font-weight:600;">Compliant</span></div></div>
-      </button>
-      <button class="milestone-btn" onclick="openMilestone('ar2-0089')">
-        <div class="milestone-dot-col"><div class="m-dot" style="color:var(--red);background:var(--red);"></div></div>
-        <div class="milestone-body" style="padding-bottom:0"><div class="m-type" style="color:var(--plum-soft);">Annual Review 2</div><div class="m-title" style="color:var(--red);">Annual Review 2 — OVERDUE</div><div class="m-sub">Due Jun 2024 · <span style="color:var(--red);font-weight:600;">11 months elapsed · Click to see gaps</span></div></div>
-      </button>`
+    'CLI-0047': [
+      mkEntry('initial-0047', 'Mar 2023', 'Initial Client Engagement',  'Compliant',         'green', true),
+      mkEntry('adhoc-0047',   'Sep 2023', 'Pension Drawdown Review',    'Missing document',  'amber', true),
+      mkEntry('ar1-0047',     'Mar 2024', 'Annual Review',              'Compliant',         'green', true),
+      mkEntry('ar2-0047',     'Due Mar 2025', 'Annual Review — OVERDUE','14 months elapsed', 'red',   false)
+    ].join(''),
+    'CLI-0089': [
+      mkEntry('initial-0089', 'Jun 2022', 'Initial Client Engagement',  'Compliant',         'green', true),
+      mkEntry('adhoc-0089',   'Jan 2023', 'Portfolio Restructure',      'Compliant',         'green', true),
+      mkEntry('ar1-0089',     'Jun 2023', 'Annual Review',              'Compliant',         'green', true),
+      mkEntry('ar2-0089',     'Due Jun 2024', 'Annual Review — OVERDUE','11 months elapsed', 'red',   false)
+    ].join(''),
+    'CLI-0114': [
+      mkEntry('initial-0114', 'Jan 2024', 'Initial Client Engagement',  'In progress',       'amber', false)
+    ].join(''),
+    'CLI-0132': [
+      mkEntry('initial-0132', 'Sep 2023', 'Initial Client Engagement',  'Compliant',         'green', true),
+      mkEntry('adhoc-0132',   'Jan 2024', 'Pension Transfer',           'Missing document',  'amber', false)
+    ].join(''),
+    'CLI-0158': [
+      mkEntry('initial-0158', 'Nov 2022', 'Initial Client Engagement',  'Compliant',         'green', true),
+      mkEntry('ar1-0158',     'Nov 2023', 'Annual Review',              'Compliant',         'green', false)
+    ].join(''),
+    'CLI-0163': [
+      mkEntry('initial-0163', 'Feb 2023', 'Initial Client Engagement',  'Compliant',         'green', true),
+      mkEntry('ar1-0163',     'Feb 2024', 'Annual Review',              'At risk',           'amber', false)
+    ].join(''),
+    'CLI-0178': [
+      mkEntry('initial-0178', 'Jul 2023', 'Initial Client Engagement',  'Compliant',         'green', true),
+      mkEntry('adhoc-0178',   'Nov 2023', 'ISA Consolidation',          'Missing document',  'amber', false)
+    ].join('')
   };
 
   const timelineHtml = timelines[id] || `<p style="font-size:0.8rem;color:var(--t3);padding:12px 0;">Journey details available after initial data sync.</p>`;
