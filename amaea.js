@@ -185,8 +185,27 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 function toggleSidebarCollapse() {
-  const collapsed = document.body.classList.toggle('sb-collapsed');
-  localStorage.setItem('amaea-sb-collapsed', collapsed);
+  const isCollapsed = document.body.classList.contains('sb-collapsed');
+
+  if (!isCollapsed) {
+    // Collapsing: fade content out first, then snap layout + collapse width
+    document.body.classList.add('sb-collapsing');
+    setTimeout(function () {
+      document.body.classList.remove('sb-collapsing');
+      document.body.classList.add('sb-collapsed');
+      localStorage.setItem('amaea-sb-collapsed', 'true');
+    }, 130);
+  } else {
+    // Expanding: snap layout open, widen, then fade content in
+    document.body.classList.remove('sb-collapsed');
+    localStorage.setItem('amaea-sb-collapsed', 'false');
+    setTimeout(function () {
+      document.body.classList.add('sb-revealing');
+      setTimeout(function () {
+        document.body.classList.remove('sb-revealing');
+      }, 200);
+    }, 180);
+  }
 }
 
 // ── Generate simulation ────────────────────────────────────────
