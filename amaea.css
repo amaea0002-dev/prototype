@@ -274,10 +274,49 @@ body.mobile-nav-open .menu-btn span:nth-child(3) { transform: translateY(-6.5px)
   font-size: 0.7rem; font-weight: 700; color: #fff; cursor: pointer; flex-shrink: 0;
   margin-left: 4px;
 }
-.icon-sun { display: block; }
-.icon-moon { display: none; }
-[data-theme="dark"] .icon-sun { display: none; }
-[data-theme="dark"] .icon-moon { display: block; }
+/* ── Theme pill toggle (matches intranet + website) ── */
+.theme-toggle {
+  position: relative; width: 40px; height: 22px;
+  border-radius: 11px; background: rgba(255,255,255,0.22);
+  cursor: pointer; border: none; flex-shrink: 0;
+  transition: background 0.3s ease;
+}
+.theme-toggle::before {
+  content: ''; position: absolute; top: 2px; left: 2px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: rgba(255,255,255,0.75);
+  transition: transform 0.3s cubic-bezier(0.34,1.4,0.64,1), background 0.3s ease;
+}
+[data-theme="dark"] .theme-toggle { background: var(--plum-soft); }
+[data-theme="dark"] .theme-toggle::before { transform: translateX(18px); background: #fff; }
+
+/* ── Sidebar user switcher panel ── */
+.sb-user-clickable { cursor: pointer; }
+.sb-user-text { flex: 1; min-width: 0; }
+.sb-option-avatar {
+  width: 26px; height: 26px; border-radius: var(--pill); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.68rem; font-weight: 700; color: #fff;
+}
+.sb-user-panel {
+  position: absolute; bottom: 100%; left: 8px; right: 8px;
+  background: #1e0e1e; border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--r3); padding: 6px;
+  display: none; flex-direction: column; gap: 2px;
+  box-shadow: 0 -8px 24px rgba(0,0,0,0.45); z-index: 10;
+}
+.sb-user-panel.open { display: flex; }
+.sb-user-option {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px; border-radius: var(--r2);
+  border: none; background: none; cursor: pointer; width: 100%;
+  transition: background 0.12s;
+}
+.sb-user-option:hover { background: rgba(255,255,255,0.07); }
+.sb-user-option-info { flex: 1; text-align: left; min-width: 0; }
+.sb-user-option-name { font-size: 0.79rem; font-weight: 600; color: #fff; }
+.sb-user-option-role { font-size: 0.65rem; color: rgba(255,255,255,0.45); margin-top: 1px; }
+.sb-user-tick { font-size: 0.72rem; color: rgba(255,255,255,0.65); flex-shrink: 0; }
 
 /* ── Page header ─────────────────────────────────────────────── */
 .page-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 24px; gap: 16px; }

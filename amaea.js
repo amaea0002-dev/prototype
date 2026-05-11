@@ -18,6 +18,59 @@ function toggleTheme() {
   localStorage.setItem('amaea-theme', isDark ? 'light' : 'dark');
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  // Wire pill toggle (replaces onclick="toggleTheme()")
+  document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+
+  // ── User switcher ─────────────────────────────────────────────
+  const USERS = {
+    hasna: { name: 'Hasna Sahul Hameed', role: 'CEO & Co-founder', initial: 'H', bg: 'linear-gradient(135deg,#4C2C4B,#8B6189)' },
+    milan: { name: 'Milan Sajiv',         role: 'CTO & Co-founder', initial: 'M', bg: 'linear-gradient(135deg,#1a4080,#4292c6)' }
+  };
+
+  let currentUser = localStorage.getItem('amaea-proto-user') || 'hasna';
+
+  function applyUser(key) {
+    const u = USERS[key];
+    if (!u) return;
+    currentUser = key;
+    localStorage.setItem('amaea-proto-user', key);
+
+    const avatar   = document.getElementById('sb-avatar');
+    const name     = document.getElementById('sb-user-name');
+    const role     = document.getElementById('sb-user-role');
+    const topbarAv = document.getElementById('topbar-avatar');
+
+    if (avatar)   { avatar.textContent = u.initial; avatar.style.background = u.bg; }
+    if (name)     name.textContent = u.name;
+    if (role)     role.textContent = u.role;
+    if (topbarAv) { topbarAv.textContent = u.initial; topbarAv.style.background = u.bg; }
+
+    document.querySelectorAll('.sb-user-tick').forEach(el => el.style.opacity = '0');
+    const tick = document.getElementById('tick-' + key);
+    if (tick) tick.style.opacity = '1';
+  }
+
+  applyUser(currentUser);
+
+  const userArea  = document.getElementById('sb-user-area');
+  const userPanel = document.getElementById('sb-user-panel');
+
+  userArea?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    userPanel?.classList.toggle('open');
+  });
+
+  document.querySelectorAll('.sb-user-option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyUser(btn.dataset.user);
+      userPanel?.classList.remove('open');
+    });
+  });
+
+  document.addEventListener('click', () => userPanel?.classList.remove('open'));
+});
+
 // ── Toasts ────────────────────────────────────────────────────
 function showToast(message, type = 'info', duration = 3200) {
   let container = document.querySelector('.toast-container');
