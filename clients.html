@@ -27,7 +27,8 @@
     <a href="dashboard.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Dashboard</a>
     <a href="clients.html" class="nav-item active"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Clients</a>
     <a href="analytics.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Analytics</a>
-    <a href="insights.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>AI Insights<span class="nav-badge amber">4</span></a>
+    <a href="insights.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>Insights</a>
+    <a href="governance.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Governance</a>
     <a href="reports.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>Reports</a>
     <span class="sb-label">Settings</span>
     <a href="integrations.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Integrations</a>
@@ -140,6 +141,7 @@
                 <th>Last Review</th>
                 <th>Next Due</th>
                 <th>Vulnerability</th>
+                <th>Service</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -150,6 +152,7 @@
                 <td>Mar 2024</td>
                 <td style="color:var(--red);font-weight:600;">Mar 2025</td>
                 <td><span class="badge badge-neutral">Standard</span></td>
+                <td><span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing Service</span></td>
                 <td><span class="badge badge-amber">Overdue</span></td>
               </tr>
               <tr onclick="openClient('CLI-0089',this)" data-status="Breach" data-vuln="Vulnerable">
@@ -158,6 +161,7 @@
                 <td>Jun 2023</td>
                 <td style="color:var(--red);font-weight:600;">Jun 2024</td>
                 <td><span class="badge badge-amber">Vulnerable</span></td>
+                <td><span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing Service</span></td>
                 <td><span class="badge badge-red">Breach</span></td>
               </tr>
               <tr onclick="openClient('CLI-0114',this)" data-status="Compliant" data-vuln="Standard">
@@ -166,6 +170,7 @@
                 <td>–</td>
                 <td>Jan 2025</td>
                 <td><span class="badge badge-neutral">Standard</span></td>
+                <td><span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#F3F2F6;color:var(--gray-600);border:1px solid var(--gray-200);font-weight:600;">Transactional</span></td>
                 <td><span class="badge badge-green">Compliant</span></td>
               </tr>
               <tr onclick="openClient('CLI-0132',this)" data-status="At Risk" data-vuln="Vulnerable">
@@ -174,6 +179,7 @@
                 <td>Dec 2023</td>
                 <td>Dec 2024</td>
                 <td><span class="badge badge-amber">Vulnerable</span></td>
+                <td><span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing Service</span></td>
                 <td><span class="badge badge-amber">At Risk</span></td>
               </tr>
               <tr onclick="openClient('CLI-0158',this)" data-status="Compliant" data-vuln="Standard">
@@ -182,6 +188,7 @@
                 <td>Nov 2023</td>
                 <td>Nov 2024</td>
                 <td><span class="badge badge-neutral">Standard</span></td>
+                <td><span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing Service</span></td>
                 <td><span class="badge badge-green">Compliant</span></td>
               </tr>
               <tr onclick="openClient('CLI-0163',this)" data-status="At Risk" data-vuln="Standard">
@@ -190,6 +197,7 @@
                 <td>Feb 2024</td>
                 <td>Feb 2025</td>
                 <td><span class="badge badge-neutral">Standard</span></td>
+                <td><span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#F3F2F6;color:var(--gray-600);border:1px solid var(--gray-200);font-weight:600;">Transactional</span></td>
                 <td><span class="badge badge-amber">At Risk</span></td>
               </tr>
               <tr onclick="openClient('CLI-0178',this)" data-status="At Risk" data-vuln="Standard">
@@ -198,10 +206,24 @@
                 <td>–</td>
                 <td>Jul 2024</td>
                 <td><span class="badge badge-neutral">Standard</span></td>
+                <td><span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing Service</span></td>
                 <td><span class="badge badge-amber">At Risk</span></td>
               </tr>
             </tbody>
           </table>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-top:1px solid var(--gray-200);background:#FDFCFF;font-size:0.73rem;color:var(--gray-500);">
+          <div style="display:flex;align-items:center;gap:6px;">
+            Show:
+            <button onclick="changePageSize(10)" class="page-size-btn" style="padding:2px 8px;border-radius:4px;border:1px solid var(--gray-200);background:transparent;cursor:pointer;font-size:0.72rem;">10</button>
+            <button onclick="changePageSize(25)" class="page-size-btn active" style="padding:2px 8px;border-radius:4px;border:1px solid var(--plum);background:var(--plum);color:#fff;cursor:pointer;font-size:0.72rem;">25</button>
+            <button onclick="changePageSize(50)" class="page-size-btn" style="padding:2px 8px;border-radius:4px;border:1px solid var(--gray-200);background:transparent;cursor:pointer;font-size:0.72rem;">50</button>
+          </div>
+          <span>Page 1 of 10</span>
+          <div style="display:flex;gap:6px;">
+            <button style="padding:3px 10px;border-radius:4px;border:1px solid var(--gray-200);background:#F3F2F6;font-size:0.72rem;cursor:pointer;opacity:0.4;" disabled>Previous</button>
+            <button style="padding:3px 10px;border-radius:4px;border:1px solid var(--gray-200);background:#F3F2F6;font-size:0.72rem;cursor:pointer;">Next</button>
+          </div>
         </div>
       </div>
 
@@ -317,12 +339,14 @@ const EXTRA_CLIENTS = [
     const tr = document.createElement('tr');
     tr.dataset.status = c.status; tr.dataset.vuln = c.vuln;
     const dueStyle = (c.status==='Overdue'||c.status==='Breach') ? 'style="color:var(--red);font-weight:600;"' : '';
+    const svcBadge = (c.status==='Overdue'||c.status==='Breach') ? `<span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing Service</span>` : `<span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing Service</span>`;
     tr.innerHTML = `
       <td><div class="td-name">${c.name}</div><div style="font-size:0.71rem;color:var(--t3);">${c.id}</div></td>
       <td>${c.adviser}</td>
       <td>${c.last}</td>
       <td ${dueStyle}>${c.due}</td>
       <td><span class="badge ${c.vuln==='Vulnerable'?'badge-amber':'badge-neutral'}">${c.vuln}</span></td>
+      <td>${svcBadge}</td>
       <td><span class="badge ${statusBadge(c.status)}">${c.status}</span></td>`;
     tr.addEventListener('click', () => showClientPlaceholder(c, tr));
     tbody.appendChild(tr);
@@ -356,8 +380,7 @@ function showClientPlaceholder(c, rowEl) {
       <div style="font-size:0.77rem;color:var(--t3);">Full compliance timeline loads after the next Intelliflo sync. Next sync: Today at 18:00.</div>
     </div>
     <div class="compliance-actions" style="margin-top:16px;">
-      <button class="btn btn-secondary btn-sm" onclick="openModal('flag-modal')">Flag Compliance Gap</button>
-      <button class="btn btn-secondary btn-sm" onclick="showToast('Escalated to senior compliance officer','info')">Escalate</button>
+      <button class="btn btn-secondary btn-sm" onclick="showToast('Note saved','success')">Add Note</button>
     </div>`;
 }
 

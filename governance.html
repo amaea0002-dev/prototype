@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FCA Governance | Amaea</title>
+  <script>
+    (function(){ const t=localStorage.getItem('amaea-theme')||'light'; if(t==='dark') document.documentElement.setAttribute('data-theme','dark'); })();
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="amaea.css" rel="stylesheet"/>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sb-header">
+    <a href="dashboard.html" class="sb-logo">
+      <img src="logo-white.png" alt="Amaea" height="26" style="height:26px;max-height:26px;width:auto;max-width:150px;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="logo-fallback" style="display:none;">A</div>
+    </a>
+  <button class="sb-toggle" onclick="toggleSidebarCollapse()" title="Collapse sidebar">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>
+  </button>
+  </div>
+  <nav class="sb-nav">
+    <span class="sb-label">Main</span>
+    <a href="dashboard.html" class="nav-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      Dashboard
+    </a>
+    <a href="clients.html" class="nav-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Clients
+    </a>
+    <a href="analytics.html" class="nav-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      Analytics
+    </a>
+    <a href="insights.html" class="nav-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      Insights
+    </a>
+    <a href="governance.html" class="nav-item active">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Governance
+    </a>
+    <a href="reports.html" class="nav-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      Reports
+    </a>
+    <span class="sb-label">Settings</span>
+    <a href="integrations.html" class="nav-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      Integrations
+    </a>
+    <a href="settings.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Settings</a>
+  </nav>
+  <div class="sb-footer" style="position:relative;">
+    <div class="sb-user-panel" id="sb-user-panel">
+      <button class="sb-user-option" data-user="hasna">
+        <div class="sb-option-avatar" style="background:linear-gradient(135deg,#4C2C4B,#8B6189);">H</div>
+        <div class="sb-user-option-info">
+          <div class="sb-user-option-name">Hasna Sahul Hameed</div>
+          <div class="sb-user-option-role">CEO &amp; Co-founder</div>
+        </div>
+        <span class="sb-user-tick" id="tick-hasna">✓</span>
+      </button>
+      <button class="sb-user-option" data-user="milan">
+        <div class="sb-option-avatar" style="background:linear-gradient(135deg,#1a4080,#4292c6);">M</div>
+        <div class="sb-user-option-info">
+          <div class="sb-user-option-name">Milan Sajiv</div>
+          <div class="sb-user-option-role">CTO &amp; Co-founder</div>
+        </div>
+        <span class="sb-user-tick" id="tick-milan" style="opacity:0;">✓</span>
+      </button>
+    </div>
+    <div class="sb-user sb-user-clickable" id="sb-user-area" title="Switch user">
+      <div class="sb-avatar" id="sb-avatar" style="background:linear-gradient(135deg,#4C2C4B,#8B6189);">H</div>
+      <div class="sb-user-text">
+        <div class="sb-user-name" id="sb-user-name">Hasna Sahul Hameed</div>
+        <div class="sb-user-role" id="sb-user-role">CEO &amp; Co-founder</div>
+      </div>
+      <svg width="11" height="11" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-left:auto;"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </div>
+</aside>
+
+<div class="sb-overlay" id="sb-overlay" onclick="closeSidebar()"></div>
+
+<div class="main">
+  <header class="topbar">
+    <button class="menu-btn" onclick="toggleSidebar()"><span></span><span></span><span></span></button>
+    <span class="topbar-title">FCA Governance</span>
+    <div class="topbar-search">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search governance items…" onkeydown="if(event.key==='Enter')showToast('Searching…','info',1500)"/>
+    </div>
+    <div class="topbar-actions">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"></button>
+      <div class="dropdown">
+        <button class="icon-btn" data-dropdown="notif-menu">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="notif-dot"></span>
+        </button>
+        <div class="dropdown-menu notif-menu" id="notif-menu">
+          <div class="dropdown-header">Notifications</div>
+          <div class="notif-item" onclick="window.location='insights.html'">
+            <div class="notif-indicator"></div>
+            <div><div class="notif-title">18 clients missing annual reviews</div><div class="notif-time">2 hours ago</div></div>
+          </div>
+          <div class="notif-item" onclick="window.location='reports.html'">
+            <div class="notif-indicator"></div>
+            <div><div class="notif-title">RMAR due in 25 days</div><div class="notif-time">Yesterday</div></div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-indicator read"></div>
+            <div><div class="notif-title">Intelliflo sync complete</div><div class="notif-time">Today, 06:45</div></div>
+          </div>
+          <div class="dropdown-divider"></div>
+          <div class="dropdown-item" style="justify-content:center;color:var(--plum-soft);" onclick="window.location='insights.html'">View all alerts →</div>
+        </div>
+      </div>
+      <div class="topbar-avatar" id="topbar-avatar" title="Current user">H</div>
+    </div>
+  </header>
+
+  <div class="page">
+    <div class="page-header fade-up">
+      <div>
+        <h1>FCA Governance</h1>
+        <p>Regulatory obligations, deadlines, and FCA guidance updates for your firm</p>
+      </div>
+    </div>
+
+    <!-- Horizon banner -->
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:var(--r3);margin-bottom:20px;" class="fade-up fade-up-1">
+      <div style="width:32px;height:32px;border-radius:var(--r2);background:#DBEAFE;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="15" height="15" fill="none" stroke="#1D4ED8" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div style="flex:1;">
+        <div style="font-size:0.84rem;font-weight:700;color:#1D4ED8;margin-bottom:1px;">Amaea Horizon</div>
+        <div style="font-size:0.75rem;color:#3B82F6;">Monitors FCA publications, Dear CEO letters, and PS/FG guidance hourly. Last checked: today at 08:14.</div>
+      </div>
+      <span style="font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:20px;background:#ECFDF5;color:#059669;border:1px solid #A7F3D0;flex-shrink:0;">LIVE</span>
+    </div>
+
+    <!-- Summary pills -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;" class="fade-up fade-up-1">
+      <div style="display:flex;align-items:center;gap:7px;padding:7px 14px;border-radius:20px;background:#FEF2F2;border:1px solid rgba(220,38,38,0.2);">
+        <div style="width:8px;height:8px;border-radius:50%;background:#DC2626;flex-shrink:0;"></div>
+        <span style="font-size:0.78rem;font-weight:700;color:#DC2626;">2 Critical</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:7px;padding:7px 14px;border-radius:20px;background:#FFFBEB;border:1px solid rgba(217,119,6,0.2);">
+        <div style="width:8px;height:8px;border-radius:50%;background:#D97706;flex-shrink:0;"></div>
+        <span style="font-size:0.78rem;font-weight:700;color:#D97706;">3 High</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:7px;padding:7px 14px;border-radius:20px;background:#EFF6FF;border:1px solid rgba(29,78,216,0.2);">
+        <div style="width:8px;height:8px;border-radius:50%;background:#3B82F6;flex-shrink:0;"></div>
+        <span style="font-size:0.78rem;font-weight:700;color:#1D4ED8;">3 Medium</span>
+      </div>
+    </div>
+
+    <!-- Governance cards -->
+    <div style="display:flex;flex-direction:column;gap:14px;" class="fade-up fade-up-2">
+
+      <!-- 1: Consumer Duty Board Report — Critical -->
+      <div style="border-radius:12px;border:1px solid rgba(220,38,38,0.25);border-left:4px solid #DC2626;padding:18px 20px;background:#fff;">
+        <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:240px;">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+              <span style="font-size:0.68rem;font-weight:700;padding:2px 9px;border-radius:20px;background:#FEF2F2;color:#DC2626;border:1px solid rgba(220,38,38,0.2);">Critical</span>
+              <span style="font-size:0.68rem;color:var(--t3);font-family:monospace;background:var(--surface-2);padding:2px 7px;border-radius:4px;border:1px solid var(--border);">PS22/9</span>
+              <span style="font-size:0.72rem;color:var(--t3);">Deadline: 31 July 2026</span>
+            </div>
+            <div style="font-size:0.92rem;font-weight:700;color:var(--t1);margin-bottom:6px;">Consumer Duty Board Report</div>
+            <p style="font-size:0.79rem;line-height:1.65;color:var(--t2);margin:0;">Firms on a 31 July year-end must submit their annual Consumer Duty board report. All four outcome areas (products &amp; services, price &amp; value, consumer understanding, consumer support) must be evidenced with supporting data.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;">
+            <span style="font-size:0.72rem;font-weight:600;padding:4px 12px;border-radius:6px;background:#FEF2F2;color:#DC2626;border:1px solid rgba(220,38,38,0.2);">80 days remaining</span>
+            <a href="reports.html" style="font-size:0.75rem;font-weight:600;color:var(--plum);">View report →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2: RMAR Submission — Critical -->
+      <div style="border-radius:12px;border:1px solid rgba(220,38,38,0.25);border-left:4px solid #DC2626;padding:18px 20px;background:#fff;">
+        <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:240px;">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+              <span style="font-size:0.68rem;font-weight:700;padding:2px 9px;border-radius:20px;background:#FEF2F2;color:#DC2626;border:1px solid rgba(220,38,38,0.2);">Critical</span>
+              <span style="font-size:0.68rem;color:var(--t3);font-family:monospace;background:var(--surface-2);padding:2px 7px;border-radius:4px;border:1px solid var(--border);">SUP 16 Annex 21</span>
+              <span style="font-size:0.72rem;color:var(--t3);">Deadline: 31 May 2026</span>
+            </div>
+            <div style="font-size:0.92rem;font-weight:700;color:var(--t1);margin-bottom:6px;">RMAR Submission Deadline</div>
+            <p style="font-size:0.79rem;line-height:1.65;color:var(--t2);margin:0;">Your Retail Mediation Activities Return for the period ending 31 December 2025 must be submitted by 31 May 2026. Section B currently has 3 data gaps requiring adviser input.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;">
+            <span style="font-size:0.72rem;font-weight:600;padding:4px 12px;border-radius:6px;background:#FEF2F2;color:#DC2626;border:1px solid rgba(220,38,38,0.2);">25 days remaining</span>
+            <a href="reports.html" style="font-size:0.75rem;font-weight:600;color:var(--plum);">View report →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3: SYSC 9 Record-Keeping — High -->
+      <div style="border-radius:12px;border:1px solid rgba(217,119,6,0.25);border-left:4px solid #D97706;padding:18px 20px;background:#fff;">
+        <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:240px;">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+              <span style="font-size:0.68rem;font-weight:700;padding:2px 9px;border-radius:20px;background:#FFFBEB;color:#D97706;border:1px solid rgba(217,119,6,0.2);">High</span>
+              <span style="font-size:0.68rem;color:var(--t3);font-family:monospace;background:var(--surface-2);padding:2px 7px;border-radius:4px;border:1px solid var(--border);">SYSC 9.1</span>
+              <span style="font-size:0.72rem;color:var(--t3);">Ongoing obligation</span>
+            </div>
+            <div style="font-size:0.92rem;font-weight:700;color:var(--t1);margin-bottom:6px;">SYSC 9 Record-Keeping Obligations</div>
+            <p style="font-size:0.79rem;line-height:1.65;color:var(--t2);margin:0;">Client records must be retained for a minimum of 5 years from the date of service. Pension transfer cases require 10-year retention. Review your document retention policy annually.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;">
+            <span style="font-size:0.72rem;font-weight:600;padding:4px 12px;border-radius:6px;background:#FFFBEB;color:#D97706;border:1px solid rgba(217,119,6,0.2);">Ongoing</span>
+            <a href="settings.html" style="font-size:0.75rem;font-weight:600;color:var(--plum);">Review policy →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4: Vulnerable Customer FG21/1 — High -->
+      <div style="border-radius:12px;border:1px solid rgba(217,119,6,0.25);border-left:4px solid #D97706;padding:18px 20px;background:#fff;">
+        <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:240px;">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+              <span style="font-size:0.68rem;font-weight:700;padding:2px 9px;border-radius:20px;background:#FFFBEB;color:#D97706;border:1px solid rgba(217,119,6,0.2);">High</span>
+              <span style="font-size:0.68rem;color:var(--t3);font-family:monospace;background:var(--surface-2);padding:2px 7px;border-radius:4px;border:1px solid var(--border);">FG21/1</span>
+              <span style="font-size:0.72rem;color:var(--t3);">Effective Q2 2025</span>
+            </div>
+            <div style="font-size:0.92rem;font-weight:700;color:var(--t1);margin-bottom:6px;">Vulnerable Customer Guidance</div>
+            <p style="font-size:0.79rem;line-height:1.65;color:var(--t2);margin:0;">Updated guidance requires proactive identification of vulnerability at every client touchpoint, not just reactive response. Firms must document systematic identification processes.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;">
+            <span style="font-size:0.72rem;font-weight:600;padding:4px 12px;border-radius:6px;background:#FFFBEB;color:#D97706;border:1px solid rgba(217,119,6,0.2);">Action needed</span>
+            <a href="clients.html" style="font-size:0.75rem;font-weight:600;color:var(--plum);">View clients →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5: COBS 9.5 Annual Review — High -->
+      <div style="border-radius:12px;border:1px solid rgba(217,119,6,0.25);border-left:4px solid #D97706;padding:18px 20px;background:#fff;">
+        <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:240px;">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+              <span style="font-size:0.68rem;font-weight:700;padding:2px 9px;border-radius:20px;background:#FFFBEB;color:#D97706;border:1px solid rgba(217,119,6,0.2);">High</span>
+              <span style="font-size:0.68rem;color:var(--t3);font-family:monospace;background:var(--surface-2);padding:2px 7px;border-radius:4px;border:1px solid var(--border);">COBS 9.5</span>
+              <span style="font-size:0.72rem;color:var(--t3);">Annual, rolling</span>
+            </div>
+            <div style="font-size:0.92rem;font-weight:700;color:var(--t1);margin-bottom:6px;">COBS 9.5 Annual Review Obligation</div>
+            <p style="font-size:0.79rem;line-height:1.65;color:var(--t2);margin:0;">Under COBS 9.5, firms providing ongoing advisory services must conduct suitability assessments at least annually. No client should exceed 12 months without a completed review.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;">
+            <span style="font-size:0.72rem;font-weight:600;padding:4px 12px;border-radius:6px;background:#FFFBEB;color:#D97706;border:1px solid rgba(217,119,6,0.2);">18 breaches</span>
+            <a href="reviews.html" style="font-size:0.75rem;font-weight:600;color:var(--plum);">View reviews →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6: Consumer Duty Implementation Review — Medium -->
+      <div style="border-radius:12px;border:1px solid rgba(59,130,246,0.25);border-left:4px solid #3B82F6;padding:18px 20px;background:#fff;">
+        <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:240px;">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+              <span style="font-size:0.68rem;font-weight:700;padding:2px 9px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid rgba(29,78,216,0.2);">Medium</span>
+              <span style="font-size:0.68rem;color:var(--t3);font-family:monospace;background:var(--surface-2);padding:2px 7px;border-radius:4px;border:1px solid var(--border);">FCA Dear CEO 2024</span>
+              <span style="font-size:0.72rem;color:var(--t3);">Review recommended</span>
+            </div>
+            <div style="font-size:0.92rem;font-weight:700;color:var(--t1);margin-bottom:6px;">Consumer Duty Implementation Review</div>
+            <p style="font-size:0.79rem;line-height:1.65;color:var(--t2);margin:0;">The FCA's 2024 review identified common gaps: insufficient board oversight, weak consumer understanding evidence, and inadequate vulnerable customer monitoring. Review your framework.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;">
+            <span style="font-size:0.72rem;font-weight:600;padding:4px 12px;border-radius:6px;background:#EFF6FF;color:#1D4ED8;border:1px solid rgba(29,78,216,0.2);">Recommended</span>
+            <a href="reports.html" style="font-size:0.75rem;font-weight:600;color:var(--plum);">View assessment →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7: SMCR Responsibility Maps — Medium -->
+      <div style="border-radius:12px;border:1px solid rgba(59,130,246,0.25);border-left:4px solid #3B82F6;padding:18px 20px;background:#fff;">
+        <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:240px;">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+              <span style="font-size:0.68rem;font-weight:700;padding:2px 9px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid rgba(29,78,216,0.2);">Medium</span>
+              <span style="font-size:0.68rem;color:var(--t3);font-family:monospace;background:var(--surface-2);padding:2px 7px;border-radius:4px;border:1px solid var(--border);">SYSC 25</span>
+              <span style="font-size:0.72rem;color:var(--t3);">Annual review</span>
+            </div>
+            <div style="font-size:0.92rem;font-weight:700;color:var(--t1);margin-bottom:6px;">SMCR Responsibility Maps</div>
+            <p style="font-size:0.79rem;line-height:1.65;color:var(--t2);margin:0;">Responsibility maps and individual statements of responsibilities for Senior Managers must be maintained and updated on any material change. The FCA expects these to be accurate and available on request.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;">
+            <span style="font-size:0.72rem;font-weight:600;padding:4px 12px;border-radius:6px;background:#EFF6FF;color:#1D4ED8;border:1px solid rgba(29,78,216,0.2);">Annual review</span>
+            <a href="settings.html" style="font-size:0.75rem;font-weight:600;color:var(--plum);">Review settings →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8: Financial Promotions Social Media — Medium -->
+      <div style="border-radius:12px;border:1px solid rgba(59,130,246,0.25);border-left:4px solid #3B82F6;padding:18px 20px;background:#fff;">
+        <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:240px;">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+              <span style="font-size:0.68rem;font-weight:700;padding:2px 9px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid rgba(29,78,216,0.2);">Medium</span>
+              <span style="font-size:0.68rem;color:var(--t3);font-family:monospace;background:var(--surface-2);padding:2px 7px;border-radius:4px;border:1px solid var(--border);">COBS 4.5 / PS23/6</span>
+              <span style="font-size:0.72rem;color:var(--t3);">Effective November 2023</span>
+            </div>
+            <div style="font-size:0.92rem;font-weight:700;color:var(--t1);margin-bottom:6px;">Financial Promotions Social Media Rules</div>
+            <p style="font-size:0.79rem;line-height:1.65;color:var(--t2);margin:0;">Updated rules explicitly address image-only posts, stories, and short-form video content on social platforms. All firm content must be fair, clear, and not misleading. Review your approval process.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0;">
+            <span style="font-size:0.72rem;font-weight:600;padding:4px 12px;border-radius:6px;background:#EFF6FF;color:#1D4ED8;border:1px solid rgba(29,78,216,0.2);">In force</span>
+            <button class="btn btn-ghost btn-sm" onclick="showToast('FCA guidance opened','info')">FCA guidance →</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="amaea.js"></script>
+</body>
+</html>

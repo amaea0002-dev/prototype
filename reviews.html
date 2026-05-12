@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Annual Reviews | Amaea</title>
+  <script>
+    (function(){ const t=localStorage.getItem('amaea-theme')||'light'; if(t==='dark') document.documentElement.setAttribute('data-theme','dark'); })();
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="amaea.css" rel="stylesheet"/>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sb-header">
+    <a href="dashboard.html" class="sb-logo">
+      <img src="logo-white.png" alt="Amaea" height="26" style="height:26px;max-height:26px;width:auto;max-width:150px;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="logo-fallback" style="display:none;">A</div>
+    </a>
+  <button class="sb-toggle" onclick="toggleSidebarCollapse()" title="Collapse sidebar">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>
+  </button>
+  </div>
+  <nav class="sb-nav">
+    <span class="sb-label">Main</span>
+    <a href="dashboard.html" class="nav-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      Dashboard
+    </a>
+    <a href="clients.html" class="nav-item active">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Clients
+    </a>
+    <a href="analytics.html" class="nav-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      Analytics
+    </a>
+    <a href="insights.html" class="nav-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      Insights
+    </a>
+    <a href="governance.html" class="nav-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Governance
+    </a>
+    <a href="reports.html" class="nav-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      Reports
+    </a>
+    <span class="sb-label">Settings</span>
+    <a href="integrations.html" class="nav-item">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      Integrations
+    </a>
+    <a href="settings.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Settings</a>
+  </nav>
+  <div class="sb-footer" style="position:relative;">
+    <div class="sb-user-panel" id="sb-user-panel">
+      <button class="sb-user-option" data-user="hasna">
+        <div class="sb-option-avatar" style="background:linear-gradient(135deg,#4C2C4B,#8B6189);">H</div>
+        <div class="sb-user-option-info">
+          <div class="sb-user-option-name">Hasna Sahul Hameed</div>
+          <div class="sb-user-option-role">CEO &amp; Co-founder</div>
+        </div>
+        <span class="sb-user-tick" id="tick-hasna">✓</span>
+      </button>
+      <button class="sb-user-option" data-user="milan">
+        <div class="sb-option-avatar" style="background:linear-gradient(135deg,#1a4080,#4292c6);">M</div>
+        <div class="sb-user-option-info">
+          <div class="sb-user-option-name">Milan Sajiv</div>
+          <div class="sb-user-option-role">CTO &amp; Co-founder</div>
+        </div>
+        <span class="sb-user-tick" id="tick-milan" style="opacity:0;">✓</span>
+      </button>
+    </div>
+    <div class="sb-user sb-user-clickable" id="sb-user-area" title="Switch user">
+      <div class="sb-avatar" id="sb-avatar" style="background:linear-gradient(135deg,#4C2C4B,#8B6189);">H</div>
+      <div class="sb-user-text">
+        <div class="sb-user-name" id="sb-user-name">Hasna Sahul Hameed</div>
+        <div class="sb-user-role" id="sb-user-role">CEO &amp; Co-founder</div>
+      </div>
+      <svg width="11" height="11" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-left:auto;"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </div>
+</aside>
+
+<div class="sb-overlay" id="sb-overlay" onclick="closeSidebar()"></div>
+
+<div class="main">
+  <header class="topbar">
+    <button class="menu-btn" onclick="toggleSidebar()"><span></span><span></span><span></span></button>
+    <span class="topbar-title">Annual Reviews</span>
+    <div class="topbar-search">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search clients…" onkeydown="if(event.key==='Enter')showToast('Searching…','info',1500)"/>
+    </div>
+    <div class="topbar-actions">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"></button>
+      <div class="dropdown">
+        <button class="icon-btn" data-dropdown="notif-menu">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="notif-dot"></span>
+        </button>
+        <div class="dropdown-menu notif-menu" id="notif-menu">
+          <div class="dropdown-header">Notifications</div>
+          <div class="notif-item" onclick="window.location='insights.html'">
+            <div class="notif-indicator"></div>
+            <div><div class="notif-title">18 clients missing annual reviews</div><div class="notif-time">2 hours ago</div></div>
+          </div>
+          <div class="notif-item" onclick="window.location='reports.html'">
+            <div class="notif-indicator"></div>
+            <div><div class="notif-title">RMAR due in 25 days</div><div class="notif-time">Yesterday</div></div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-indicator read"></div>
+            <div><div class="notif-title">Intelliflo sync complete</div><div class="notif-time">Today, 06:45</div></div>
+          </div>
+          <div class="dropdown-divider"></div>
+          <div class="dropdown-item" style="justify-content:center;color:var(--plum-soft);" onclick="window.location='insights.html'">View all alerts →</div>
+        </div>
+      </div>
+      <div class="topbar-avatar" id="topbar-avatar" title="Current user">H</div>
+    </div>
+  </header>
+
+  <div class="page">
+    <!-- Back link -->
+    <div class="fade-up" style="margin-bottom:16px;">
+      <a href="dashboard.html" style="font-size:0.79rem;color:var(--plum-soft);font-weight:500;text-decoration:none;">← Dashboard</a>
+    </div>
+
+    <div class="page-header fade-up">
+      <div>
+        <h1>Annual Reviews</h1>
+        <p>Overdue and upcoming review obligations · Based on COBS 9.5 12-month requirement</p>
+      </div>
+      <div class="page-actions">
+        <button class="btn btn-ghost btn-sm" onclick="showToast('Exporting…','info',2000);setTimeout(()=>showToast('Report downloaded','success'),2200)">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export
+        </button>
+        <a href="clients.html" class="btn btn-primary btn-sm">View All Clients</a>
+      </div>
+    </div>
+
+    <!-- Summary strip -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;" class="fade-up fade-up-1">
+      <div style="display:flex;align-items:center;gap:7px;padding:7px 14px;border-radius:20px;background:#FEF2F2;border:1px solid rgba(220,38,38,0.2);">
+        <div style="width:8px;height:8px;border-radius:50%;background:#DC2626;flex-shrink:0;"></div>
+        <span style="font-size:0.78rem;font-weight:700;color:#DC2626;">5 Breach</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:7px;padding:7px 14px;border-radius:20px;background:#FFFBEB;border:1px solid rgba(217,119,6,0.2);">
+        <div style="width:8px;height:8px;border-radius:50%;background:#D97706;flex-shrink:0;"></div>
+        <span style="font-size:0.78rem;font-weight:700;color:#D97706;">13 Overdue</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:7px;padding:7px 14px;border-radius:20px;background:#FFFBEB;border:1px solid rgba(217,119,6,0.2);">
+        <div style="width:8px;height:8px;border-radius:50%;background:#D97706;flex-shrink:0;"></div>
+        <span style="font-size:0.78rem;font-weight:700;color:#D97706;">7 Approaching (30 days)</span>
+      </div>
+    </div>
+
+    <div class="card fade-up fade-up-2" style="padding:0;overflow:hidden;">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Reference</th>
+              <th>Adviser</th>
+              <th>Last Review</th>
+              <th>Next Due</th>
+              <th>Days Overdue</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr onclick="showToast('CLI-0089: Robert Chen — review details','info')" style="cursor:pointer;">
+              <td><div class="td-name">Robert Chen</div></td>
+              <td style="font-size:0.72rem;color:var(--t3);font-family:monospace;">CLI-0089</td>
+              <td>Alex Williams</td>
+              <td>Jun 2023</td>
+              <td style="color:var(--red);font-weight:600;">Jun 2024</td>
+              <td style="color:var(--red);font-weight:700;">328 days</td>
+              <td><span class="badge badge-red">Breach</span></td>
+            </tr>
+            <tr onclick="showToast('CLI-0208: David Taylor — review details','info')" style="cursor:pointer;">
+              <td><div class="td-name">David Taylor</div></td>
+              <td style="font-size:0.72rem;color:var(--t3);font-family:monospace;">CLI-0208</td>
+              <td>Alex Williams</td>
+              <td>Nov 2022</td>
+              <td style="color:var(--red);font-weight:600;">Nov 2023</td>
+              <td style="color:var(--red);font-weight:700;">557 days</td>
+              <td><span class="badge badge-red">Breach</span></td>
+            </tr>
+            <tr onclick="showToast('CLI-0219: Angela Davis — review details','info')" style="cursor:pointer;">
+              <td><div class="td-name">Angela Davis</div></td>
+              <td style="font-size:0.72rem;color:var(--t3);font-family:monospace;">CLI-0219</td>
+              <td>James Morrison</td>
+              <td>May 2023</td>
+              <td style="color:var(--red);font-weight:600;">May 2024</td>
+              <td style="color:var(--red);font-weight:700;">355 days</td>
+              <td><span class="badge badge-red">Breach</span></td>
+            </tr>
+            <tr onclick="showToast('CLI-0214: John Harris — review details','info')" style="cursor:pointer;">
+              <td><div class="td-name">John Harris</div></td>
+              <td style="font-size:0.72rem;color:var(--t3);font-family:monospace;">CLI-0214</td>
+              <td>Alex Williams</td>
+              <td>Aug 2023</td>
+              <td style="color:var(--red);font-weight:600;">Aug 2024</td>
+              <td style="color:var(--red);font-weight:700;">276 days</td>
+              <td><span class="badge badge-red">Breach</span></td>
+            </tr>
+            <tr onclick="showToast('CLI-0202: Tom Richardson — review details','info')" style="cursor:pointer;">
+              <td><div class="td-name">Tom Richardson</div></td>
+              <td style="font-size:0.72rem;color:var(--t3);font-family:monospace;">CLI-0202</td>
+              <td>Alex Williams</td>
+              <td>Mar 2023</td>
+              <td style="color:var(--red);font-weight:600;">Mar 2024</td>
+              <td style="color:var(--red);font-weight:700;">436 days</td>
+              <td><span class="badge badge-red">Breach</span></td>
+            </tr>
+            <tr onclick="showToast('CLI-0047: Margaret Thompson — review details','info')" style="cursor:pointer;">
+              <td><div class="td-name">Margaret Thompson</div></td>
+              <td style="font-size:0.72rem;color:var(--t3);font-family:monospace;">CLI-0047</td>
+              <td>James Morrison</td>
+              <td>Mar 2024</td>
+              <td style="color:var(--red);font-weight:600;">Mar 2025</td>
+              <td style="color:var(--amber);font-weight:700;">71 days</td>
+              <td><span class="badge badge-amber">Overdue</span></td>
+            </tr>
+            <tr onclick="showToast('CLI-0132: Priya Singh — review details','info')" style="cursor:pointer;">
+              <td><div class="td-name">Priya Singh</div></td>
+              <td style="font-size:0.72rem;color:var(--t3);font-family:monospace;">CLI-0132</td>
+              <td>Kate Davies</td>
+              <td>Dec 2023</td>
+              <td style="color:var(--red);font-weight:600;">Dec 2024</td>
+              <td style="color:var(--amber);font-weight:700;">132 days</td>
+              <td><span class="badge badge-amber">Overdue</span></td>
+            </tr>
+            <tr onclick="showToast('CLI-0204: Graham Foster — review details','info')" style="cursor:pointer;">
+              <td><div class="td-name">Graham Foster</div></td>
+              <td style="font-size:0.72rem;color:var(--t3);font-family:monospace;">CLI-0204</td>
+              <td>James Morrison</td>
+              <td>Oct 2023</td>
+              <td style="color:var(--red);font-weight:600;">Oct 2024</td>
+              <td style="color:var(--amber);font-weight:700;">193 days</td>
+              <td><span class="badge badge-amber">Overdue</span></td>
+            </tr>
+            <tr onclick="showToast('CLI-0210: Peter Jackson — review details','info')" style="cursor:pointer;">
+              <td><div class="td-name">Peter Jackson</div></td>
+              <td style="font-size:0.72rem;color:var(--t3);font-family:monospace;">CLI-0210</td>
+              <td>James Morrison</td>
+              <td>Sep 2023</td>
+              <td style="color:var(--red);font-weight:600;">Sep 2024</td>
+              <td style="color:var(--amber);font-weight:700;">224 days</td>
+              <td><span class="badge badge-amber">Overdue</span></td>
+            </tr>
+            <tr onclick="showToast('CLI-0205: Helen Clarke — review details','info')" style="cursor:pointer;">
+              <td><div class="td-name">Helen Clarke</div></td>
+              <td style="font-size:0.72rem;color:var(--t3);font-family:monospace;">CLI-0205</td>
+              <td>Alex Williams</td>
+              <td>Dec 2023</td>
+              <td style="color:var(--red);font-weight:600;">Dec 2024</td>
+              <td style="color:var(--amber);font-weight:700;">132 days</td>
+              <td><span class="badge badge-amber">Overdue</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-top:1px solid var(--gray-200);background:#FDFCFF;font-size:0.73rem;color:var(--gray-500);">
+        <span>Showing 10 of 18 overdue clients</span>
+        <div style="display:flex;gap:6px;">
+          <button style="padding:3px 10px;border-radius:4px;border:1px solid var(--gray-200);background:#F3F2F6;font-size:0.72rem;cursor:pointer;opacity:0.4;" disabled>Previous</button>
+          <button style="padding:3px 10px;border-radius:4px;border:1px solid var(--gray-200);background:#F3F2F6;font-size:0.72rem;cursor:pointer;" onclick="showToast('Page 2 loaded','info',800)">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="amaea.js"></script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Insights | Amaea</title>
+  <title>Insights | Amaea</title>
   <script>
     (function(){ const t=localStorage.getItem('amaea-theme')||'light'; if(t==='dark') document.documentElement.setAttribute('data-theme','dark'); })();
   </script>
@@ -27,7 +27,8 @@
     <a href="dashboard.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Dashboard</a>
     <a href="clients.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Clients</a>
     <a href="analytics.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Analytics</a>
-    <a href="insights.html" class="nav-item active"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>AI Insights<span class="nav-badge amber">4</span></a>
+    <a href="insights.html" class="nav-item active"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>Insights</a>
+    <a href="governance.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Governance</a>
     <a href="reports.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>Reports</a>
     <span class="sb-label">Settings</span>
     <a href="integrations.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Integrations</a>
@@ -68,7 +69,7 @@
 <div class="main">
   <header class="topbar">
     <button class="menu-btn" onclick="toggleSidebar()"><span></span><span></span><span></span></button>
-    <span class="topbar-title">AI Insights</span>
+    <span class="topbar-title">Insights</span>
     <div class="topbar-search">
       <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <input type="text" placeholder="Search insights…"/>
@@ -105,7 +106,7 @@
   <div class="page">
     <div class="page-header fade-up">
       <div>
-        <h1>AI Insights</h1>
+        <h1>Insights</h1>
         <p id="insights-subtitle"><span id="active-alert-count">4</span> active alerts · Amaea has identified the following compliance risks</p>
       </div>
       <div class="page-actions">
@@ -177,6 +178,34 @@
           <div class="insight-footer">
             <a href="clients.html" class="btn btn-primary btn-sm">View Clients</a>
             <a href="reports.html" class="btn btn-secondary btn-sm">Consumer Duty Report</a>
+          </div>
+        </div>
+      </div>
+
+        <div style="margin-top:28px;">
+          <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--gray-500);margin-bottom:14px;">Predictive Risk</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="border-radius:10px;padding:16px 18px;background:#EFF6FF;border:1px solid #BFDBFE;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                <span style="padding:2px 10px;border-radius:20px;font-size:0.68rem;font-weight:700;background:#DBEAFE;color:#1D4ED8;">Predictive · High</span>
+              </div>
+              <div style="font-size:0.88rem;font-weight:700;margin-bottom:6px;color:var(--gray-900);">Annual Review Breach Risk — Rising</div>
+              <p style="font-size:0.78rem;line-height:1.6;color:var(--gray-600);margin:0;">Based on current review completion rates, 8 clients are projected to breach the 12-month annual review threshold within the next 60 days. James Morrison's book carries the highest concentration.</p>
+            </div>
+            <div style="border-radius:10px;padding:16px 18px;background:#EFF6FF;border:1px solid #BFDBFE;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                <span style="padding:2px 10px;border-radius:20px;font-size:0.68rem;font-weight:700;background:#DBEAFE;color:#1D4ED8;">Predictive · Medium</span>
+              </div>
+              <div style="font-size:0.88rem;font-weight:700;margin-bottom:6px;color:var(--gray-900);">Vulnerable Client Documentation Gap</div>
+              <p style="font-size:0.78rem;line-height:1.6;color:var(--gray-600);margin:0;">3 clients flagged vulnerable in the last 90 days have not received updated Consumer Duty assessments. At current pace, this will remain unresolved at your next FCA reporting period.</p>
+            </div>
+            <div style="border-radius:10px;padding:16px 18px;background:#EFF6FF;border:1px solid #BFDBFE;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                <span style="padding:2px 10px;border-radius:20px;font-size:0.68rem;font-weight:700;background:#DBEAFE;color:#1D4ED8;">Predictive · Medium</span>
+              </div>
+              <div style="font-size:0.88rem;font-weight:700;margin-bottom:6px;color:var(--gray-900);">RMAR Completion Trajectory</div>
+              <p style="font-size:0.78rem;line-height:1.6;color:var(--gray-600);margin:0;">Section B of your RMAR has 3 data gaps. If not resolved in the next 21 days, your submission will be incomplete. Estimated resolution time: 4 hours with current adviser capacity.</p>
+            </div>
           </div>
         </div>
       </div>

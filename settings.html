@@ -27,7 +27,8 @@
     <a href="dashboard.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Dashboard</a>
     <a href="clients.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Clients</a>
     <a href="analytics.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Analytics</a>
-    <a href="insights.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>AI Insights<span class="nav-badge amber">4</span></a>
+    <a href="insights.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>Insights</a>
+    <a href="governance.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Governance</a>
     <a href="reports.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>Reports</a>
     <span class="sb-label">Settings</span>
     <a href="integrations.html" class="nav-item"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>Integrations</a>
@@ -130,7 +131,9 @@
       <div class="card-title mb-1">Compliance thresholds</div>
       <div class="card-sub mb-4">Configure when Amaea flags issues and sends alerts</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-        <div class="form-group"><label class="form-label">Alert before annual review due (days)</label><input class="form-input" type="number" value="60"/></div>
+        <div class="form-group"><label class="form-label">Alert before annual review due (days)</label><input class="form-input" type="number" value="60"/>
+          <div style="font-size:0.72rem;margin-top:6px;padding:3px 10px;border-radius:6px;background:#F3EFF3;color:var(--plum);display:inline-block;">FCA recommends at least annually under COBS 9.5</div>
+        </div>
         <div class="form-group"><label class="form-label">Vulnerable client re-assessment (months)</label><input class="form-input" type="number" value="6"/></div>
         <div class="form-group"><label class="form-label">Missing document alert threshold (days)</label><input class="form-input" type="number" value="30"/></div>
         <div class="form-group"><label class="form-label">Compliance health score minimum target</label><input class="form-input" type="number" value="85"/></div>
@@ -146,9 +149,17 @@
           <div><div style="font-size:0.88rem;font-weight:600;color:var(--t1);">Email notifications</div><div style="font-size:0.78rem;color:var(--t3);margin-top:2px;">Receive alerts and digests by email</div></div>
           <div class="toggle-pill on" onclick="this.classList.toggle('on')"></div>
         </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;">
-          <div><div style="font-size:0.88rem;font-weight:600;color:var(--t1);">Weekly compliance digest</div><div style="font-size:0.78rem;color:var(--t3);margin-top:2px;">Summary of your compliance position every Monday</div></div>
-          <div class="toggle-pill on" onclick="this.classList.toggle('on')"></div>
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--gray-200);">
+          <div>
+            <div style="font-size:0.84rem;font-weight:600;color:var(--gray-900);">Weekly Compliance Digest</div>
+            <div style="font-size:0.77rem;color:var(--gray-500);margin-top:3px;">A summary email sent every Monday morning covering your compliance health score, any new risk flags, and upcoming review deadlines. Keeps you accountable even when you haven't logged in.</div>
+            <div style="font-size:0.7rem;margin-top:5px;color:var(--gray-500);">Emails sent to your account address</div>
+          </div>
+          <div style="flex-shrink:0;">
+            <div class="toggle-on" onclick="this.classList.toggle('toggle-on');this.classList.toggle('toggle-off')" style="width:36px;height:20px;border-radius:10px;background:var(--plum);cursor:pointer;position:relative;transition:background 0.2s;">
+              <div style="width:14px;height:14px;border-radius:50%;background:#fff;position:absolute;top:3px;right:3px;transition:right 0.2s;"></div>
+            </div>
+          </div>
         </div>
         <div style="display:flex;align-items:center;justify-content:space-between;">
           <div><div style="font-size:0.88rem;font-weight:600;color:var(--t1);">Urgent breach alerts</div><div style="font-size:0.78rem;color:var(--t3);margin-top:2px;">Immediate notification for regulatory breach risk</div></div>
