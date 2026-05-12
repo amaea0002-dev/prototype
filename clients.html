@@ -152,7 +152,7 @@
                 <td>Mar 2024</td>
                 <td style="color:var(--red);font-weight:600;">Mar 2025</td>
                 <td><span class="badge badge-neutral">Standard</span></td>
-                <td><span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing Service</span></td>
+                <td><span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing</span></td>
                 <td><span class="badge badge-amber">Overdue</span></td>
               </tr>
               <tr onclick="openClient('CLI-0089',this)" data-status="Breach" data-vuln="Vulnerable">
@@ -161,7 +161,7 @@
                 <td>Jun 2023</td>
                 <td style="color:var(--red);font-weight:600;">Jun 2024</td>
                 <td><span class="badge badge-amber">Vulnerable</span></td>
-                <td><span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing Service</span></td>
+                <td><span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing</span></td>
                 <td><span class="badge badge-red">Breach</span></td>
               </tr>
               <tr onclick="openClient('CLI-0114',this)" data-status="Compliant" data-vuln="Standard">
@@ -179,7 +179,7 @@
                 <td>Dec 2023</td>
                 <td>Dec 2024</td>
                 <td><span class="badge badge-amber">Vulnerable</span></td>
-                <td><span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing Service</span></td>
+                <td><span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing</span></td>
                 <td><span class="badge badge-amber">At Risk</span></td>
               </tr>
               <tr onclick="openClient('CLI-0158',this)" data-status="Compliant" data-vuln="Standard">
@@ -188,7 +188,7 @@
                 <td>Nov 2023</td>
                 <td>Nov 2024</td>
                 <td><span class="badge badge-neutral">Standard</span></td>
-                <td><span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing Service</span></td>
+                <td><span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing</span></td>
                 <td><span class="badge badge-green">Compliant</span></td>
               </tr>
               <tr onclick="openClient('CLI-0163',this)" data-status="At Risk" data-vuln="Standard">
@@ -206,7 +206,7 @@
                 <td>–</td>
                 <td>Jul 2024</td>
                 <td><span class="badge badge-neutral">Standard</span></td>
-                <td><span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing Service</span></td>
+                <td><span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing</span></td>
                 <td><span class="badge badge-amber">At Risk</span></td>
               </tr>
             </tbody>
@@ -339,7 +339,7 @@ const EXTRA_CLIENTS = [
     const tr = document.createElement('tr');
     tr.dataset.status = c.status; tr.dataset.vuln = c.vuln;
     const dueStyle = (c.status==='Overdue'||c.status==='Breach') ? 'style="color:var(--red);font-weight:600;"' : '';
-    const svcBadge = (c.status==='Overdue'||c.status==='Breach') ? `<span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing Service</span>` : `<span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing Service</span>`;
+    const svcBadge = (c.status==='Overdue'||c.status==='Breach') ? `<span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing</span>` : `<span style="font-size:0.72rem;padding:2px 8px;border-radius:20px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;font-weight:600;">Ongoing</span>`;
     tr.innerHTML = `
       <td><div class="td-name">${c.name}</div><div style="font-size:0.71rem;color:var(--t3);">${c.id}</div></td>
       <td>${c.adviser}</td>
@@ -402,6 +402,20 @@ function filterClients(q) {
 }
 function closeAllMenus() {
   document.querySelectorAll('.dropdown-menu.open').forEach(d => d.classList.remove('open'));
+}
+
+function changePageSize(size) {
+  document.querySelectorAll('.page-size-btn').forEach(btn => {
+    const isActive = parseInt(btn.textContent) === size;
+    btn.style.background = isActive ? 'var(--plum)' : 'transparent';
+    btn.style.color = isActive ? '#fff' : '';
+    btn.style.borderColor = isActive ? 'var(--plum)' : 'var(--gray-200)';
+  });
+  const rows = document.querySelectorAll('#client-table tbody tr');
+  rows.forEach((row, i) => { row.style.display = i < size ? '' : 'none'; });
+  const total = Math.ceil(rows.length / size);
+  const pageSpan = document.querySelector('[style*="Page 1"]') || document.querySelector('.page-indicator');
+  if (pageSpan) pageSpan.textContent = 'Page 1 of ' + total;
 }
 </script>
 </body>
