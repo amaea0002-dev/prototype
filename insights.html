@@ -115,96 +115,162 @@
     </div>
 
     <div class="two-col fade-up fade-up-1">
-      <!-- Insight cards -->
+      <!-- Accordion insight list -->
       <div>
-        <div class="insight-card red" id="insight-1">
-          <div class="flex items-center justify-between mb-3">
-            <div class="flex gap-2 items-center"><span class="badge badge-red">Critical</span><span style="font-size:0.69rem;color:var(--t3);">Annual Reviews</span></div>
-            <div class="flex gap-2 items-center">
-              <span style="font-size:0.69rem;color:var(--t3);">2h ago</span>
-              <button class="btn btn-ghost btn-xs" onclick="dismissInsight('insight-1')">Dismiss</button>
-            </div>
-          </div>
-          <div class="insight-title">18 clients are overdue for their annual review</div>
-          <div class="insight-body">FCA rules require annual reviews to be conducted within 12 months. 18 clients across your book have now exceeded this threshold. This is an active regulatory breach. The longest elapsed case is 14 months (CLI-0047, Margaret Thompson).</div>
-          <div class="insight-footer">
-            <a href="clients.html" class="btn btn-primary btn-sm">Review Clients</a>
-            <a href="analytics.html" class="btn btn-secondary btn-sm">View Analytics</a>
-          </div>
+
+        <!-- Severity summary strip -->
+        <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+          <span style="font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:20px;background:#FEF2F2;color:#DC2626;border:1px solid #FECACA;">1 Critical</span>
+          <span style="font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:20px;background:#FFFBEB;color:#D97706;border:1px solid #FDE68A;">2 High</span>
+          <span style="font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:20px;background:#EFF6FF;color:#3B82F6;border:1px solid #BFDBFE;">1 Regulatory</span>
         </div>
 
-        <div class="insight-card amber" id="insight-2">
-          <div class="flex items-center justify-between mb-3">
-            <div class="flex gap-2 items-center"><span class="badge badge-amber">High</span><span style="font-size:0.69rem;color:var(--t3);">Documentation</span></div>
-            <div class="flex gap-2 items-center">
-              <span style="font-size:0.69rem;color:var(--t3);">6h ago</span>
-              <button class="btn btn-ghost btn-xs" onclick="dismissInsight('insight-2')">Dismiss</button>
-            </div>
-          </div>
-          <div class="insight-title">34 client files have missing or expired documentation</div>
-          <div class="insight-body">Suitability letters, Statements of Advice, and risk profile assessments are either missing or past their renewal date. 8 of these are in the vulnerable customer segment where documentation standards are heightened under Consumer Duty rules.</div>
-          <div class="insight-footer">
-            <a href="clients.html" class="btn btn-primary btn-sm">Review Affected Clients</a>
-            <a href="reports.html" class="btn btn-secondary btn-sm">View in Report</a>
-          </div>
-        </div>
+        <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--gray-500);margin-bottom:6px;">Active alerts · click to expand</div>
 
-        <div class="insight-card blue" id="insight-3">
-          <div class="flex items-center justify-between mb-3">
-            <div class="flex gap-2 items-center"><span class="badge badge-blue">Regulatory</span><span style="font-size:0.69rem;color:var(--t3);">Deadlines</span></div>
-            <div class="flex gap-2 items-center">
-              <span style="font-size:0.69rem;color:var(--t3);">1d ago</span>
-              <button class="btn btn-ghost btn-xs" onclick="dismissInsight('insight-3')">Dismiss</button>
-            </div>
-          </div>
-          <div class="insight-title">FCA RMAR submission: data is ready</div>
-          <div class="insight-body">Your Retail Mediation Activities Return is due 31 May. Amaea has pre-populated the required data from Intelliflo and SharePoint. There are 3 data gaps in section B that need your input before the report is submission-ready.</div>
-          <div class="insight-footer">
-            <a href="reports.html" class="btn btn-primary btn-sm">Review RMAR Report</a>
-            <button class="btn btn-secondary btn-sm" onclick="showToast('Reminder set for 24 May','success')">Set Reminder</button>
-          </div>
-        </div>
+        <!-- Accordion list -->
+        <div style="border-radius:12px;border:1px solid var(--gray-200);background:#fff;overflow:hidden;" id="insights-accordion">
 
-        <div class="insight-card amber" id="insight-4">
-          <div class="flex items-center justify-between mb-3">
-            <div class="flex gap-2 items-center"><span class="badge badge-amber">High</span><span style="font-size:0.69rem;color:var(--t3);">Consumer Duty</span></div>
-            <div class="flex gap-2 items-center">
-              <span style="font-size:0.69rem;color:var(--t3);">2d ago</span>
-              <button class="btn btn-ghost btn-xs" onclick="dismissInsight('insight-4')">Dismiss</button>
-            </div>
-          </div>
-          <div class="insight-title">2 vulnerable clients flagged for enhanced monitoring</div>
-          <div class="insight-body">CLI-0089 (Robert Chen) and CLI-0132 (Priya Singh) are classified as vulnerable under Consumer Duty definitions. Both have overdue reviews and incomplete documentation. FCA expects enhanced care and documented fair outcomes for these clients.</div>
-          <div class="insight-footer">
-            <a href="clients.html" class="btn btn-primary btn-sm">View Clients</a>
-            <a href="reports.html" class="btn btn-secondary btn-sm">Consumer Duty Report</a>
-          </div>
-        </div>
-
-        <div style="margin-top:28px;">
-          <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--gray-500);margin-bottom:14px;">Predictive Risk</div>
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            <div style="border-radius:10px;padding:16px 18px;background:#EFF6FF;border:1px solid #BFDBFE;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-                <span style="padding:2px 10px;border-radius:20px;font-size:0.68rem;font-weight:700;background:#DBEAFE;color:#1D4ED8;">Predictive · High</span>
+          <!-- Row 1 -->
+          <div class="acc-row" id="insight-1" style="border-bottom:1px solid var(--gray-100);">
+            <div class="acc-header" onclick="toggleInsight('insight-1')" style="display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;">
+              <div style="width:8px;height:8px;border-radius:50%;background:#EF4444;flex-shrink:0;"></div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:0.84rem;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">18 clients are overdue for their annual review</div>
               </div>
-              <div style="font-size:0.88rem;font-weight:700;margin-bottom:6px;color:var(--gray-900);">Annual Review Breach Risk — Rising</div>
-              <p style="font-size:0.78rem;line-height:1.6;color:var(--gray-600);margin:0;">Based on current review completion rates, 8 clients are projected to breach the 12-month annual review threshold within the next 60 days. James Morrison's book carries the highest concentration.</p>
-            </div>
-            <div style="border-radius:10px;padding:16px 18px;background:#EFF6FF;border:1px solid #BFDBFE;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-                <span style="padding:2px 10px;border-radius:20px;font-size:0.68rem;font-weight:700;background:#DBEAFE;color:#1D4ED8;">Predictive · Medium</span>
+              <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+                <span class="badge badge-red" style="font-size:0.65rem;">Critical</span>
+                <span style="font-size:0.68rem;color:var(--t3);">Annual Reviews · 2h ago</span>
+                <button class="btn btn-ghost btn-xs" onclick="event.stopPropagation();dismissInsight('insight-1')" title="Dismiss">✕</button>
+                <svg class="acc-chevron" width="13" height="13" fill="none" stroke="var(--t4)" stroke-width="2" viewBox="0 0 24 24" style="transition:transform 0.2s;"><polyline points="6 9 12 15 18 9"/></svg>
               </div>
-              <div style="font-size:0.88rem;font-weight:700;margin-bottom:6px;color:var(--gray-900);">Vulnerable Client Documentation Gap</div>
-              <p style="font-size:0.78rem;line-height:1.6;color:var(--gray-600);margin:0;">3 clients flagged vulnerable in the last 90 days have not received updated Consumer Duty assessments. At current pace, this will remain unresolved at your next FCA reporting period.</p>
             </div>
-            <div style="border-radius:10px;padding:16px 18px;background:#EFF6FF;border:1px solid #BFDBFE;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-                <span style="padding:2px 10px;border-radius:20px;font-size:0.68rem;font-weight:700;background:#DBEAFE;color:#1D4ED8;">Predictive · Medium</span>
+            <div class="acc-body" style="display:none;padding:0 14px 14px;border-top:1px solid var(--gray-100);background:#FFF5F5;">
+              <p style="font-size:0.82rem;color:var(--t2);line-height:1.6;margin:12px 0 10px;">FCA rules require annual reviews within 12 months. 18 clients have exceeded this threshold — an active regulatory breach. The longest case is 14 months (CLI-0047, Margaret Thompson).</p>
+              <div style="display:flex;gap:6px;">
+                <a href="clients.html" class="btn btn-primary btn-sm">Review Clients</a>
+                <a href="analytics.html" class="btn btn-secondary btn-sm">View Analytics</a>
               </div>
-              <div style="font-size:0.88rem;font-weight:700;margin-bottom:6px;color:var(--gray-900);">RMAR Completion Trajectory</div>
-              <p style="font-size:0.78rem;line-height:1.6;color:var(--gray-600);margin:0;">Section B of your RMAR has 3 data gaps. If not resolved in the next 21 days, your submission will be incomplete. Estimated resolution time: 4 hours with current adviser capacity.</p>
             </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="acc-row" id="insight-2" style="border-bottom:1px solid var(--gray-100);">
+            <div class="acc-header" onclick="toggleInsight('insight-2')" style="display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;">
+              <div style="width:8px;height:8px;border-radius:50%;background:#F59E0B;flex-shrink:0;"></div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:0.84rem;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">34 client files have missing or expired documentation</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+                <span class="badge badge-amber" style="font-size:0.65rem;">High</span>
+                <span style="font-size:0.68rem;color:var(--t3);">Documentation · 6h ago</span>
+                <button class="btn btn-ghost btn-xs" onclick="event.stopPropagation();dismissInsight('insight-2')" title="Dismiss">✕</button>
+                <svg class="acc-chevron" width="13" height="13" fill="none" stroke="var(--t4)" stroke-width="2" viewBox="0 0 24 24" style="transition:transform 0.2s;"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+            <div class="acc-body" style="display:none;padding:0 14px 14px;border-top:1px solid var(--gray-100);background:#FFFCF0;">
+              <p style="font-size:0.82rem;color:var(--t2);line-height:1.6;margin:12px 0 10px;">Suitability letters, SOAs, and risk profile assessments are missing or past renewal. 8 are in the vulnerable customer segment where Consumer Duty standards are heightened.</p>
+              <div style="display:flex;gap:6px;">
+                <a href="clients.html" class="btn btn-primary btn-sm">Review Affected Clients</a>
+                <a href="reports.html" class="btn btn-secondary btn-sm">View in Report</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="acc-row" id="insight-3" style="border-bottom:1px solid var(--gray-100);">
+            <div class="acc-header" onclick="toggleInsight('insight-3')" style="display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;">
+              <div style="width:8px;height:8px;border-radius:50%;background:#3B82F6;flex-shrink:0;"></div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:0.84rem;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">FCA RMAR submission: data is ready</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+                <span class="badge badge-blue" style="font-size:0.65rem;">Regulatory</span>
+                <span style="font-size:0.68rem;color:var(--t3);">Deadlines · 1d ago</span>
+                <button class="btn btn-ghost btn-xs" onclick="event.stopPropagation();dismissInsight('insight-3')" title="Dismiss">✕</button>
+                <svg class="acc-chevron" width="13" height="13" fill="none" stroke="var(--t4)" stroke-width="2" viewBox="0 0 24 24" style="transition:transform 0.2s;"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+            <div class="acc-body" style="display:none;padding:0 14px 14px;border-top:1px solid var(--gray-100);background:#F0F7FF;">
+              <p style="font-size:0.82rem;color:var(--t2);line-height:1.6;margin:12px 0 10px;">Your RMAR is due 31 May. Amaea has pre-populated data from Intelliflo and SharePoint. 3 data gaps in Section B need your input before it's submission-ready.</p>
+              <div style="display:flex;gap:6px;">
+                <a href="reports.html" class="btn btn-primary btn-sm">Review RMAR Report</a>
+                <button class="btn btn-secondary btn-sm" onclick="showToast('Reminder set for 24 May','success')">Set Reminder</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 4 -->
+          <div class="acc-row" id="insight-4">
+            <div class="acc-header" onclick="toggleInsight('insight-4')" style="display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;">
+              <div style="width:8px;height:8px;border-radius:50%;background:#F59E0B;flex-shrink:0;"></div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:0.84rem;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">2 vulnerable clients flagged for enhanced monitoring</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+                <span class="badge badge-amber" style="font-size:0.65rem;">High</span>
+                <span style="font-size:0.68rem;color:var(--t3);">Consumer Duty · 2d ago</span>
+                <button class="btn btn-ghost btn-xs" onclick="event.stopPropagation();dismissInsight('insight-4')" title="Dismiss">✕</button>
+                <svg class="acc-chevron" width="13" height="13" fill="none" stroke="var(--t4)" stroke-width="2" viewBox="0 0 24 24" style="transition:transform 0.2s;"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+            <div class="acc-body" style="display:none;padding:0 14px 14px;border-top:1px solid var(--gray-100);background:#FFFCF0;">
+              <p style="font-size:0.82rem;color:var(--t2);line-height:1.6;margin:12px 0 10px;">CLI-0089 (Robert Chen) and CLI-0132 (Priya Singh) are classified as vulnerable under Consumer Duty. Both have overdue reviews and incomplete documentation. FCA expects enhanced care and documented fair outcomes.</p>
+              <div style="display:flex;gap:6px;">
+                <a href="clients.html" class="btn btn-primary btn-sm">View Clients</a>
+                <a href="reports.html" class="btn btn-secondary btn-sm">Consumer Duty Report</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Predictive Risk accordion -->
+        <div style="margin-top:20px;">
+          <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--gray-500);margin-bottom:6px;">Predictive Risk · click to expand</div>
+          <div style="border-radius:12px;border:1px solid #BFDBFE;background:#fff;overflow:hidden;">
+
+            <div class="acc-row pred-row" id="pred-1" style="border-bottom:1px solid #DBEAFE;">
+              <div class="acc-header" onclick="togglePred('pred-1')" style="display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;">
+                <div style="width:8px;height:8px;border-radius:50%;background:#F59E0B;flex-shrink:0;"></div>
+                <div style="flex:1;font-size:0.84rem;font-weight:600;color:var(--t1);">Annual Review Breach Risk — Rising</div>
+                <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+                  <span style="font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:20px;background:#DBEAFE;color:#1D4ED8;">Predictive · High</span>
+                  <svg class="acc-chevron" width="13" height="13" fill="none" stroke="var(--t4)" stroke-width="2" viewBox="0 0 24 24" style="transition:transform 0.2s;"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+              </div>
+              <div class="acc-body" style="display:none;padding:0 14px 14px;border-top:1px solid #DBEAFE;background:#EFF6FF;">
+                <p style="font-size:0.82rem;color:var(--t2);line-height:1.6;margin:12px 0 0;">Based on current completion rates, 8 clients are projected to breach the 12-month annual review threshold within 60 days. James Morrison's book carries the highest concentration.</p>
+              </div>
+            </div>
+
+            <div class="acc-row pred-row" id="pred-2" style="border-bottom:1px solid #DBEAFE;">
+              <div class="acc-header" onclick="togglePred('pred-2')" style="display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;">
+                <div style="width:8px;height:8px;border-radius:50%;background:#60A5FA;flex-shrink:0;"></div>
+                <div style="flex:1;font-size:0.84rem;font-weight:600;color:var(--t1);">Vulnerable Client Documentation Gap</div>
+                <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+                  <span style="font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:20px;background:#DBEAFE;color:#1D4ED8;">Predictive · Medium</span>
+                  <svg class="acc-chevron" width="13" height="13" fill="none" stroke="var(--t4)" stroke-width="2" viewBox="0 0 24 24" style="transition:transform 0.2s;"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+              </div>
+              <div class="acc-body" style="display:none;padding:0 14px 14px;border-top:1px solid #DBEAFE;background:#EFF6FF;">
+                <p style="font-size:0.82rem;color:var(--t2);line-height:1.6;margin:12px 0 0;">3 clients flagged vulnerable in the last 90 days have not received updated Consumer Duty assessments. At current pace, this will remain unresolved at your next FCA reporting period.</p>
+              </div>
+            </div>
+
+            <div class="acc-row pred-row" id="pred-3">
+              <div class="acc-header" onclick="togglePred('pred-3')" style="display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;">
+                <div style="width:8px;height:8px;border-radius:50%;background:#60A5FA;flex-shrink:0;"></div>
+                <div style="flex:1;font-size:0.84rem;font-weight:600;color:var(--t1);">RMAR Completion Trajectory</div>
+                <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+                  <span style="font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:20px;background:#DBEAFE;color:#1D4ED8;">Predictive · Medium</span>
+                  <svg class="acc-chevron" width="13" height="13" fill="none" stroke="var(--t4)" stroke-width="2" viewBox="0 0 24 24" style="transition:transform 0.2s;"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+              </div>
+              <div class="acc-body" style="display:none;padding:0 14px 14px;border-top:1px solid #DBEAFE;background:#EFF6FF;">
+                <p style="font-size:0.82rem;color:var(--t2);line-height:1.6;margin:12px 0 0;">Section B has 3 data gaps. If unresolved in 21 days your submission will be incomplete. Estimated resolution: 4 hours with current adviser capacity.</p>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -246,6 +312,51 @@
 </div>
 
 <script src="amaea.js"></script>
+<script>
+function toggleInsight(id) {
+  const row = document.getElementById(id);
+  if (!row) return;
+  const body    = row.querySelector('.acc-body');
+  const chevron = row.querySelector('.acc-chevron');
+  const isOpen  = body.style.display !== 'none';
+  // Close all others in the same accordion
+  document.querySelectorAll('#insights-accordion .acc-body').forEach(b => { b.style.display = 'none'; });
+  document.querySelectorAll('#insights-accordion .acc-chevron').forEach(c => { c.style.transform = ''; });
+  // Open this one if it was closed
+  if (!isOpen) {
+    body.style.display = 'block';
+    chevron.style.transform = 'rotate(180deg)';
+  }
+}
+
+function togglePred(id) {
+  const row = document.getElementById(id);
+  if (!row) return;
+  const body    = row.querySelector('.acc-body');
+  const chevron = row.querySelector('.acc-chevron');
+  const isOpen  = body.style.display !== 'none';
+  document.querySelectorAll('.pred-row .acc-body').forEach(b => { b.style.display = 'none'; });
+  document.querySelectorAll('.pred-row .acc-chevron').forEach(c => { c.style.transform = ''; });
+  if (!isOpen) {
+    body.style.display = 'block';
+    chevron.style.transform = 'rotate(180deg)';
+  }
+}
+
+function dismissInsight(id) {
+  const el = document.getElementById(id);
+  if (el) el.remove();
+  const count = document.querySelectorAll('#insights-accordion .acc-row').length;
+  const el2 = document.getElementById('active-alert-count');
+  if (el2) el2.textContent = count;
+}
+
+function dismissAllInsights() {
+  document.querySelectorAll('#insights-accordion .acc-row').forEach(r => r.remove());
+  const el = document.getElementById('active-alert-count');
+  if (el) el.textContent = '0';
+}
+</script>
 </body>
 </html>
 
