@@ -266,8 +266,18 @@
           <button class="btn btn-secondary btn-sm" onclick="openPreview('rmar')">Preview</button>
         </div>
         <div style="margin-top:12px;border-top:1px solid var(--border);padding-top:10px;">
-          <div style="font-size:0.7rem;font-weight:700;color:var(--t3);margin-bottom:5px;text-transform:uppercase;letter-spacing:0.06em;">Compliance Officer Notes</div>
-          <textarea placeholder="Add internal notes for this report…" style="width:100%;box-sizing:border-box;font-size:0.77rem;padding:7px 9px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--t1);resize:none;height:56px;font-family:inherit;" oninput="showToast('Note saved','success',800)"></textarea>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;">
+            <div style="font-size:0.7rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:0.06em;">Compliance Officer Notes</div>
+            <button class="notes-edit-btn btn btn-ghost btn-xs" style="display:none;" onclick="notesEdit(this)">Edit</button>
+          </div>
+          <div class="notes-edit-area">
+            <textarea placeholder="Add context, evidence of remediation, or notes for the FCA reviewer…" style="width:100%;box-sizing:border-box;font-size:0.77rem;padding:7px 9px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--t1);resize:none;height:64px;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--plum)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+            <div style="display:flex;gap:6px;margin-top:5px;">
+              <button class="btn btn-primary btn-xs" onclick="notesDone(this)">Done</button>
+              <button class="btn btn-ghost btn-xs notes-clear-btn" style="display:none;" onclick="notesClear(this)">Clear</button>
+            </div>
+          </div>
+          <div class="notes-view-area" style="display:none;font-size:0.77rem;padding:7px 9px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--t1);min-height:40px;white-space:pre-wrap;line-height:1.55;"></div>
         </div>
       </div>
 
@@ -290,8 +300,18 @@
           <button class="btn btn-secondary btn-sm" onclick="openPreview('suitability')">Preview</button>
         </div>
         <div style="margin-top:12px;border-top:1px solid var(--border);padding-top:10px;">
-          <div style="font-size:0.7rem;font-weight:700;color:var(--t3);margin-bottom:5px;text-transform:uppercase;letter-spacing:0.06em;">Compliance Officer Notes</div>
-          <textarea placeholder="Add internal notes for this report…" style="width:100%;box-sizing:border-box;font-size:0.77rem;padding:7px 9px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--t1);resize:none;height:56px;font-family:inherit;" oninput="showToast('Note saved','success',800)"></textarea>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;">
+            <div style="font-size:0.7rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:0.06em;">Compliance Officer Notes</div>
+            <button class="notes-edit-btn btn btn-ghost btn-xs" style="display:none;" onclick="notesEdit(this)">Edit</button>
+          </div>
+          <div class="notes-edit-area">
+            <textarea placeholder="Add context, evidence of remediation, or notes for the FCA reviewer…" style="width:100%;box-sizing:border-box;font-size:0.77rem;padding:7px 9px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--t1);resize:none;height:64px;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--plum)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+            <div style="display:flex;gap:6px;margin-top:5px;">
+              <button class="btn btn-primary btn-xs" onclick="notesDone(this)">Done</button>
+              <button class="btn btn-ghost btn-xs notes-clear-btn" style="display:none;" onclick="notesClear(this)">Clear</button>
+            </div>
+          </div>
+          <div class="notes-view-area" style="display:none;font-size:0.77rem;padding:7px 9px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--t1);min-height:40px;white-space:pre-wrap;line-height:1.55;"></div>
         </div>
       </div>
 
@@ -314,8 +334,18 @@
           <button class="btn btn-secondary btn-sm" onclick="openPreview('consumer_duty')">Preview</button>
         </div>
         <div style="margin-top:12px;border-top:1px solid var(--border);padding-top:10px;">
-          <div style="font-size:0.7rem;font-weight:700;color:var(--t3);margin-bottom:5px;text-transform:uppercase;letter-spacing:0.06em;">Compliance Officer Notes</div>
-          <textarea placeholder="Add internal notes for this report…" style="width:100%;box-sizing:border-box;font-size:0.77rem;padding:7px 9px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--t1);resize:none;height:56px;font-family:inherit;" oninput="showToast('Note saved','success',800)"></textarea>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;">
+            <div style="font-size:0.7rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:0.06em;">Compliance Officer Notes</div>
+            <button class="notes-edit-btn btn btn-ghost btn-xs" style="display:none;" onclick="notesEdit(this)">Edit</button>
+          </div>
+          <div class="notes-edit-area">
+            <textarea placeholder="Add context, evidence of remediation, or notes for the FCA reviewer…" style="width:100%;box-sizing:border-box;font-size:0.77rem;padding:7px 9px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--t1);resize:none;height:64px;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--plum)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+            <div style="display:flex;gap:6px;margin-top:5px;">
+              <button class="btn btn-primary btn-xs" onclick="notesDone(this)">Done</button>
+              <button class="btn btn-ghost btn-xs notes-clear-btn" style="display:none;" onclick="notesClear(this)">Clear</button>
+            </div>
+          </div>
+          <div class="notes-view-area" style="display:none;font-size:0.77rem;padding:7px 9px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--t1);min-height:40px;white-space:pre-wrap;line-height:1.55;"></div>
         </div>
       </div>
 
@@ -338,8 +368,18 @@
           <button class="btn btn-secondary btn-sm" onclick="openPreview('log')">Preview</button>
         </div>
         <div style="margin-top:12px;border-top:1px solid var(--border);padding-top:10px;">
-          <div style="font-size:0.7rem;font-weight:700;color:var(--t3);margin-bottom:5px;text-transform:uppercase;letter-spacing:0.06em;">Compliance Officer Notes</div>
-          <textarea placeholder="Add internal notes for this report…" style="width:100%;box-sizing:border-box;font-size:0.77rem;padding:7px 9px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--t1);resize:none;height:56px;font-family:inherit;" oninput="showToast('Note saved','success',800)"></textarea>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;">
+            <div style="font-size:0.7rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:0.06em;">Compliance Officer Notes</div>
+            <button class="notes-edit-btn btn btn-ghost btn-xs" style="display:none;" onclick="notesEdit(this)">Edit</button>
+          </div>
+          <div class="notes-edit-area">
+            <textarea placeholder="Add context, evidence of remediation, or notes for the FCA reviewer…" style="width:100%;box-sizing:border-box;font-size:0.77rem;padding:7px 9px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--t1);resize:none;height:64px;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--plum)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+            <div style="display:flex;gap:6px;margin-top:5px;">
+              <button class="btn btn-primary btn-xs" onclick="notesDone(this)">Done</button>
+              <button class="btn btn-ghost btn-xs notes-clear-btn" style="display:none;" onclick="notesClear(this)">Clear</button>
+            </div>
+          </div>
+          <div class="notes-view-area" style="display:none;font-size:0.77rem;padding:7px 9px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--t1);min-height:40px;white-space:pre-wrap;line-height:1.55;"></div>
         </div>
       </div>
 
@@ -362,8 +402,18 @@
           <button class="btn btn-secondary btn-sm" onclick="openPreview('vulnerable')">Preview</button>
         </div>
         <div style="margin-top:12px;border-top:1px solid var(--border);padding-top:10px;">
-          <div style="font-size:0.7rem;font-weight:700;color:var(--t3);margin-bottom:5px;text-transform:uppercase;letter-spacing:0.06em;">Compliance Officer Notes</div>
-          <textarea placeholder="Add internal notes for this report…" style="width:100%;box-sizing:border-box;font-size:0.77rem;padding:7px 9px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--t1);resize:none;height:56px;font-family:inherit;" oninput="showToast('Note saved','success',800)"></textarea>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;">
+            <div style="font-size:0.7rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:0.06em;">Compliance Officer Notes</div>
+            <button class="notes-edit-btn btn btn-ghost btn-xs" style="display:none;" onclick="notesEdit(this)">Edit</button>
+          </div>
+          <div class="notes-edit-area">
+            <textarea placeholder="Add context, evidence of remediation, or notes for the FCA reviewer…" style="width:100%;box-sizing:border-box;font-size:0.77rem;padding:7px 9px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--t1);resize:none;height:64px;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--plum)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+            <div style="display:flex;gap:6px;margin-top:5px;">
+              <button class="btn btn-primary btn-xs" onclick="notesDone(this)">Done</button>
+              <button class="btn btn-ghost btn-xs notes-clear-btn" style="display:none;" onclick="notesClear(this)">Clear</button>
+            </div>
+          </div>
+          <div class="notes-view-area" style="display:none;font-size:0.77rem;padding:7px 9px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--t1);min-height:40px;white-space:pre-wrap;line-height:1.55;"></div>
         </div>
       </div>
 
@@ -386,8 +436,18 @@
           <button class="btn btn-secondary btn-sm" onclick="openPreview('board')">Preview</button>
         </div>
         <div style="margin-top:12px;border-top:1px solid var(--border);padding-top:10px;">
-          <div style="font-size:0.7rem;font-weight:700;color:var(--t3);margin-bottom:5px;text-transform:uppercase;letter-spacing:0.06em;">Compliance Officer Notes</div>
-          <textarea placeholder="Add internal notes for this report…" style="width:100%;box-sizing:border-box;font-size:0.77rem;padding:7px 9px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--t1);resize:none;height:56px;font-family:inherit;" oninput="showToast('Note saved','success',800)"></textarea>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;">
+            <div style="font-size:0.7rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:0.06em;">Compliance Officer Notes</div>
+            <button class="notes-edit-btn btn btn-ghost btn-xs" style="display:none;" onclick="notesEdit(this)">Edit</button>
+          </div>
+          <div class="notes-edit-area">
+            <textarea placeholder="Add context, evidence of remediation, or notes for the FCA reviewer…" style="width:100%;box-sizing:border-box;font-size:0.77rem;padding:7px 9px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--t1);resize:none;height:64px;font-family:inherit;outline:none;" onfocus="this.style.borderColor='var(--plum)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+            <div style="display:flex;gap:6px;margin-top:5px;">
+              <button class="btn btn-primary btn-xs" onclick="notesDone(this)">Done</button>
+              <button class="btn btn-ghost btn-xs notes-clear-btn" style="display:none;" onclick="notesClear(this)">Clear</button>
+            </div>
+          </div>
+          <div class="notes-view-area" style="display:none;font-size:0.77rem;padding:7px 9px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2);color:var(--t1);min-height:40px;white-space:pre-wrap;line-height:1.55;"></div>
         </div>
       </div>
 
@@ -1013,6 +1073,43 @@ function openPreview(type) {
   dl.textContent = r.dl;
   dl.onclick = () => { showToast(r.dl + ': downloading…', 'success'); closeModal('preview-modal'); };
   openModal('preview-modal');
+}
+
+function notesDone(btn) {
+  const block = btn.closest('.notes-edit-area').parentElement;
+  const textarea = block.querySelector('textarea');
+  const val = textarea.value.trim();
+  const editArea = block.querySelector('.notes-edit-area');
+  const viewArea = block.querySelector('.notes-view-area');
+  const editBtn  = block.querySelector('.notes-edit-btn');
+  const clearBtn = block.querySelector('.notes-clear-btn');
+  editArea.style.display = 'none';
+  viewArea.style.display = 'block';
+  viewArea.textContent = val || 'No notes added.';
+  viewArea.style.color = val ? 'var(--t1)' : 'var(--t3)';
+  editBtn.style.display = 'inline-flex';
+  clearBtn.style.display = val ? 'inline-flex' : 'none';
+}
+
+function notesEdit(btn) {
+  const block = btn.parentElement.parentElement;
+  const editArea = block.querySelector('.notes-edit-area');
+  const viewArea = block.querySelector('.notes-view-area');
+  editArea.style.display = 'block';
+  viewArea.style.display = 'none';
+  btn.style.display = 'none';
+  const textarea = editArea.querySelector('textarea');
+  const clearBtn = editArea.querySelector('.notes-clear-btn');
+  clearBtn.style.display = textarea.value.trim() ? 'inline-flex' : 'none';
+  textarea.focus();
+}
+
+function notesClear(btn) {
+  const editArea = btn.closest('.notes-edit-area');
+  const textarea = editArea.querySelector('textarea');
+  textarea.value = '';
+  btn.style.display = 'none';
+  textarea.focus();
 }
 </script>
 </body>
